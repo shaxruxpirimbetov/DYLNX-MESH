@@ -11,4 +11,4 @@ class MeshSerializer(serializers.ModelSerializer):
 class ActivateMeshSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mesh
-        fields = ["is_active", "phone"]
+        fields = ["is_active", "phone", "telegram_id"]
