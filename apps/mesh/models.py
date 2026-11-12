@@ -10,7 +10,7 @@ class Mesh(models.Model):
     phone = models.CharField(max_length=100, null=True, blank=True)
     is_active = models.BooleanField(default=False)
     until = models.DateField()
-    # password = models.CharField(max_length=100, null=True, blank=True)
+    password = models.CharField(max_length=100)
 
     qrcode = models.URLField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)

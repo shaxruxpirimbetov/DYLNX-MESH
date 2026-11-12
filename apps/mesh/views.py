@@ -1,6 +1,6 @@
 from django.views import View
 from django.shortcuts import render
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from apps.user.permissions import IsLisa
 from decouple import config
@@ -35,6 +35,18 @@ class ActivateMeshAPIView(generics.UpdateAPIView):
     serializer_class = ActivateMeshSerializer
     permission_classes = [IsLisa]
     lookup_field = 'uuid'
+
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+
+        if serializer.validated_data['password'] != instance.password:
+            return Response({"detail": "Passwords do not match."}, status=400)
+
+        serializer.save()
+        return Response(serializer.data, status=200)
 
 class OpenMeshAPIView(View):
     permission_classes = [permissions.AllowAny]
