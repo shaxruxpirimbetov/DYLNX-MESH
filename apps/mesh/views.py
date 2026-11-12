@@ -1,3 +1,4 @@
+from django.views import View
 from django.shortcuts import render
 from rest_framework import generics, permissions, status
 from rest_framework.views import APIView
@@ -29,13 +30,14 @@ class MeshDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MeshSerializer
     permission_classes = [permissions.IsAdminUser]
 
-class OpenMeshAPIView(APIView):
+class OpenMeshAPIView(View):
     permission_classes = [permissions.AllowAny]
     def get(self, request, uuid, *args, **kwargs):
         try:
             mesh = Mesh.objects.filter(uuid=uuid).first()
             if not mesh:
-                return Response({"detail": f"mesh with this {uuid} uuid not found"}, status=404)
+                # return Response({"detail": f"mesh with this {uuid} uuid not found"}, status=404)
+                return render(request, "invalid_uuid.html")
 
             if not mesh.phone:
                 return render(request, "unactive_qr.html")
