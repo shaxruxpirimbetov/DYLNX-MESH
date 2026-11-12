@@ -3,6 +3,7 @@ from apps.mesh.models import Mesh
 
 class Message(models.Model):
     mesh = models.ForeignKey(Mesh, on_delete=models.CASCADE, related_name='message_mesh')
+    telegram_id = models.IntegerField(default=0)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
