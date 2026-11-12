@@ -8,8 +8,7 @@ class MeshSerializer(serializers.ModelSerializer):
         model = Mesh
         fields = "__all__"
 
-
-class ChangeAllPasswordSerializer(serializers.ModelSerializer):
+class ActivateMeshSerializer(serializers.ModelSerializer):
     class Meta:
         model = Mesh
-        fields = ["password"]
+        fields = ["is_active", "phone"]

@@ -12,3 +12,4 @@ boto3
 dj_database_url
 psycopg[binary]
 qrcode
+segno

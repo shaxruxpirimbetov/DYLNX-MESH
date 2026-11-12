@@ -25,6 +25,7 @@ THIRD_APPS = [
 LOCAL_APPS = [
     "apps.user",
     "apps.mesh",
+    "apps.message",
 ]
 INSTALLED_APPS = DJANGO_APPS + THIRD_APPS + LOCAL_APPS
 

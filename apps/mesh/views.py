@@ -1,12 +1,12 @@
 from django.views import View
 from django.shortcuts import render
-from rest_framework import generics, permissions, status
-from rest_framework.views import APIView
+from rest_framework import generics, permissions
 from rest_framework.response import Response
+from apps.user.permissions import IsLisa
 from decouple import config
 from utils import QR
 from .models import Mesh
-from .serializers import MeshSerializer, ChangeAllPasswordSerializer
+from .serializers import MeshSerializer, ActivateMeshSerializer
 
 BACKEND_HERE = config('BACKEND_HERE')
 
@@ -30,16 +30,21 @@ class MeshDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = MeshSerializer
     permission_classes = [permissions.IsAdminUser]
 
+class ActivateMeshAPIView(generics.UpdateAPIView):
+    queryset = Mesh.objects.all()
+    serializer_class = ActivateMeshSerializer
+    permission_classes = [IsLisa]
+    lookup_field = 'uuid'
+
 class OpenMeshAPIView(View):
     permission_classes = [permissions.AllowAny]
     def get(self, request, uuid, *args, **kwargs):
         try:
             mesh = Mesh.objects.filter(uuid=uuid).first()
             if not mesh:
-                # return Response({"detail": f"mesh with this {uuid} uuid not found"}, status=404)
                 return render(request, "invalid_uuid.html")
 
-            if not mesh.phone:
+            if not mesh.is_active:
                 return render(request, "unactive_qr.html")
             return render(request, "invalid_uuid.html")
         except Exception as err:
