@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from rest_framework import generics, permissions, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -35,6 +36,9 @@ class OpenMeshAPIView(APIView):
             mesh = Mesh.objects.filter(uuid=uuid).first()
             if not mesh:
                 return Response({"detail": f"mesh with this {uuid} uuid not found"}, status=404)
+
+            if not mesh.phone:
+                return render(request, "unactive_qr.html")
             return Response(MeshSerializer(mesh).data, status=200)
         except Exception as err:
             return Response({"detail": f"invalid uuid: {uuid}"}, status=404)
