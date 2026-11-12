@@ -1,0 +1,14 @@
+django
+djangorestframework
+django-cors-headers
+python-decouple
+djangorestframework-simplejwt
+Pillow
+
+#FOR CLOUDFLARE
+django-storages
+boto3
+
+dj_database_url
+psycopg[binary]
+qrcode
