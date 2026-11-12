@@ -1,3 +1,45 @@
-from django.shortcuts import render
+from rest_framework import generics, permissions, status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from decouple import config
+from utils import QR
+from .models import Mesh
+from .serializers import MeshSerializer, ChangeAllPasswordSerializer
 
-# Create your views here.
+BACKEND_HERE = config('BACKEND_HERE')
+
+class MeshListCreateAPIView(generics.ListCreateAPIView):
+    queryset = Mesh.objects.all()
+    serializer_class = MeshSerializer
+    permission_classes = [permissions.IsAdminUser]
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save(user=request.user)
+        qrcode = QR.make(serializer.instance.uuid)
+        serializer.instance.qrcode = qrcode
+        serializer.instance.url = f"{BACKEND_HERE}/mesh/{serializer.instance.uuid}"
+        serializer.instance.save()
+        return Response(serializer.data, status=201)
+
+class MeshDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Mesh.objects.all()
+    serializer_class = MeshSerializer
+    permission_classes = [permissions.IsAdminUser]
+
+class OpenMeshAPIView(APIView):
+    permission_classes = [permissions.AllowAny]
+    def get(self, request, uuid, *args, **kwargs):
+        try:
+            mesh = Mesh.objects.filter(uuid=uuid).first()
+            if not mesh:
+                return Response({"detail": f"mesh with this {uuid} uuid not found"}, status=404)
+            return Response(MeshSerializer(mesh).data, status=200)
+        except Exception as err:
+            return Response({"detail": f"invalid uuid: {uuid}"}, status=404)
+
+class ChangeAllPasswordAPIView(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAdminUser]
+    queryset = Mesh.objects.all()
+    serializer_class = ChangeAllPasswordSerializer
