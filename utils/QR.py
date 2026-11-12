@@ -26,7 +26,7 @@ def make(uuid):
     qr.make(fit=True)
 
     # Создаем картинку
-    img = qr.make_image(fill_color="darkblue", back_color="lightyellow")
+    img = qr.make_image(fill_color="black", back_color="white")
 
     # 2. Сохраняем картинку в оперативную память (вместо жесткого диска)
     buffer = io.BytesIO()
