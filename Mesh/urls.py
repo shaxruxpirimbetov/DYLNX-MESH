@@ -11,6 +11,7 @@ from apps.mesh.views import OpenMeshAPIView
 # handler404 = 'apps.user.views.custom_404'
 
 urlpatterns = [
+    # path("")
     path("admin/", admin.site.urls),
     path("api/user/", include("apps.user.urls")),
     path("api/mesh/", include("apps.mesh.urls")),
