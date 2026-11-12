@@ -46,6 +46,6 @@ class OpenMeshAPIView(View):
 
             if not mesh.is_active:
                 return render(request, "unactive_qr.html")
-            return render(request, "invalid_uuid.html")
+            return render(request, "open_mesh.html")
         except Exception as err:
             return render(request, "invalid_uuid.html")
