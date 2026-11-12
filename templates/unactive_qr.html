@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E252E">
+<meta name="robots" content="noindex">
+<title>Стикер не активирован · Mesh - DYLNX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asphalt:#1E252E; --wet:#2B3440; --line:#3A4552;
+    --amber:#F2A93B; --rust:#C4511F; --paper:#EEF1EE; --muted:#9AA6B2; --tg:#2AABEE;
+    --display:"Unbounded",system-ui,sans-serif; --body:"Manrope",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:var(--body);color:var(--paper);background:var(--asphalt);line-height:1.55;-webkit-font-smoothing:antialiased;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    padding:max(18px,env(safe-area-inset-top)) 18px max(24px,env(safe-area-inset-bottom));
+  }
+  .wrap{max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+  .bar{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--paper)}
+  .brand svg{width:30px;height:30px}
+  .brand b{font-family:var(--display);font-weight:700;font-size:15px}
+  .brand span{color:var(--muted);font-size:12px;display:block;margin-top:-2px}
+  .lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px}
+  .lang button{font:600 12px var(--body);color:var(--muted);background:none;border:0;border-radius:999px;padding:6px 11px;cursor:pointer}
+  .lang button[aria-pressed="true"]{background:var(--wet);color:var(--paper)}
+
+  /* the empty parking bay — the memorable thing */
+  .bay{position:relative;padding:34px 22px 26px;text-align:center}
+  .bay::before{ /* painted bay lines: left, right, back */
+    content:"";position:absolute;inset:0;border:4px solid var(--paper);border-top:0;border-radius:0 0 6px 6px;opacity:.9;
+    -webkit-mask:linear-gradient(#000 0 0);
+  }
+  .bay::after{ /* dashed entry line */
+    content:"";position:absolute;left:0;right:0;top:0;height:4px;
+    background:repeating-linear-gradient(90deg,var(--paper) 0 18px,transparent 18px 32px);opacity:.35;
+  }
+  .stencil{
+    font-family:var(--display);font-weight:800;font-size:68px;line-height:1;letter-spacing:-.02em;
+    color:transparent;-webkit-text-stroke:2px var(--amber);margin:6px 0 18px;
+  }
+  .bay.expired .stencil{-webkit-text-stroke-color:var(--rust)}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(24px,7vw,30px);line-height:1.1;letter-spacing:-.015em;text-wrap:balance}
+  .lead{margin:12px auto 0;max-width:32ch;color:var(--muted);font-size:15.5px}
+
+  .actions{display:grid;gap:12px}
+  .btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:60px;border-radius:18px;text-decoration:none;font:700 16.5px var(--body);transition:transform .15s}
+  .btn:active{transform:scale(.98)}
+  .btn svg{width:22px;height:22px;flex:none}
+  .primary{background:var(--amber);color:var(--asphalt);box-shadow:0 14px 28px -16px rgba(242,169,59,.9)}
+  .secondary{border:2px solid var(--line);color:var(--paper)}
+  .secondary svg{color:var(--tg)}
+
+  /* pitch */
+  .pitch{background:var(--paper);color:var(--asphalt);border-radius:26px;padding:26px 22px}
+  .pitch h2{font-family:var(--display);font-weight:700;font-size:21px;line-height:1.2;letter-spacing:-.01em;text-wrap:balance}
+  .pitch > p{margin-top:8px;color:#4C5763;font-size:15px}
+  .perks{list-style:none;margin-top:18px;display:grid;gap:14px}
+  .perks li{display:grid;grid-template-columns:42px 1fr;gap:12px;align-items:center}
+  .perks i{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:var(--asphalt);color:var(--amber)}
+  .perks i svg{width:21px;height:21px}
+  .perks b{display:block;font-size:15px}
+  .perks span{display:block;color:#56616D;font-size:13.5px;line-height:1.45}
+  .pitch .btn{margin-top:22px;background:var(--rust);color:#fff}
+
+  .lane{height:6px;background:repeating-linear-gradient(90deg,var(--amber) 0 28px,transparent 28px 52px);opacity:.75;border-radius:3px}
+  footer{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted)}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <a class="brand" href="https://t.me/{{ bot_username }}" aria-label="Mesh - DYLNX">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#C4511F"/><path d="M8 23V9l8 8 8-8v14" fill="none" stroke="#EEF1EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="9" r="2.2" fill="#F2A93B"/><circle cx="24" cy="9" r="2.2" fill="#F2A93B"/></svg>
+      <div><b>Mesh</b><span>by DYLNX</span></div>
+    </a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="ru">RU</button>
+      <button type="button" data-lang="uz">UZ</button>
+    </div>
+  </header>
+
+  <main class="bay{% if expired %} expired{% endif %}" data-state="{% if expired %}expired{% else %}free{% endif %}">
+    <div class="stencil" aria-hidden="true">{% if expired %}STOP{% else %}FREE{% endif %}</div>
+    <h1 data-i18n="title"></h1>
+    <p class="lead" data-i18n="lead"></p>
+  </main>
+
+  <div class="actions">
+    <a class="btn primary" href="{% if expired %}https://t.me/{{ bot_username }}?start=buy{% else %}https://t.me/{{ bot_username }}?start=a_{{ uuid }}{% endif %}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 1.5a5 5 0 0 0-5 5V9H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2H9V6.5a3 3 0 0 1 6 0 1 1 0 1 0 2 0 5 5 0 0 0-5-5Zm0 12a2 2 0 0 1 1 3.7V19h-2v-1.8a2 2 0 0 1 1-3.7Z"/></svg>
+      <span data-i18n="{% if expired %}renew{% else %}activate{% endif %}"></span>
+    </a>
+    <a class="btn secondary" href="https://t.me/{{ bot_username }}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.7 19.6c-.2 1.1-.9 1.4-1.8.9l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.4l-4.8-1.5c-1-.3-1.1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3Z"/></svg>
+      <span data-i18n="openbot"></span>
+    </a>
+  </div>
+
+  <section class="pitch" aria-labelledby="pitch-h">
+    <h2 id="pitch-h" data-i18n="p_title"></h2>
+    <p data-i18n="p_lead"></p>
+    <ul class="perks">
+      <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Zm-3 11H7v-2h10v2Zm0-4H7V7h10v2Z"/></svg></i><div><b data-i18n="k1"></b><span data-i18n="k1d"></span></div></li>
+      <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3Z"/></svg></i><div><b data-i18n="k2"></b><span data-i18n="k2d"></span></div></li>
+      <li><i><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 3h8v8H3V3Zm2 2v4h4V5H5Zm8-2h8v8h-8V3Zm2 2v4h4V5h-4ZM3 13h8v8H3v-8Zm2 2v4h4v-4H5Zm13-2h3v3h-3v-3Zm-5 0h3v3h-3v-3Zm3 3h2v2h-2v-2Zm-3 2h3v3h-3v-3Zm5 1h3v2h-3v-2Z"/></svg></i><div><b data-i18n="k3"></b><span data-i18n="k3d"></span></div></li>
+    </ul>
+    <a class="btn" href="{{ buy_url }}"><span data-i18n="buy"></span></a>
+  </section>
+
+  <div class="lane" aria-hidden="true"></div>
+  <footer><span>Mesh - DYLNX</span><span data-i18n="foot"></span></footer>
+</div>
+
+<script>
+(() => {
+  const I18N = {
+    ru: {
+      free_title:"Этот QR пока ничей", free_lead:"Стикер ещё не активировали, поэтому написать владельцу через него нельзя.",
+      expired_title:"Срок стикера закончился", expired_lead:"Владелец не продлил Mesh, и связь через этот QR сейчас выключена.",
+      activate:"Это мой стикер — активировать", renew:"Это мой стикер — продлить", openbot:"Открыть бот Mesh",
+      p_title:"Хотите, чтобы до вас могли достучаться?",
+      p_lead:"Наклейте Mesh на стекло — и вас найдут, даже когда вы далеко от машины.",
+      k1:"Сообщения прямо в Telegram", k1d:"Перекрыли выезд, горят фары, сработала сигнализация — узнаете сразу.",
+      k2:"Без номера на стекле", k2d:"Чат анонимный: никто не видит ваш телефон и аккаунт.",
+      k3:"Активация за минуту", k3d:"Скан QR, секретный код с карточки — и стикер ваш.",
+      buy:"Купить свой Mesh", foot:"Связь, которая не раскрывает вас"
+    },
+    uz: {
+      free_title:"Bu QR hali hech kimniki emas", free_lead:"Stiker hali faollashtirilmagan, shuning uchun u orqali egasiga yozib bo'lmaydi.",
+      expired_title:"Stiker muddati tugagan", expired_lead:"Ega Mesh ni uzaytirmagan, bu QR orqali aloqa hozir o'chirilgan.",
+      activate:"Bu mening stikerim — faollashtirish", renew:"Bu mening stikerim — uzaytirish", openbot:"Mesh botini ochish",
+      p_title:"Siz bilan bog'lana olishlarini xohlaysizmi?",
+      p_lead:"Mesh ni oynaga yopishtiring — mashinadan uzoqda bo'lsangiz ham sizni topishadi.",
+      k1:"Xabarlar to'g'ridan-to'g'ri Telegramga", k1d:"Yo'l to'silgan, faralar yoniq, signalizatsiya ishladi — darhol bilasiz.",
+      k2:"Oynada raqamsiz", k2d:"Chat anonim: hech kim telefoningiz va akkauntingizni ko'rmaydi.",
+      k3:"Bir daqiqada faollashtirish", k3d:"QR skan, kartochkadagi maxfiy kod — va stiker sizniki.",
+      buy:"O'z Mesh ingizni sotib oling", foot:"Sizni oshkor qilmaydigan aloqa"
+    }
+  };
+  const state = document.querySelector(".bay").dataset.state;
+  let lang = localStorage.getItem("mesh_lang") || ((navigator.language||"").startsWith("uz") ? "uz" : "ru");
+  function apply(){
+    const d = I18N[lang];
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const k = el.dataset.i18n;
+      el.textContent = d[k] ?? d[`${state}_${k}`];
+    });
+    document.title = `${d[state + "_title"]} · Mesh - DYLNX`;
+    document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+  }
+  document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => {
+    lang = b.dataset.lang; try{localStorage.setItem("mesh_lang", lang)}catch(e){}; apply();
+  }));
+  apply();
+})();
+</script>
+</body>
+</html>

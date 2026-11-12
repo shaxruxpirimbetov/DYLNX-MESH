@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1E252E">
+<meta name="robots" content="noindex">
+<title>Связаться с владельцем · Mesh - DYLNX</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asphalt:#1E252E; --wet:#2B3440; --line:#3A4552;
+    --amber:#F2A93B; --rust:#C4511F; --paper:#EEF1EE; --muted:#9AA6B2; --tg:#2AABEE;
+    --display:"Unbounded",system-ui,sans-serif; --body:"Manrope",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%}
+  body{
+    font-family:var(--body); color:var(--paper); background:var(--asphalt);
+    background-image:
+      radial-gradient(120% 60% at 50% -10%, rgba(242,169,59,.10), transparent 60%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+    padding:max(18px,env(safe-area-inset-top)) 18px max(24px,env(safe-area-inset-bottom));
+  }
+  .wrap{max-width:440px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+
+  /* top bar */
+  .bar{display:flex;align-items:center;justify-content:space-between}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--paper)}
+  .brand svg{width:30px;height:30px}
+  .brand b{font-family:var(--display);font-weight:700;font-size:15px;letter-spacing:.01em}
+  .brand span{color:var(--muted);font-size:12px;display:block;margin-top:-2px}
+  .lang{display:flex;border:1px solid var(--line);border-radius:999px;padding:3px}
+  .lang button{font:600 12px var(--body);color:var(--muted);background:none;border:0;border-radius:999px;padding:6px 11px;cursor:pointer}
+  .lang button[aria-pressed="true"]{background:var(--wet);color:var(--paper)}
+
+  /* the sticker */
+  .sticker{
+    position:relative;border-radius:28px;padding:30px 24px 26px;overflow:hidden;
+    background:linear-gradient(160deg,#F7F8F5 0%,#E3E8E4 100%); color:var(--asphalt);
+    box-shadow:0 1px 0 rgba(255,255,255,.6) inset, 0 30px 60px -30px rgba(0,0,0,.7);
+  }
+  .sticker::before{ /* glare on glass */
+    content:"";position:absolute;inset:-40% -30% auto auto;width:45%;height:90%;
+    background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.55) 50%,transparent 58%);
+    transform:rotate(8deg);pointer-events:none;
+  }
+  .sticker > *{position:relative;z-index:1}
+  .car{display:block;width:120px;height:120px;margin:0 auto 18px;position:relative}
+  .car .ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--amber);opacity:0;animation:ping 2.4s cubic-bezier(.2,.6,.3,1) infinite}
+  .car .ring:nth-child(2){animation-delay:.8s}
+  .car svg{position:absolute;inset:22px;width:76px;height:76px}
+  @keyframes ping{0%{transform:scale(.55);opacity:.9}100%{transform:scale(1.15);opacity:0}}
+
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,7.4vw,32px);line-height:1.08;letter-spacing:-.015em;text-align:center;text-wrap:balance}
+  .lead{margin:12px auto 0;max-width:32ch;text-align:center;color:#46505C;font-size:15.5px}
+
+  /* main action with countdown ring */
+  .go{
+    position:relative;margin-top:26px;display:flex;align-items:center;justify-content:center;gap:12px;
+    width:100%;min-height:64px;padding:0 58px 0 20px;border-radius:18px;border:0;cursor:pointer;text-decoration:none;
+    background:var(--tg);color:#fff;font:700 17px var(--body);
+    box-shadow:0 12px 24px -12px rgba(42,171,238,.9);
+    transition:transform .15s ease;
+  }
+  .go:active{transform:scale(.98)}
+  .go svg{width:24px;height:24px;flex:none}
+  .go .count{position:absolute;right:14px;width:34px;height:34px}
+  .go .count circle{fill:none;stroke-width:3}
+  .go .count .track{stroke:rgba(255,255,255,.25)}
+  .go .count .fill{stroke:#fff;stroke-linecap:round;stroke-dasharray:94.25;stroke-dashoffset:94.25;transform:rotate(-90deg);transform-origin:center}
+  .go .count text{fill:#fff;font:700 12px var(--body)}
+  .auto{margin-top:10px;text-align:center;font-size:13px;color:#5B6672;min-height:20px}
+  .auto button{font:inherit;color:var(--rust);background:none;border:0;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+
+  .call{
+    margin-top:12px;display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;border-radius:16px;
+    border:2px solid var(--asphalt);color:var(--asphalt);text-decoration:none;font:700 15.5px var(--body);
+  }
+  .call svg{width:20px;height:20px}
+
+  /* what happens next — real sequence */
+  .steps{list-style:none;counter-reset:s;display:grid;gap:2px;background:var(--wet);border-radius:22px;padding:8px}
+  .steps li{counter-increment:s;display:grid;grid-template-columns:38px 1fr;gap:12px;align-items:start;padding:12px 12px 12px 10px;border-radius:16px}
+  .steps li::before{content:counter(s);display:grid;place-items:center;width:38px;height:38px;border-radius:12px;background:var(--asphalt);color:var(--amber);font:700 15px var(--display)}
+  .steps b{display:block;font-weight:700;font-size:15px}
+  .steps span{color:var(--muted);font-size:14px}
+
+  .privacy{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border:1px dashed var(--line);border-radius:18px;color:var(--muted);font-size:14px}
+  .privacy svg{flex:none;width:22px;height:22px;color:var(--amber);margin-top:1px}
+  .privacy strong{color:var(--paper);font-weight:700}
+
+  /* lane marking footer */
+  .lane{height:6px;background:repeating-linear-gradient(90deg,var(--amber) 0 28px,transparent 28px 52px);opacity:.75;border-radius:3px}
+  footer{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--muted)}
+  footer a{color:var(--paper);text-decoration:none;font-weight:600}
+
+  a:focus-visible,button:focus-visible{outline:3px solid var(--amber);outline-offset:3px}
+  @media (prefers-reduced-motion:reduce){.car .ring{animation:none;opacity:.5;transform:scale(.9)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <a class="brand" href="https://t.me/{{ bot_username }}" aria-label="Mesh - DYLNX">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#C4511F"/><path d="M8 23V9l8 8 8-8v14" fill="none" stroke="#EEF1EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="9" r="2.2" fill="#F2A93B"/><circle cx="24" cy="9" r="2.2" fill="#F2A93B"/></svg>
+      <div><b>Mesh</b><span>by DYLNX</span></div>
+    </a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="ru">RU</button>
+      <button type="button" data-lang="uz">UZ</button>
+    </div>
+  </header>
+
+  <main class="sticker">
+    <div class="car" aria-hidden="true">
+      <span class="ring"></span><span class="ring"></span>
+      <svg viewBox="0 0 64 64"><rect x="14" y="4" width="36" height="56" rx="12" fill="#1E252E"/><rect x="19" y="13" width="26" height="11" rx="4" fill="#6E8BA3"/><rect x="19" y="42" width="26" height="8" rx="3" fill="#6E8BA3"/><rect x="11" y="16" width="4" height="9" rx="2" fill="#1E252E"/><rect x="49" y="16" width="4" height="9" rx="2" fill="#1E252E"/><circle cx="22" cy="7.5" r="2" fill="#F2A93B"/><circle cx="42" cy="7.5" r="2" fill="#F2A93B"/></svg>
+    </div>
+
+    <h1 data-i18n="title">Напишите владельцу этой машины</h1>
+    <p class="lead" data-i18n="lead">Сообщение придёт ему в Telegram за секунду. Имена и номера друг друга вы не увидите.</p>
+
+    <a class="go" id="go" href="https://t.me/{{ bot_username }}?start={{ uuid }}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.7 19.6c-.2 1.1-.9 1.4-1.8.9l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.3-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6.2 13.4l-4.8-1.5c-1-.3-1.1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3Z"/></svg>
+      <span data-i18n="cta">Написать в Telegram</span>
+      <svg class="count" viewBox="0 0 34 34" aria-hidden="true"><circle class="track" cx="17" cy="17" r="15"/><circle class="fill" id="ringFill" cx="17" cy="17" r="15"/><text id="ringNum" x="17" y="21.5" text-anchor="middle">5</text></svg>
+    </a>
+    <p class="auto" id="auto" aria-live="polite"></p>
+
+    {% if phone %}
+    <a class="call" href="tel:{{ phone|cut:' ' }}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z"/></svg>
+      <span data-i18n="call">Позвонить владельцу</span>
+    </a>
+    {% endif %}
+  </main>
+
+  <ol class="steps">
+    <li><div><b data-i18n="s1">Откроется бот Mesh</b><span data-i18n="s1d">Нажмите «Запустить» в Telegram.</span></div></li>
+    <li><div><b data-i18n="s2">Выберите причину</b><span data-i18n="s2d">«Перекрыли проезд», «Включены фары» — или напишите своими словами.</span></div></li>
+    <li><div><b data-i18n="s3">Ждите ответ в чате</b><span data-i18n="s3d">Владелец ответит прямо в боте или нажмёт «Уже иду».</span></div></li>
+  </ol>
+
+  <p class="privacy">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2 4 5v6c0 5 3.4 9.7 8 11 4.6-1.3 8-6 8-11V5l-8-3Zm0 10.9h6c-.5 3.9-3 7.4-6 8.3V13H6V6.3l6-2.2v8.8Z"/></svg>
+    <span data-i18n-html="privacy"><strong>Чат анонимный.</strong> Mesh пересылает сообщения сам: владелец не узнает ваш аккаунт, а вы — его номер.</span>
+  </p>
+
+  <div class="lane" aria-hidden="true"></div>
+  <footer>
+    <span data-i18n="foot">Свой стикер для машины</span>
+    <a href="{{ buy_url }}" data-i18n="buy">Купить Mesh</a>
+  </footer>
+</div>
+
+<script>
+(() => {
+  const I18N = {
+    ru: {
+      title:"Напишите владельцу этой машины",
+      lead:"Сообщение придёт ему в Telegram за секунду. Имена и номера друг друга вы не увидите.",
+      cta:"Написать в Telegram", call:"Позвонить владельцу",
+      s1:"Откроется бот Mesh", s1d:"Нажмите «Запустить» в Telegram.",
+      s2:"Выберите причину", s2d:"«Перекрыли проезд», «Включены фары» — или напишите своими словами.",
+      s3:"Ждите ответ в чате", s3d:"Владелец ответит прямо в боте или нажмёт «Уже иду».",
+      privacy:"<strong>Чат анонимный.</strong> Mesh пересылает сообщения сам: владелец не узнает ваш аккаунт, а вы — его номер.",
+      foot:"Свой стикер для машины", buy:"Купить Mesh",
+      auto:n=>`Откроем Telegram через ${n} с. `, stop:"Не открывать", stopped:"Нажмите кнопку, когда будете готовы."
+    },
+    uz: {
+      title:"Ushbu mashina egasiga yozing",
+      lead:"Xabar unga Telegramda bir soniyada yetib boradi. Bir-biringizning ismingiz va raqamingizni ko'rmaysiz.",
+      cta:"Telegramda yozish", call:"Egasiga qo'ng'iroq qilish",
+      s1:"Mesh boti ochiladi", s1d:"Telegramda «Start» tugmasini bosing.",
+      s2:"Sababni tanlang", s2d:"«Yo'lni to'sib qo'ydi», «Faralar yoniq» — yoki o'z so'zlaringiz bilan yozing.",
+      s3:"Chatda javobni kuting", s3d:"Ega botning o'zida javob beradi yoki «Ketyapman» ni bosadi.",
+      privacy:"<strong>Chat anonim.</strong> Xabarlarni Mesh o'zi uzatadi: ega akkauntingizni, siz esa uning raqamini bilmaysiz.",
+      foot:"Mashinangiz uchun o'z stikeringiz", buy:"Mesh sotib olish",
+      auto:n=>`Telegram ${n} soniyadan so'ng ochiladi. `, stop:"Ochmaslik", stopped:"Tayyor bo'lganingizda tugmani bosing."
+    }
+  };
+  let lang = localStorage.getItem("mesh_lang") || ((navigator.language||"").startsWith("uz") ? "uz" : "ru");
+  const auto = document.getElementById("auto");
+  let left = 5, timer = null, stopped = false;
+
+  function apply(){
+    const d = I18N[lang];
+    document.documentElement.lang = lang;
+    document.querySelectorAll("[data-i18n]").forEach(el => el.textContent = d[el.dataset.i18n]);
+    document.querySelectorAll("[data-i18n-html]").forEach(el => el.innerHTML = d[el.dataset.i18nHtml]);
+    document.querySelectorAll(".lang button").forEach(b => b.setAttribute("aria-pressed", b.dataset.lang === lang));
+    renderAuto();
+  }
+  function renderAuto(){
+    const d = I18N[lang];
+    if (stopped) { auto.textContent = d.stopped; return; }
+    if (!timer) { auto.textContent = ""; return; }
+    auto.textContent = d.auto(left);
+    const b = document.createElement("button"); b.type="button"; b.textContent = d.stop; b.onclick = stop;
+    auto.appendChild(b);
+  }
+  document.querySelectorAll(".lang button").forEach(b => b.addEventListener("click", () => {
+    lang = b.dataset.lang; try{localStorage.setItem("mesh_lang", lang)}catch(e){}; stop(); apply();
+  }));
+
+  // Кольцо обратного отсчёта на кнопке: через 5 с сами открываем бота
+  const fill = document.getElementById("ringFill"), num = document.getElementById("ringNum");
+  const C = 94.25, reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const go = document.getElementById("go");
+  function tick(){
+    left -= 1; num.textContent = Math.max(left,0);
+    fill.style.transition = reduce ? "none" : "stroke-dashoffset 1s linear";
+    fill.style.strokeDashoffset = C * (left/5);
+    renderAuto();
+    if (left <= 0){ clearInterval(timer); timer = null; window.location.href = go.href; }
+  }
+  function stop(){
+    if (!timer) return;
+    clearInterval(timer); timer = null; stopped = true;
+    fill.style.transition = "none"; fill.style.strokeDashoffset = C; num.textContent = "";
+    renderAuto();
+  }
+  document.querySelector(".call")?.addEventListener("click", stop);
+  apply();
+  requestAnimationFrame(() => { fill.style.strokeDashoffset = C; timer = setInterval(tick, 1000); renderAuto(); });
+})();
+</script>
+</body>
+</html>

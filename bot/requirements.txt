@@ -1,0 +1,7 @@
+aiogram>=3.13,<4
+aiohttp
+aiosqlite
+python-dotenv
+# необязательно: распознавание QR по фото при активации
+opencv-python-headless
+numpy

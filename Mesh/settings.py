@@ -10,6 +10,9 @@ DEBUG = config("DEBUG", default=False, cast=bool)
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="").split(",")
 AUTH_USER_MODEL = "user.User"
 
+TELEGRAM_BOT_USERNAME = config("TELEGRAM_BOT_USERNAME", default="MeshDylnxBot").lstrip("@")
+MESH_BUY_URL = config("MESH_BUY_URL", default="")
+
 DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -45,7 +48,7 @@ ROOT_URLCONF = 'Mesh.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ["templates"],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -110,7 +113,7 @@ REST_FRAMEWORK = {
     ],
     "DEFAULT_THROTTLE_CLASSES": [
         "rest_framework.throttling.AnonRateThrottle",
-        "rest_framework.throttling.UserRateThrottle"
+        "utils.drf.StaffExemptUserRateThrottle"
     ],
     "DEFAULT_THROTTLE_RATES": {
         "anon": "10/minute",
@@ -125,7 +128,7 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework_simplejwt.authentication.JWTAuthentication"
     ],
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_PAGINATION_CLASS": "utils.drf.FlexiblePagination",
     "PAGE_SIZE": 20
 }
 

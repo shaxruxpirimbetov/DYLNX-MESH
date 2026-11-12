@@ -4,9 +4,11 @@ from .models import Mesh
 
 class MeshSerializer(serializers.ModelSerializer):
     user = ResponseUserSerializer(read_only=True)
+    messages_count = serializers.IntegerField(read_only=True, required=False)
     class Meta:
         model = Mesh
         fields = "__all__"
+        read_only_fields = ["qrcode", "url"]
 
 class ActivateMeshSerializer(serializers.ModelSerializer):
     telegram_id = serializers.IntegerField(required=True)
