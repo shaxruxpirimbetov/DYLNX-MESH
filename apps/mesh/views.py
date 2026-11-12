@@ -38,8 +38,3 @@ class OpenMeshAPIView(APIView):
             return Response(MeshSerializer(mesh).data, status=200)
         except Exception as err:
             return Response({"detail": f"invalid uuid: {uuid}"}, status=404)
-
-class ChangeAllPasswordAPIView(generics.UpdateAPIView):
-    permission_classes = [permissions.IsAdminUser]
-    queryset = Mesh.objects.all()
-    serializer_class = ChangeAllPasswordSerializer

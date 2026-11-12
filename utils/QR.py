@@ -21,7 +21,7 @@ def make(uuid):
         border=4,
     )
 
-    qr.add_data(f"{BACKEND_HERE}/mesh/{uuid}")
+    qr.add_data(f"{BACKEND_HERE}/mesh/open/{uuid}")
     qr.make(fit=True)
 
     # Создаем картинку
