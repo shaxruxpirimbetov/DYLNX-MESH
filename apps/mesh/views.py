@@ -41,6 +41,6 @@ class OpenMeshAPIView(View):
 
             if not mesh.phone:
                 return render(request, "unactive_qr.html")
-            return Response(MeshSerializer(mesh).data, status=200)
+            return render(request, "invalid_uuid.html")
         except Exception as err:
-            return Response({"detail": f"invalid uuid: {uuid}"}, status=404)
+            return render(request, "invalid_uuid.html")
