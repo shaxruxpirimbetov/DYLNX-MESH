@@ -9,6 +9,7 @@ class MeshSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class ActivateMeshSerializer(serializers.ModelSerializer):
+    telegram_id = serializers.IntegerField(required=True)
     class Meta:
         model = Mesh
         fields = ["is_active", "phone", "telegram_id"]
