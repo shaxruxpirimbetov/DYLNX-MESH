@@ -14,7 +14,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/user/", include("apps.user.urls")),
     path("api/mesh/", include("apps.mesh.urls")),
-    path("mesh/", OpenMeshAPIView.as_view()),
+    path("mesh/<str:uuid>/", OpenMeshAPIView.as_view()),
 
     path("api/token/", TokenObtainPairView.as_view()),
     path("api/refresh/", TokenRefreshView.as_view()),
