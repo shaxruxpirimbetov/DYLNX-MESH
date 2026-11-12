@@ -1,4 +1,4 @@
 git add .
 read msg
-git commit -m "fix: $msg"
+git commit -m "$msg"
 git push

@@ -30,6 +30,18 @@ async def main():
     if not config.bot_token:
         raise SystemExit("BOT_TOKEN is not set (.env)")
 
+    try:
+        me = await api.check()
+        logging.info("Mesh API OK: %s as %s", config.api_url, me["username"])
+    except Exception as err:
+        await api.close()
+        raise SystemExit(
+            f"\n❌ Не могу работать с бэкендом {config.api_url}\n   {err}\n\n"
+            "Проверь в mesh_bot/.env:\n"
+            "  API_URL      — адрес бэкенда БЕЗ /api на конце, например http://127.0.0.1:8000\n"
+            "  API_USERNAME / API_PASSWORD — существующий пользователь с is_staff=True\n"
+            "И на бэкенде: сервер запущен, ALLOWED_HOSTS содержит этот хост, миграции применены.\n")
+
     await db.connect()
     bot = Bot(config.bot_token, default=DefaultBotProperties(parse_mode="HTML"))
     dp = Dispatcher(storage=MemoryStorage())

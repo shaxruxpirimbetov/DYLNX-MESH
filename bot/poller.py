@@ -90,6 +90,7 @@ async def expiry_reminders(bot: Bot):
 async def run_poller(bot: Bot):
     log.info("Poller started (every %ss)", config.poll_interval)
     tick = 0
+    last_err = None
     while True:
         try:
             await poll_messages(bot)
@@ -101,6 +102,13 @@ async def run_poller(bot: Bot):
         except asyncio.CancelledError:
             raise
         except Exception as err:
-            log.warning("poller error: %s", err)
+            # одну и ту же ошибку не спамим каждые 3 секунды
+            if str(err) != last_err:
+                log.warning("poller error: %s", err)
+                last_err = str(err)
+        else:
+            if last_err:
+                log.info("poller recovered")
+                last_err = None
         tick += 1
         await asyncio.sleep(config.poll_interval)

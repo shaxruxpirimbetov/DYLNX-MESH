@@ -1,5 +1,6 @@
 """Клиент к бэкенду Mesh (Django DRF + SimpleJWT)."""
 import asyncio
+import json
 import logging
 from typing import Any
 
@@ -15,6 +16,18 @@ class ApiError(Exception):
         super().__init__(f"API {status}: {data}")
         self.status = status
         self.data = data
+
+
+async def _read(r: aiohttp.ClientResponse):
+    """JSON из ответа. Если пришёл HTML (404/500/ALLOWED_HOSTS) — понятная ошибка вместо JSONDecodeError."""
+    if r.status == 204:
+        return None
+    text = await r.text()
+    try:
+        return json.loads(text) if text else None
+    except ValueError:
+        snippet = " ".join(text.split())[:160]
+        raise ApiError(r.status, f"бэкенд вернул не JSON ({r.method} {r.url}): {snippet}")
 
 
 class MeshAPI:
@@ -43,11 +56,11 @@ class MeshAPI:
         if self._refresh:
             async with s.post(f"{self.base}/api/refresh/", json={"refresh": self._refresh}) as r:
                 if r.status == 200:
-                    self._access = (await r.json())["access"]
+                    self._access = (await _read(r))["access"]
                     return
         async with s.post(f"{self.base}/api/token/",
                           json={"username": self.username, "password": self.password}) as r:
-            data = await r.json(content_type=None)
+            data = await _read(r)
             if r.status != 200:
                 raise ApiError(r.status, data)
             self._access, self._refresh = data["access"], data["refresh"]
@@ -66,10 +79,19 @@ class MeshAPI:
                 if r.status == 401 and attempt == 0:
                     self._access = None
                     continue
-                data = await r.json(content_type=None) if r.status != 204 else None
+                data = await _read(r)
                 if r.status not in ok:
                     raise ApiError(r.status, data)
                 return data
+
+    async def check(self):
+        """Проверка при старте: адрес верный, логин работает, аккаунт staff."""
+        await self._login()
+        me = await self.request("GET", "/api/user/me/")
+        if not me.get("is_staff"):
+            raise ApiError(403, f"аккаунт {self.username} без is_staff — боту нужен staff")
+        await self.request("GET", "/api/message/", params={"page_size": 1})
+        return me
 
     # ---------- mesh ----------
     async def get_mesh(self, uuid: str) -> dict | None:

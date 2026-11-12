@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Mesh - DYLNX · Админ-панель</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+<style>
+:root{
+  --asphalt:#1E252E; --wet:#2B3440; --line:#3A4552;
+  --amber:#F2A93B; --rust:#C4511F; --paper:#EEF1EE; --muted:#6B7682; --tg:#2AABEE;
+  --surface:#F7F8F6; --card:#FFFFFF; --border:#DCE1DD; --ink:#1E252E;
+  --ok:#2F8F5B; --off:#8A949E; --bad:#C4511F;
+  --display:"Unbounded",system-ui,sans-serif; --body:"Manrope",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font:14px/1.5 var(--body);color:var(--ink);background:var(--surface);-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+[hidden]{display:none!important}
+
+/* ---------- login ---------- */
+.login{min-height:100%;display:grid;place-items:center;padding:24px;background:var(--asphalt);
+  background-image:repeating-linear-gradient(90deg,rgba(242,169,59,.5) 0 40px,transparent 40px 76px);
+  background-size:100% 6px;background-repeat:no-repeat;background-position:0 calc(100% - 40px)}
+.login form{width:100%;max-width:380px;background:var(--paper);border-radius:24px;padding:30px 28px;display:grid;gap:14px;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+.login h1{font:700 22px/1.15 var(--display);letter-spacing:-.01em}
+.login p{color:var(--muted);margin-top:-6px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo svg{width:34px;height:34px}
+.logo b{font:700 15px var(--display)}
+.logo span{display:block;font-size:12px;color:var(--muted);margin-top:-2px}
+
+label.f{display:grid;gap:5px;font-weight:600;font-size:13px}
+label.f small{font-weight:500;color:var(--muted)}
+.in{width:100%;height:42px;border:1px solid var(--border);border-radius:11px;background:#fff;padding:0 12px}
+textarea.in{height:auto;min-height:84px;padding:10px 12px;resize:vertical}
+.in:focus{border-color:var(--ink);outline:none;box-shadow:0 0 0 3px rgba(242,169,59,.35)}
+.err{color:var(--bad);font-weight:600;min-height:20px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:11px;border:1px solid var(--border);background:#fff;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none}
+.btn:hover{border-color:#b9c1bb}
+.btn svg{width:17px;height:17px}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.primary:hover{background:var(--wet)}
+.btn.amber{background:var(--amber);border-color:var(--amber);color:var(--ink)}
+.btn.danger{color:var(--bad)}
+.btn.sm{height:32px;padding:0 11px;font-size:13px;border-radius:9px}
+.btn:disabled{opacity:.5;cursor:default}
+
+/* ---------- app shell ---------- */
+.app{display:grid;grid-template-columns:232px 1fr;min-height:100%}
+.side{background:var(--asphalt);color:var(--paper);padding:22px 14px;display:flex;flex-direction:column;gap:26px;position:sticky;top:0;height:100vh}
+.side .logo span{color:#9AA6B2}
+.nav{display:grid;gap:4px}
+.nav button{display:flex;align-items:center;gap:11px;height:42px;padding:0 12px;border:0;border-radius:11px;background:none;color:#B7C0C9;font-weight:600;cursor:pointer;text-align:left}
+.nav button svg{width:19px;height:19px;flex:none}
+.nav button:hover{background:var(--wet);color:#fff}
+.nav button[aria-current="page"]{background:var(--wet);color:#fff;box-shadow:inset 3px 0 0 var(--amber)}
+.side .me{margin-top:auto;padding:12px;border:1px dashed var(--line);border-radius:12px;font-size:12.5px;color:#9AA6B2}
+.side .me b{color:#fff;display:block;font-size:13.5px}
+.side .me button{margin-top:8px;background:none;border:0;color:var(--amber);font-weight:700;cursor:pointer;padding:0}
+
+main{padding:28px 32px 60px;min-width:0}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.head h2{font:700 24px/1.15 var(--display);letter-spacing:-.015em}
+.head p{color:var(--muted);margin-top:4px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search{position:relative}
+.search svg{position:absolute;left:11px;top:12px;width:17px;height:17px;color:var(--muted)}
+.search .in{padding-left:34px;width:260px}
+select.in{width:auto;padding-right:30px}
+
+/* overview */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden}
+.strip div{padding:18px 20px;border-right:1px solid var(--border)}
+.strip div:last-child{border-right:0}
+.strip b{display:block;font:700 30px/1.1 var(--display);letter-spacing:-.02em}
+.strip span{color:var(--muted);font-weight:600;font-size:13px}
+.strip i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+.cols{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-top:18px}
+.panel{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px 20px;min-width:0}
+.panel h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.panel h3 button{font-size:12.5px;font-weight:700;color:var(--rust);background:none;border:0;cursor:pointer}
+.empty{color:var(--muted);padding:18px 0}
+
+/* table */
+.tablewrap{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:auto}
+table{width:100%;border-collapse:collapse;min-width:820px}
+th{font-size:12.5px;color:var(--muted);font-weight:600;text-align:left;padding:11px 14px;border-bottom:1px solid var(--border);background:#FAFBF9;position:sticky;top:0}
+td{padding:10px 14px;border-bottom:1px solid #ECEFEC;vertical-align:middle}
+tbody tr{cursor:pointer}
+tbody tr:hover td{background:#FAFBF7}
+tbody tr:last-child td{border-bottom:0}
+td.qr img,td.qr canvas{width:40px;height:40px;border-radius:6px;display:block;background:#fff;border:1px solid var(--border)}
+.uuid{font-variant-numeric:tabular-nums;font-weight:700}
+.uuid small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+.pill{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12.5px;font-weight:700;background:#EEF1EE}
+.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.pill.active{color:var(--ok);background:#E5F3EA}
+.pill.inactive{color:var(--off)}
+.pill.expired{color:var(--bad);background:#FBEAE2}
+input[type=checkbox]{width:17px;height:17px;accent-color:var(--ink);cursor:pointer}
+.pager{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;color:var(--muted);font-weight:600}
+.pager div{display:flex;gap:8px}
+
+/* messages */
+.msg{display:grid;grid-template-columns:auto 1fr auto;gap:12px;padding:12px 0;border-bottom:1px solid #ECEFEC;align-items:start}
+.msg:last-child{border-bottom:0}
+.who{font-size:12px;font-weight:700;padding:3px 8px;border-radius:7px;white-space:nowrap}
+.who.owner{background:#E6EEF6;color:#2C5E8A}
+.who.guest{background:#FFF3DF;color:#8A5A0B}
+.who.admin{background:var(--ink);color:#fff}
+.msg p{white-space:pre-wrap;word-break:break-word}
+.msg small{color:var(--muted);font-size:12px;display:block;margin-top:2px}
+.msg .act{display:flex;gap:6px}
+.msg a.link{font-weight:700;text-decoration:none;color:var(--rust);cursor:pointer}
+
+/* drawer */
+.scrim{position:fixed;inset:0;background:rgba(30,37,46,.45);z-index:20}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--surface);z-index:21;overflow:auto;box-shadow:-30px 0 60px -30px rgba(0,0,0,.5);animation:slide .22s ease-out}
+@keyframes slide{from{transform:translateX(40px);opacity:.4}}
+.drawer header{position:sticky;top:0;background:var(--surface);display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid var(--border);z-index:1}
+.drawer header h3{font:700 17px var(--display)}
+.drawer .body{padding:20px 22px;display:grid;gap:18px}
+.qrbox{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px}
+.qrbox img,.qrbox canvas{width:150px;height:150px;border-radius:10px;border:1px solid var(--border);background:#fff}
+.qrph{width:150px;height:150px;border-radius:10px;border:1px dashed var(--border);display:grid;place-items:center;text-align:center;color:var(--muted);font-size:12px;padding:10px}
+.qrbox code{display:block;font-weight:700;word-break:break-all;font-family:var(--body)}
+.qrbox .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.check{display:flex;align-items:center;gap:9px;font-weight:600}
+.thread{max-height:340px;overflow:auto}
+.danger-zone{display:flex;gap:8px;flex-wrap:wrap;padding-top:14px;border-top:1px dashed var(--border)}
+
+/* dialog */
+dialog{border:0;border-radius:20px;padding:0;width:min(460px,calc(100% - 32px));box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+dialog::backdrop{background:rgba(30,37,46,.5)}
+dialog form{padding:24px;display:grid;gap:14px}
+dialog h3{font:700 18px var(--display)}
+dialog .row{display:flex;justify-content:flex-end;gap:10px;margin-top:4px}
+
+/* toast */
+.toasts{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:grid;gap:8px;z-index:50}
+.toast{background:var(--ink);color:#fff;padding:11px 16px;border-radius:12px;font-weight:600;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
+.toast.bad{background:var(--bad)}
+
+@media (max-width:960px){
+  .app{grid-template-columns:1fr}
+  .side{position:static;height:auto;flex-direction:row;align-items:center;padding:12px;gap:12px;overflow:auto}
+  .side .logo div,.side .me{display:none}
+  .nav{display:flex}
+  .nav button span{display:none}
+  main{padding:20px 16px 60px}
+  .strip{grid-template-columns:repeat(2,1fr)}
+  .strip div:nth-child(2){border-right:0}
+  .strip div:nth-child(-n+2){border-bottom:1px solid var(--border)}
+  .cols{grid-template-columns:1fr}
+  .search .in{width:100%}
+  .grid2,.qrbox{grid-template-columns:1fr}
+  .msg{grid-template-columns:1fr auto}
+  .msg .who{grid-column:1/-1;justify-self:start}
+}
+@media (prefers-reduced-motion:reduce){.drawer{animation:none}}
+</style>
+</head>
+<body>
+
+<!-- ================= LOGIN ================= -->
+<section class="login" id="loginView" hidden>
+  <form id="loginForm" autocomplete="on">
+    <div class="logo">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#C4511F"/><path d="M8 23V9l8 8 8-8v14" fill="none" stroke="#EEF1EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="9" r="2.2" fill="#F2A93B"/><circle cx="24" cy="9" r="2.2" fill="#F2A93B"/></svg>
+      <div><b>Mesh</b><span>by DYLNX</span></div>
+    </div>
+    <h1>Вход в админ-панель</h1>
+    <p>Нужен аккаунт с правами staff.</p>
+    <label class="f">Адрес API <small>BACKEND_HERE, без слэша в конце</small>
+      <input class="in" id="lApi" type="url" required placeholder="https://api.example.uz"></label>
+    <label class="f">Логин <input class="in" id="lUser" required autocomplete="username"></label>
+    <label class="f">Пароль <input class="in" id="lPass" type="password" required autocomplete="current-password"></label>
+    <div class="err" id="lErr" role="alert"></div>
+    <button class="btn primary" type="submit" id="lBtn">Войти</button>
+  </form>
+</section>
+
+<!-- ================= APP ================= -->
+<div class="app" id="appView" hidden>
+  <aside class="side">
+    <div class="logo">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#C4511F"/><path d="M8 23V9l8 8 8-8v14" fill="none" stroke="#EEF1EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="9" r="2.2" fill="#F2A93B"/><circle cx="24" cy="9" r="2.2" fill="#F2A93B"/></svg>
+      <div><b>Mesh</b><span>админ-панель DYLNX</span></div>
+    </div>
+    <nav class="nav" aria-label="Разделы">
+      <button data-page="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 13h8V3H3v10Zm0 8h8v-6H3v6Zm10 0h8V11h-8v10Zm0-18v6h8V3h-8Z"/></svg><span>Обзор</span></button>
+      <button data-page="meshes"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 3h8v8H3V3Zm2 2v4h4V5H5Zm8-2h8v8h-8V3Zm2 2v4h4V5h-4ZM3 13h8v8H3v-8Zm2 2v4h4v-4H5Zm13-2h3v3h-3v-3Zm-5 0h3v3h-3v-3Zm3 3h2v2h-2v-2Zm-3 2h3v3h-3v-3Zm5 1h3v2h-3v-2Z"/></svg><span>Стикеры</span></button>
+      <button data-page="messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/></svg><span>Сообщения</span></button>
+      <button data-page="users"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5Z"/></svg><span>Пользователи</span></button>
+    </nav>
+    <div class="me"><b id="meName">—</b><span id="meApi"></span><br><button id="logout">Выйти</button></div>
+  </aside>
+
+  <main id="main">
+    <!-- overview -->
+    <section data-view="overview">
+      <div class="head"><div><h2>Обзор</h2><p>Состояние стикеров и переписки прямо сейчас.</p></div>
+        <div class="tools"><button class="btn amber" data-open-create>Создать стикеры</button></div></div>
+      <div class="strip" id="stats"></div>
+      <div class="cols">
+        <div class="panel"><h3>Последние сообщения <button data-goto="messages">Все сообщения</button></h3><div id="ovMsgs"></div></div>
+        <div class="panel"><h3>Истекают в ближайшие 7 дней <button data-goto="meshes" data-status="active">Все активные</button></h3><div id="ovExp"></div></div>
+      </div>
+    </section>
+
+    <!-- meshes -->
+    <section data-view="meshes" hidden>
+      <div class="head"><div><h2>Стикеры</h2><p id="meshCount">&nbsp;</p></div>
+        <div class="tools">
+          <div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/></svg>
+            <input class="in" id="mSearch" type="search" placeholder="UUID, телефон или Telegram ID" aria-label="Поиск стикеров"></div>
+          <select class="in" id="mStatus" aria-label="Статус">
+            <option value="">Все статусы</option><option value="active">Активные</option>
+            <option value="inactive">Не активированы</option><option value="expired">Истёкшие</option>
+          </select>
+          <button class="btn" id="printSel" disabled>Печать карточек</button>
+          <button class="btn amber" data-open-create>Создать стикеры</button>
+        </div></div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th><input type="checkbox" id="selAll" aria-label="Выбрать все"></th><th>QR</th><th>Стикер</th><th>Статус</th><th>Действует до</th><th>Владелец (Telegram)</th><th>Телефон</th><th>Сообщ.</th><th>Код</th></tr></thead>
+          <tbody id="meshRows"></tbody>
+        </table>
+        <div class="pager" id="meshPager"></div>
+      </div>
+    </section>
+
+    <!-- messages -->
+    <section data-view="messages" hidden>
+      <div class="head"><div><h2>Сообщения</h2><p>Вся анонимная переписка, которая прошла через бота.</p></div>
+        <div class="tools"><div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/></svg>
+          <input class="in" id="msgSearch" type="search" placeholder="Поиск по тексту" aria-label="Поиск сообщений"></div></div></div>
+      <div class="panel"><div id="msgRows"></div><div class="pager" id="msgPager"></div></div>
+    </section>
+
+    <!-- users -->
+    <section data-view="users" hidden>
+      <div class="head"><div><h2>Пользователи</h2><p>Админы панели и сервисный аккаунт бота. Боту нужен staff.</p></div>
+        <div class="tools"><button class="btn amber" id="openUser">Добавить пользователя</button></div></div>
+      <div class="tablewrap"><table>
+        <thead><tr><th>Логин</th><th>Роль</th><th>Staff</th><th>Суперпользователь</th><th>Последний вход</th><th>Создан</th><th></th></tr></thead>
+        <tbody id="userRows"></tbody></table></div>
+    </section>
+  </main>
+</div>
+
+<!-- drawer -->
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden aria-labelledby="dTitle" role="dialog" aria-modal="true">
+  <header><h3 id="dTitle">Стикер</h3><button class="btn sm" id="dClose">Закрыть</button></header>
+  <div class="body" id="dBody"></div>
+</aside>
+
+<!-- create dialog -->
+<dialog id="createDlg">
+  <form method="dialog" id="createForm">
+    <h3>Новые стикеры</h3>
+    <div class="grid2">
+      <label class="f">Сколько штук <input class="in" id="cCount" type="number" min="1" max="200" value="1" required></label>
+      <label class="f">Действует до <input class="in" id="cUntil" type="date" required></label>
+    </div>
+    <label class="f">Секретный код <small>Пусто — у каждого стикера будет свой случайный 6-значный код</small>
+      <input class="in" id="cPass" maxlength="100" placeholder="Сгенерировать автоматически"></label>
+    <div class="err" id="cErr"></div>
+    <div class="row"><button class="btn" value="cancel" formnovalidate>Отмена</button><button class="btn primary" id="cBtn" value="ok">Создать</button></div>
+  </form>
+</dialog>
+
+<!-- user dialog -->
+<dialog id="userDlg">
+  <form method="dialog" id="userForm">
+    <h3>Новый пользователь</h3>
+    <label class="f">Логин <input class="in" id="uName" required></label>
+    <label class="f">Пароль <input class="in" id="uPass" type="password" minlength="8" required></label>
+    <label class="check"><input type="checkbox" id="uStaff" checked> Staff — доступ к панели и API (нужно боту)</label>
+    <label class="check"><input type="checkbox" id="uSuper"> Суперпользователь</label>
+    <div class="err" id="uErr"></div>
+    <div class="row"><button class="btn" value="cancel" formnovalidate>Отмена</button><button class="btn primary" value="ok">Создать</button></div>
+  </form>
+</dialog>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+
+<script>
+/* ============================== state & api ============================== */
+const S = {
+  api: localStorage.getItem("mesh_api") || (location.protocol.startsWith("http") ? location.origin : ""),
+  access: localStorage.getItem("mesh_access"), refresh: localStorage.getItem("mesh_refresh"),
+  page: "overview", meshPage: 1, msgPage: 1, selected: new Map(), drawerId: null,
+};
+const $ = s => document.querySelector(s);
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmtDate = d => d ? new Date(d).toLocaleDateString("ru-RU") : "—";
+const fmtDT = d => d ? new Date(d).toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}) : "—";
+const today = () => new Date().toISOString().slice(0,10);
+const shortU = u => String(u).slice(-6);
+
+function toast(text, bad=false){
+  const t = document.createElement("div"); t.className = "toast" + (bad ? " bad" : ""); t.textContent = text;
+  $("#toasts").appendChild(t); setTimeout(() => t.remove(), 3200);
+}
+
+async function refreshToken(){
+  if (!S.refresh) return false;
+  const r = await fetch(`${S.api}/api/refresh/`, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({refresh:S.refresh})});
+  if (!r.ok) return false;
+  S.access = (await r.json()).access; localStorage.setItem("mesh_access", S.access); return true;
+}
+
+async function api(path, {method="GET", body, params} = {}){
+  const url = new URL(S.api + path);
+  if (params) Object.entries(params).forEach(([k,v]) => v !== "" && v != null && url.searchParams.set(k, v));
+  for (let attempt = 0; attempt < 2; attempt++){
+    const r = await fetch(url, {method, headers:{"Content-Type":"application/json", Authorization:`Bearer ${S.access}`},
+                                body: body ? JSON.stringify(body) : undefined});
+    if (r.status === 401 && attempt === 0 && await refreshToken()) continue;
+    if (r.status === 401){ logout(); throw new Error("Сессия истекла, войдите снова"); }
+    const data = r.status === 204 ? null : await r.json().catch(() => null);
+    if (!r.ok){
+      const msg = data?.detail || (data ? Object.entries(data).map(([k,v]) => `${k}: ${[].concat(v).join(" ")}`).join("; ") : r.statusText);
+      throw new Error(msg);
+    }
+    return data;
+  }
+}
+
+/* ============================== auth ============================== */
+function showLogin(){ $("#appView").hidden = true; $("#loginView").hidden = false; $("#lApi").value = S.api; }
+function logout(){
+  ["mesh_access","mesh_refresh"].forEach(k => localStorage.removeItem(k));
+  S.access = S.refresh = null; showLogin();
+}
+$("#logout").onclick = logout;
+
+$("#loginForm").addEventListener("submit", async e => {
+  e.preventDefault(); $("#lErr").textContent = ""; $("#lBtn").disabled = true;
+  S.api = $("#lApi").value.replace(/\/+$/, "");
+  try{
+    const r = await fetch(`${S.api}/api/token/`, {method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({username:$("#lUser").value, password:$("#lPass").value})});
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(d.detail || "Неверный логин или пароль");
+    S.access = d.access; S.refresh = d.refresh;
+    localStorage.setItem("mesh_api", S.api); localStorage.setItem("mesh_access", S.access); localStorage.setItem("mesh_refresh", S.refresh);
+    await boot();
+  }catch(err){
+    $("#lErr").textContent = err.message === "Failed to fetch" ? "API недоступен. Проверьте адрес и CORS_ALLOWED_ORIGINS на бэкенде." : err.message;
+  }finally{ $("#lBtn").disabled = false; }
+});
+
+async function boot(){
+  if (!S.access || !S.api) return showLogin();
+  try{
+    const me = await api("/api/user/me/");
+    if (!me.is_staff){ toast("У этого аккаунта нет прав staff", true); return logout(); }
+    $("#meName").textContent = me.username; $("#meApi").textContent = S.api.replace(/^https?:\/\//, "");
+    $("#loginView").hidden = true; $("#appView").hidden = false;
+    go(location.hash.slice(1) || "overview");
+  }catch(err){ showLogin(); }
+}
+
+/* ============================== navigation ============================== */
+function go(page, opts = {}){
+  if (!["overview","meshes","messages","users"].includes(page)) page = "overview";
+  S.page = page; history.replaceState(null, "", "#" + page);
+  document.querySelectorAll("[data-view]").forEach(v => v.hidden = v.dataset.view !== page);
+  document.querySelectorAll(".nav button").forEach(b => b.dataset.page === page ? b.setAttribute("aria-current", "page") : b.removeAttribute("aria-current"));
+  if (opts.status !== undefined) $("#mStatus").value = opts.status;
+  ({overview:loadOverview, meshes:loadMeshes, messages:loadMessages, users:loadUsers})[page]();
+}
+document.querySelectorAll(".nav button").forEach(b => b.onclick = () => go(b.dataset.page));
+document.querySelectorAll("[data-goto]").forEach(b => b.onclick = () => go(b.dataset.goto, {status: b.dataset.status}));
+
+/* ============================== helpers ============================== */
+function status(m){
+  if (m.until && m.until < today()) return ["expired","Истёк"];
+  return m.is_active ? ["active","Активен"] : ["inactive","Не активирован"];
+}
+function meshLink(m){ return m.url || `${S.api}/mesh/${m.uuid}/`; }
+function qrDataUrl(text, cell=6){
+  if (typeof qrcode === "undefined") return "";
+  const q = qrcode(0, "H"); q.addData(text); q.make(); return q.createDataURL(cell, 2);
+}
+function qrImg(m, cell=4){ return m.qrcode || qrDataUrl(meshLink(m), cell); }
+function who(msg){
+  if (Number(msg.telegram_id) === 0) return ["admin","Администрация"];
+  return msg.is_author ? ["owner","Владелец"] : ["guest","Гость"];
+}
+function pager(el, data, page, onPage){
+  const pages = Math.max(1, Math.ceil(data.count / 20));
+  el.innerHTML = `<span>Страница ${page} из ${pages} · всего ${data.count}</span>
+    <div><button class="btn sm" ${data.previous ? "" : "disabled"} data-p="${page-1}">Назад</button>
+    <button class="btn sm" ${data.next ? "" : "disabled"} data-p="${page+1}">Дальше</button></div>`;
+  el.querySelectorAll("button").forEach(b => b.onclick = () => onPage(+b.dataset.p));
+}
+function msgRow(m, withMesh=true){
+  const [cls, label] = who(m);
+  return `<div class="msg"><span class="who ${cls}">${label}</span>
+    <div><p>${esc(m.message)}</p><small>${fmtDT(m.created_at)}${withMesh ? ` · стикер <a class="link" data-mesh="${m.mesh}">…${esc(shortU(m.mesh_uuid))}</a>` : ""}${cls === "admin" ? "" : ` · TG ${esc(m.telegram_id)}`}</small></div>
+    <div class="act"><button class="btn sm danger" data-del-msg="${m.id}" aria-label="Удалить сообщение">Удалить</button></div></div>`;
+}
+function bindMsgActions(root, reload){
+  root.querySelectorAll("[data-mesh]").forEach(a => a.onclick = () => openMesh(+a.dataset.mesh));
+  root.querySelectorAll("[data-del-msg]").forEach(b => b.onclick = async () => {
+    if (!confirm("Удалить сообщение?")) return;
+    try{ await api(`/api/message/${b.dataset.delMsg}/`, {method:"DELETE"}); toast("Сообщение удалено"); reload(); }
+    catch(e){ toast(e.message, true); }
+  });
+}
+
+/* ============================== overview ============================== */
+async function loadOverview(){
+  try{
+    const [s, msgs, exp] = await Promise.all([
+      api("/api/mesh/stats/"),
+      api("/api/message/", {params:{page_size:6}}),
+      api("/api/mesh/", {params:{status:"active", until_lte:new Date(Date.now()+7*864e5).toISOString().slice(0,10), page_size:8}}),
+    ]);
+    $("#stats").innerHTML = [
+      [s.total, "Всего стикеров", "#1E252E"], [s.active, "Активны", "var(--ok)"],
+      [s.inactive, "Ждут активации", "var(--off)"], [s.messages_today, `Сообщений сегодня · всего ${s.messages}`, "var(--amber)"],
+    ].map(([n,l,c]) => `<div><b>${n}</b><span><i style="background:${c}"></i>${l}</span></div>`).join("");
+    $("#ovMsgs").innerHTML = msgs.results.length ? msgs.results.map(m => msgRow(m)).join("") : `<p class="empty">Сообщений пока нет. Они появятся, когда кто-нибудь отсканирует активный стикер.</p>`;
+    bindMsgActions($("#ovMsgs"), loadOverview);
+    $("#ovExp").innerHTML = exp.results.length ? exp.results.map(m => `<div class="msg" style="grid-template-columns:1fr auto">
+        <div><b class="uuid">…${shortU(m.uuid)}</b><small>до ${fmtDate(m.until)} · TG ${esc(m.telegram_id || "—")}</small></div>
+        <button class="btn sm" data-open="${m.id}">Открыть</button></div>`).join("")
+      : `<p class="empty">Ни один активный стикер не истекает на этой неделе.</p>`;
+    $("#ovExp").querySelectorAll("[data-open]").forEach(b => b.onclick = () => openMesh(+b.dataset.open));
+  }catch(e){ toast(e.message, true); }
+}
+
+/* ============================== meshes ============================== */
+let searchTimer;
+$("#mSearch").addEventListener("input", () => { clearTimeout(searchTimer); searchTimer = setTimeout(() => { S.meshPage = 1; loadMeshes(); }, 300); });
+$("#mStatus").addEventListener("change", () => { S.meshPage = 1; loadMeshes(); });
+
+async function loadMeshes(){
+  try{
+    const data = await api("/api/mesh/", {params:{page:S.meshPage, search:$("#mSearch").value.trim(), status:$("#mStatus").value}});
+    $("#meshCount").textContent = `Найдено: ${data.count}. Нажмите на строку, чтобы открыть стикер.`;
+    $("#meshRows").innerHTML = data.results.length ? data.results.map(m => {
+      const [cls, label] = status(m);
+      return `<tr data-id="${m.id}">
+        <td><input type="checkbox" data-sel="${m.id}" ${S.selected.has(m.id) ? "checked" : ""} aria-label="Выбрать стикер"></td>
+        <td class="qr">${qrImg(m) ? `<img src="${esc(qrImg(m))}" alt="" loading="lazy">` : ""}</td>
+        <td class="uuid">…${shortU(m.uuid)}<small>${esc(m.uuid)}</small></td>
+        <td><span class="pill ${cls}">${label}</span></td>
+        <td>${fmtDate(m.until)}</td><td>${esc(m.telegram_id || "—")}</td><td>${esc(m.phone || "—")}</td>
+        <td>${m.messages_count ?? 0}</td><td><b>${esc(m.password)}</b></td></tr>`;
+    }).join("") : `<tr><td colspan="9" class="empty" style="text-align:center">Ничего не найдено. Измените фильтр или создайте новые стикеры.</td></tr>`;
+    S.meshRows = data.results;
+    pager($("#meshPager"), data, S.meshPage, p => { S.meshPage = p; loadMeshes(); });
+    $("#meshRows").querySelectorAll("tr[data-id]").forEach(tr => tr.onclick = e => {
+      if (e.target.matches("input")) return; openMesh(+tr.dataset.id);
+    });
+    $("#meshRows").querySelectorAll("[data-sel]").forEach(cb => cb.onchange = () => {
+      const m = data.results.find(x => x.id === +cb.dataset.sel);
+      cb.checked ? S.selected.set(m.id, m) : S.selected.delete(m.id); updateSel();
+    });
+    $("#selAll").checked = data.results.length && data.results.every(m => S.selected.has(m.id));
+    updateSel();
+  }catch(e){ toast(e.message, true); }
+}
+$("#selAll").onchange = e => {
+  (S.meshRows || []).forEach(m => e.target.checked ? S.selected.set(m.id, m) : S.selected.delete(m.id)); loadMeshes();
+};
+function updateSel(){
+  const n = S.selected.size; $("#printSel").disabled = !n;
+  $("#printSel").textContent = n ? `Печать карточек (${n})` : "Печать карточек";
+}
+
+/* ---- print cards: QR + secret code, to put in the box with the sticker ---- */
+$("#printSel").onclick = () => {
+  const cards = [...S.selected.values()].map(m => `<div class="card">
+      <img src="${esc(m.qrcode || qrDataUrl(meshLink(m), 8))}" alt="">
+      <div><b>Mesh</b><span>by DYLNX</span>
+      <p>Секретный код для активации</p><strong>${esc(m.password)}</strong>
+      <small>Стикер …${shortU(m.uuid)} · до ${fmtDate(m.until)}</small>
+      <em>Активируйте в Telegram: отсканируйте QR и нажмите «Это мой стикер».</em></div></div>`).join("");
+  const w = window.open("", "_blank");
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Mesh - DYLNX · карточки</title><style>
+    body{font-family:Manrope,system-ui,sans-serif;margin:12mm;color:#1E252E}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+    .card{display:grid;grid-template-columns:38mm 1fr;gap:5mm;align-items:center;border:1.5px dashed #9AA6B2;border-radius:4mm;padding:5mm;break-inside:avoid}
+    img{width:38mm;height:38mm}
+    b{font-size:15pt;display:block}span{font-size:8pt;color:#6B7682}
+    p{margin:3mm 0 1mm;font-size:8pt;color:#6B7682}strong{font-size:20pt;letter-spacing:2px;display:block}
+    small{display:block;font-size:7.5pt;color:#6B7682;margin-top:1mm}em{display:block;font-size:7.5pt;margin-top:2mm;font-style:normal}
+    </style></head><body><div class="grid">${cards}</div><script>onload=()=>setTimeout(print,300)<\/script></body></html>`);
+  w.document.close();
+};
+
+/* ---- create ---- */
+document.querySelectorAll("[data-open-create]").forEach(b => b.onclick = () => {
+  const d = new Date(); d.setFullYear(d.getFullYear() + 1);
+  $("#cUntil").value = d.toISOString().slice(0,10); $("#cErr").textContent = ""; $("#createDlg").showModal();
+});
+$("#createForm").addEventListener("submit", async e => {
+  if (e.submitter?.value !== "ok") return;
+  e.preventDefault();
+  const n = Math.min(200, Math.max(1, +$("#cCount").value || 1));
+  const btn = $("#cBtn"); btn.disabled = true; $("#cErr").textContent = "";
+  const made = [];
+  try{
+    for (let i = 0; i < n; i++){
+      btn.textContent = `Создаю ${i+1} из ${n}`;
+      const pass = $("#cPass").value.trim() || String(Math.floor(100000 + Math.random()*900000));
+      made.push(await api("/api/mesh/", {method:"POST", body:{until:$("#cUntil").value, password:pass}}));
+    }
+    $("#createDlg").close();
+    made.forEach(m => S.selected.set(m.id, m));
+    toast(`Создано стикеров: ${made.length}. Они выбраны — можно сразу печатать карточки.`);
+    go("meshes", {status:""});
+  }catch(err){ $("#cErr").textContent = `Создано ${made.length}, дальше ошибка: ${err.message}`; }
+  finally{ btn.disabled = false; btn.textContent = "Создать"; }
+});
+
+/* ---- drawer ---- */
+function closeDrawer(){ $("#drawer").hidden = true; $("#scrim").hidden = true; S.drawerId = null; }
+$("#dClose").onclick = closeDrawer; $("#scrim").onclick = closeDrawer;
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#drawer").hidden) closeDrawer(); });
+
+async function openMesh(id){
+  S.drawerId = id; $("#drawer").hidden = false; $("#scrim").hidden = false;
+  $("#dBody").innerHTML = `<p class="empty">Загружаю…</p>`;
+  try{
+    const [m, msgs] = await Promise.all([api(`/api/mesh/${id}/`), api("/api/message/", {params:{mesh:id, page_size:100}})]);
+    const [cls, label] = status(m);
+    $("#dTitle").textContent = `Стикер …${shortU(m.uuid)}`;
+    $("#dBody").innerHTML = `
+      <div class="qrbox">${qrImg(m, 6) ? `<img src="${esc(qrImg(m, 6))}" alt="QR-код стикера">` : `<div class="qrph">QR недоступен:<br>нет связи с CDN</div>`}
+        <div><span class="pill ${cls}">${label}</span><code style="margin-top:10px">${esc(m.uuid)}</code>
+          <small style="color:var(--muted)">Создал ${esc(m.user?.username || "—")} · ${fmtDT(m.created_at)}</small>
+          <div class="links">
+            <a class="btn sm" href="${esc(meshLink(m))}" target="_blank" rel="noopener">Открыть страницу</a>
+            <button class="btn sm" id="dCopy">Скопировать ссылку</button>
+            ${m.qrcode ? `<a class="btn sm" href="${esc(m.qrcode)}" target="_blank" rel="noopener" download>Скачать QR</a>` : ""}
+          </div></div></div>
+
+      <form class="panel" id="dForm" style="display:grid;gap:12px">
+        <h3>Данные стикера</h3>
+        <div class="grid2">
+          <label class="f">Действует до <input class="in" name="until" type="date" value="${esc(m.until)}" required></label>
+          <label class="f">Секретный код <input class="in" name="password" value="${esc(m.password)}" required></label>
+          <label class="f">Telegram ID владельца <input class="in" name="telegram_id" value="${esc(m.telegram_id || "")}" placeholder="не привязан"></label>
+          <label class="f">Телефон для звонка <input class="in" name="phone" value="${esc(m.phone || "")}" placeholder="скрыт"></label>
+        </div>
+        <label class="check"><input type="checkbox" name="is_active" ${m.is_active ? "checked" : ""}> Стикер активен</label>
+        <div><button class="btn primary">Сохранить изменения</button></div>
+      </form>
+
+      <div class="panel"><h3>Переписка по стикеру <span style="color:var(--muted);font-weight:600;font-size:13px">${msgs.count}</span></h3>
+        <div class="thread" id="dThread">${msgs.results.length ? msgs.results.slice().reverse().map(x => msgRow(x, false)).join("") : `<p class="empty">По этому стикеру ещё никто не писал.</p>`}</div>
+        <form id="dSend" style="display:grid;gap:10px;margin-top:12px">
+          <label class="f">Написать владельцу от имени Mesh - DYLNX <small>Бот доставит сообщение в течение пары секунд</small>
+          <textarea class="in" name="text" required placeholder="Например: срок стикера заканчивается, продлите его у нас"></textarea></label>
+          <div><button class="btn amber" ${m.telegram_id ? "" : "disabled title='У стикера нет владельца'"}>Отправить владельцу</button></div>
+        </form></div>
+
+      <div class="danger-zone">
+        <button class="btn" id="dUnbind" ${m.telegram_id ? "" : "disabled"}>Отвязать владельца</button>
+        <button class="btn" id="dQR">Перегенерировать QR</button>
+        <button class="btn danger" id="dDelete">Удалить стикер</button>
+      </div>`;
+
+    const thread = $("#dThread"); thread.scrollTop = thread.scrollHeight;
+    bindMsgActions(thread, () => openMesh(id));
+    $("#dCopy").onclick = () => navigator.clipboard.writeText(meshLink(m)).then(() => toast("Ссылка скопирована"));
+
+    $("#dForm").onsubmit = async e => {
+      e.preventDefault(); const f = e.target;
+      try{
+        await api(`/api/mesh/${id}/`, {method:"PATCH", body:{
+          until:f.until.value, password:f.password.value, is_active:f.is_active.checked,
+          telegram_id:f.telegram_id.value.trim() || null, phone:f.phone.value.trim() || null}});
+        toast("Изменения сохранены"); openMesh(id); refreshCurrent();
+      }catch(err){ toast(err.message, true); }
+    };
+    $("#dSend").onsubmit = async e => {
+      e.preventDefault(); const text = e.target.text.value.trim(); if (!text) return;
+      try{ await api("/api/message/", {method:"POST", body:{mesh:id, telegram_id:0, message:text}});
+        toast("Отправлено. Бот доставит его владельцу."); openMesh(id); }
+      catch(err){ toast(err.message, true); }
+    };
+    $("#dUnbind").onclick = async () => {
+      if (!confirm("Отвязать владельца? Сообщения перестанут приходить, пока стикер снова не активируют кодом.")) return;
+      try{ await api(`/api/mesh/${id}/`, {method:"PATCH", body:{is_active:false, telegram_id:null, phone:null}});
+        toast("Владелец отвязан"); openMesh(id); refreshCurrent(); }catch(err){ toast(err.message, true); }
+    };
+    $("#dQR").onclick = async () => {
+      try{ await api(`/api/mesh/${id}/regenerate-qr/`, {method:"POST"}); toast("QR перегенерирован"); openMesh(id); refreshCurrent(); }
+      catch(err){ toast(err.message, true); }
+    };
+    $("#dDelete").onclick = async () => {
+      if (!confirm("Удалить стикер вместе со всей перепиской? Это нельзя отменить.")) return;
+      try{ await api(`/api/mesh/${id}/`, {method:"DELETE"}); S.selected.delete(id); toast("Стикер удалён"); closeDrawer(); refreshCurrent(); }
+      catch(err){ toast(err.message, true); }
+    };
+  }catch(e){ $("#dBody").innerHTML = `<p class="err">${esc(e.message)}</p>`; }
+}
+function refreshCurrent(){ ({overview:loadOverview, meshes:loadMeshes, messages:loadMessages, users:loadUsers})[S.page](); }
+
+/* ============================== messages ============================== */
+let msgTimer;
+$("#msgSearch").addEventListener("input", () => { clearTimeout(msgTimer); msgTimer = setTimeout(() => { S.msgPage = 1; loadMessages(); }, 300); });
+async function loadMessages(){
+  try{
+    const data = await api("/api/message/", {params:{page:S.msgPage, search:$("#msgSearch").value.trim()}});
+    $("#msgRows").innerHTML = data.results.length ? data.results.map(m => msgRow(m)).join("") : `<p class="empty">Сообщений не найдено.</p>`;
+    bindMsgActions($("#msgRows"), loadMessages);
+    pager($("#msgPager"), data, S.msgPage, p => { S.msgPage = p; loadMessages(); });
+  }catch(e){ toast(e.message, true); }
+}
+
+/* ============================== users ============================== */
+async function loadUsers(){
+  try{
+    const data = await api("/api/user/", {params:{page_size:200}});
+    const list = data.results || data;
+    $("#userRows").innerHTML = list.map(u => `<tr style="cursor:default">
+      <td><b>${esc(u.username)}</b></td><td>${esc(u.role)}</td>
+      <td>${u.is_staff ? '<span class="pill active">да</span>' : '<span class="pill inactive">нет</span>'}</td>
+      <td>${u.is_superuser ? "да" : "нет"}</td><td>${fmtDT(u.last_login)}</td><td>${fmtDate(u.date_joined)}</td>
+      <td style="text-align:right"><button class="btn sm" data-staff="${u.id}" data-v="${u.is_staff ? 0 : 1}">${u.is_staff ? "Снять staff" : "Дать staff"}</button>
+        <button class="btn sm danger" data-del-user="${u.id}">Удалить</button></td></tr>`).join("");
+    $("#userRows").querySelectorAll("[data-staff]").forEach(b => b.onclick = async () => {
+      try{ await api(`/api/user/${b.dataset.staff}/`, {method:"PATCH", body:{is_staff: b.dataset.v === "1"}}); loadUsers(); }
+      catch(e){ toast(e.message, true); }
+    });
+    $("#userRows").querySelectorAll("[data-del-user]").forEach(b => b.onclick = async () => {
+      if (!confirm("Удалить пользователя? Стикеры, которые он создал, удалятся вместе с ним.")) return;
+      try{ await api(`/api/user/${b.dataset.delUser}/`, {method:"DELETE"}); toast("Пользователь удалён"); loadUsers(); }
+      catch(e){ toast(e.message, true); }
+    });
+  }catch(e){ toast(e.message, true); }
+}
+$("#openUser").onclick = () => { $("#userForm").reset(); $("#uStaff").checked = true; $("#uErr").textContent = ""; $("#userDlg").showModal(); };
+$("#userForm").addEventListener("submit", async e => {
+  if (e.submitter?.value !== "ok") return;
+  e.preventDefault();
+  try{
+    await api("/api/user/", {method:"POST", body:{username:$("#uName").value.trim(), password:$("#uPass").value,
+      is_staff:$("#uStaff").checked, is_superuser:$("#uSuper").checked}});
+    $("#userDlg").close(); toast("Пользователь создан"); loadUsers();
+  }catch(err){ $("#uErr").textContent = err.message; }
+});
+
+boot();
+</script>
+</body>
+</html>

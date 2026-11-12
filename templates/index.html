@@ -1,549 +1,625 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>Mesh - DYLNX · Админ-панель</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
-<style>
-:root{
-  --asphalt:#1E252E; --wet:#2B3440; --line:#3A4552;
-  --amber:#F2A93B; --rust:#C4511F; --paper:#EEF1EE; --muted:#6B7682; --tg:#2AABEE;
-  --surface:#F7F8F6; --card:#FFFFFF; --border:#DCE1DD; --ink:#1E252E;
-  --ok:#2F8F5B; --off:#8A949E; --bad:#C4511F;
-  --display:"Unbounded",system-ui,sans-serif; --body:"Manrope",system-ui,sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
-body{font:14px/1.5 var(--body);color:var(--ink);background:var(--surface);-webkit-font-smoothing:antialiased}
-button,input,select,textarea{font:inherit;color:inherit}
-a{color:inherit}
-:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
-[hidden]{display:none!important}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow">
+    <title>Mesh - DYLNX · Админ-панель</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Unbounded:wght@600;700&display=swap" rel="stylesheet">
+    <script>/* qrcode-generator 1.4.4 (MIT, Kazuhiko Arase) */
+    var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],f={},c=function(t,r){o=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(i=4*e+17),l(0,0),l(i-7,0),l(0,i-7),s(),h(),d(t,r),e>=7&&v(t),null==a&&(a=p(e,n,u)),w(a,r)},l=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||i<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||i<=r+n||(o[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},h=function(){for(var t=8;t<i-8;t+=1)null==o[t][6]&&(o[t][6]=t%2==0);for(var r=8;r<i-8;r+=1)null==o[6][r]&&(o[6][r]=r%2==0)},s=function(){for(var t=B.getPatternPosition(e),r=0;r<t.length;r+=1)for(var n=0;n<t.length;n+=1){var i=t[r],a=t[n];if(null==o[i][a])for(var u=-2;u<=2;u+=1)for(var f=-2;f<=2;f+=1)o[i+u][a+f]=-2==u||2==u||-2==f||2==f||0==u&&0==f}},v=function(t){for(var r=B.getBCHTypeNumber(e),n=0;n<18;n+=1){var a=!t&&1==(r>>n&1);o[Math.floor(n/3)][n%3+i-8-3]=a}for(n=0;n<18;n+=1){a=!t&&1==(r>>n&1);o[n%3+i-8-3][Math.floor(n/3)]=a}},d=function(t,r){for(var e=n<<3|r,a=B.getBCHTypeInfo(e),u=0;u<15;u+=1){var f=!t&&1==(a>>u&1);u<6?o[u][8]=f:u<8?o[u+1][8]=f:o[i-15+u][8]=f}for(u=0;u<15;u+=1){f=!t&&1==(a>>u&1);u<8?o[8][i-u-1]=f:u<9?o[8][15-u-1+1]=f:o[8][15-u-1]=f}o[i-8][8]=!t},w=function(t,r){for(var e=-1,n=i-1,a=7,u=0,f=B.getMaskFunction(r),c=i-1;c>0;c-=2)for(6==c&&(c-=1);;){for(var g=0;g<2;g+=1)if(null==o[n][c-g]){var l=!1;u<t.length&&(l=1==(t[u]>>>a&1)),f(n,c-g)&&(l=!l),o[n][c-g]=l,-1==(a-=1)&&(u+=1,a=7)}if((n+=e)<0||i<=n){n-=e,e=-e;break}}},p=function(t,r,e){for(var n=A.getRSBlocks(t,r),o=b(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=k(i[u],l.getLength()-1).mod(l);for(a[u]=new Array(l.getLength()-1),g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=s>=0?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};f.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=M(t);break;case"Alphanumeric":e=x(t);break;case"Byte":e=m(t);break;case"Kanji":e=L(t);break;default:throw"mode:"+r}u.push(e),a=null},f.isDark=function(t,r){if(t<0||i<=t||r<0||i<=r)throw t+","+r;return o[t][r]},f.getModuleCount=function(){return i},f.make=function(){if(e<1){for(var t=1;t<40;t++){for(var r=A.getRSBlocks(t,n),o=b(),i=0;i<u.length;i++){var a=u[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var g=0;for(i=0;i<r.length;i++)g+=r[i].dataCount;if(o.getLengthInBits()<=8*g)break}e=t}c(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){c(!0,e);var n=B.getLostPoint(f);(0==e||t>n)&&(t=n,r=e)}return r}())},f.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<f.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<f.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=f.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},f.createSvgTag=function(t,r,e,n){var o={};"object"==typeof arguments[0]&&(t=(o=arguments[0]).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text=n.text||null,n.id=n.text?n.id||"qrcode-title":null;var i,a,u,c,g=f.getModuleCount()*t+2*r,l="";for(c="l"+t+",0 0,"+t+" -"+t+",0 0,-"+t+"z ",l+='<svg version="1.1" xmlns="http://www.w3.org/2000/svg"',l+=o.scalable?"":' width="'+g+'px" height="'+g+'px"',l+=' viewBox="0 0 '+g+" "+g+'" ',l+=' preserveAspectRatio="xMinYMin meet"',l+=n.text||e.text?' role="img" aria-labelledby="'+y([n.id,e.id].join(" ").trim())+'"':"",l+=">",l+=n.text?'<title id="'+y(n.id)+'">'+y(n.text)+"</title>":"",l+=e.text?'<description id="'+y(e.id)+'">'+y(e.text)+"</description>":"",l+='<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>',l+='<path d="',a=0;a<f.getModuleCount();a+=1)for(u=a*t+r,i=0;i<f.getModuleCount();i+=1)f.isDark(a,i)&&(l+="M"+(i*t+r)+","+u+c);return l+='" stroke="transparent" fill="black"/>',l+="</svg>"},f.createDataURL=function(t,r){t=t||2,r=void 0===r?4*t:r;var e=f.getModuleCount()*t+2*r,n=r,o=e-r;return I(e,e,function(r,e){if(n<=r&&r<o&&n<=e&&e<o){var i=Math.floor((r-n)/t),a=Math.floor((e-n)/t);return f.isDark(a,i)?0:1}return 1})},f.createImgTag=function(t,r,e){t=t||2,r=void 0===r?4*t:r;var n=f.getModuleCount()*t+2*r,o="";return o+="<img",o+=' src="',o+=f.createDataURL(t,r),o+='"',o+=' width="',o+=n,o+='"',o+=' height="',o+=n,o+='"',e&&(o+=' alt="',o+=y(e),o+='"'),o+="/>"};var y=function(t){for(var r="",e=0;e<t.length;e+=1){var n=t.charAt(e);switch(n){case"<":r+="&lt;";break;case">":r+="&gt;";break;case"&":r+="&amp;";break;case'"':r+="&quot;";break;default:r+=n}}return r};return f.createASCII=function(t,r){if((t=t||1)<2)return function(t){t=void 0===t?2:t;var r,e,n,o,i,a=1*f.getModuleCount()+2*t,u=t,c=a-t,g={"██":"█","█ ":"▀"," █":"▄","  ":" "},l={"██":"▀","█ ":"▀"," █":" ","  ":" "},h="";for(r=0;r<a;r+=2){for(n=Math.floor((r-u)/1),o=Math.floor((r+1-u)/1),e=0;e<a;e+=1)i="█",u<=e&&e<c&&u<=r&&r<c&&f.isDark(n,Math.floor((e-u)/1))&&(i=" "),u<=e&&e<c&&u<=r+1&&r+1<c&&f.isDark(o,Math.floor((e-u)/1))?i+=" ":i+="█",h+=t<1&&r+1>=c?l[i]:g[i];h+="\n"}return a%2&&t>0?h.substring(0,h.length-a-1)+Array(a+1).join("▀"):h.substring(0,h.length-1)}(r);t-=1,r=void 0===r?2*t:r;var e,n,o,i,a=f.getModuleCount()*t+2*r,u=r,c=a-r,g=Array(t+1).join("██"),l=Array(t+1).join("  "),h="",s="";for(e=0;e<a;e+=1){for(o=Math.floor((e-u)/t),s="",n=0;n<a;n+=1)i=1,u<=n&&n<c&&u<=e&&e<c&&f.isDark(o,Math.floor((n-u)/t))&&(i=0),s+=i?g:l;for(o=0;o<t;o+=1)h+=s+"\n"}return h.substring(0,h.length-1)},f.renderTo2dContext=function(t,r){r=r||2;for(var e=f.getModuleCount(),n=0;n<e;n++)for(var o=0;o<e;o++)t.fillStyle=f.isDark(n,o)?"black":"white",t.fillRect(n*r,o*r,r,r)},f};t.stringToBytes=(t.stringToBytesFuncs={default:function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);r.push(255&n)}return r}}).default,t.createStringToBytes=function(t,r){var e=function(){for(var e=S(t),n=function(){var t=e.read();if(-1==t)throw"eof";return t},o=0,i={};;){var a=e.read();if(-1==a)break;var u=n(),f=n()<<8|n();i[String.fromCharCode(a<<8|u)]=f,o+=1}if(o!=r)throw o+" != "+r;return i}(),n="?".charCodeAt(0);return function(t){for(var r=[],o=0;o<t.length;o+=1){var i=t.charCodeAt(o);if(i<128)r.push(i);else{var a=e[t.charAt(o)];"number"==typeof a?(255&a)==a?r.push(a):(r.push(a>>>8),r.push(255&a)):r.push(n)}}return r}};var r,e,n,o,i,a=1,u=2,f=4,c=8,g={L:1,M:0,Q:3,H:2},l=0,h=1,s=2,v=3,d=4,w=5,p=6,y=7,B=(r=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],e=1335,n=7973,i=function(t){for(var r=0;0!=t;)r+=1,t>>>=1;return r},(o={}).getBCHTypeInfo=function(t){for(var r=t<<10;i(r)-i(e)>=0;)r^=e<<i(r)-i(e);return 21522^(t<<10|r)},o.getBCHTypeNumber=function(t){for(var r=t<<12;i(r)-i(n)>=0;)r^=n<<i(r)-i(n);return t<<12|r},o.getPatternPosition=function(t){return r[t-1]},o.getMaskFunction=function(t){switch(t){case l:return function(t,r){return(t+r)%2==0};case h:return function(t,r){return t%2==0};case s:return function(t,r){return r%3==0};case v:return function(t,r){return(t+r)%3==0};case d:return function(t,r){return(Math.floor(t/2)+Math.floor(r/3))%2==0};case w:return function(t,r){return t*r%2+t*r%3==0};case p:return function(t,r){return(t*r%2+t*r%3)%2==0};case y:return function(t,r){return(t*r%3+(t+r)%2)%2==0};default:throw"bad maskPattern:"+t}},o.getErrorCorrectPolynomial=function(t){for(var r=k([1],0),e=0;e<t;e+=1)r=r.multiply(k([1,C.gexp(e)],0));return r},o.getLengthInBits=function(t,r){if(1<=r&&r<10)switch(t){case a:return 10;case u:return 9;case f:case c:return 8;default:throw"mode:"+t}else if(r<27)switch(t){case a:return 12;case u:return 11;case f:return 16;case c:return 10;default:throw"mode:"+t}else{if(!(r<41))throw"type:"+r;switch(t){case a:return 14;case u:return 13;case f:return 16;case c:return 12;default:throw"mode:"+t}}},o.getLostPoint=function(t){for(var r=t.getModuleCount(),e=0,n=0;n<r;n+=1)for(var o=0;o<r;o+=1){for(var i=0,a=t.isDark(n,o),u=-1;u<=1;u+=1)if(!(n+u<0||r<=n+u))for(var f=-1;f<=1;f+=1)o+f<0||r<=o+f||0==u&&0==f||a==t.isDark(n+u,o+f)&&(i+=1);i>5&&(e+=3+i-5)}for(n=0;n<r-1;n+=1)for(o=0;o<r-1;o+=1){var c=0;t.isDark(n,o)&&(c+=1),t.isDark(n+1,o)&&(c+=1),t.isDark(n,o+1)&&(c+=1),t.isDark(n+1,o+1)&&(c+=1),0!=c&&4!=c||(e+=3)}for(n=0;n<r;n+=1)for(o=0;o<r-6;o+=1)t.isDark(n,o)&&!t.isDark(n,o+1)&&t.isDark(n,o+2)&&t.isDark(n,o+3)&&t.isDark(n,o+4)&&!t.isDark(n,o+5)&&t.isDark(n,o+6)&&(e+=40);for(o=0;o<r;o+=1)for(n=0;n<r-6;n+=1)t.isDark(n,o)&&!t.isDark(n+1,o)&&t.isDark(n+2,o)&&t.isDark(n+3,o)&&t.isDark(n+4,o)&&!t.isDark(n+5,o)&&t.isDark(n+6,o)&&(e+=40);var g=0;for(o=0;o<r;o+=1)for(n=0;n<r;n+=1)t.isDark(n,o)&&(g+=1);return e+=Math.abs(100*g/r/r-50)/5*10},o),C=function(){for(var t=new Array(256),r=new Array(256),e=0;e<8;e+=1)t[e]=1<<e;for(e=8;e<256;e+=1)t[e]=t[e-4]^t[e-5]^t[e-6]^t[e-8];for(e=0;e<255;e+=1)r[t[e]]=e;var n={glog:function(t){if(t<1)throw"glog("+t+")";return r[t]},gexp:function(r){for(;r<0;)r+=255;for(;r>=256;)r-=255;return t[r]}};return n}();function k(t,r){if(void 0===t.length)throw t.length+"/"+r;var e=function(){for(var e=0;e<t.length&&0==t[e];)e+=1;for(var n=new Array(t.length-e+r),o=0;o<t.length-e;o+=1)n[o]=t[o+e];return n}(),n={getAt:function(t){return e[t]},getLength:function(){return e.length},multiply:function(t){for(var r=new Array(n.getLength()+t.getLength()-1),e=0;e<n.getLength();e+=1)for(var o=0;o<t.getLength();o+=1)r[e+o]^=C.gexp(C.glog(n.getAt(e))+C.glog(t.getAt(o)));return k(r,0)},mod:function(t){if(n.getLength()-t.getLength()<0)return n;for(var r=C.glog(n.getAt(0))-C.glog(t.getAt(0)),e=new Array(n.getLength()),o=0;o<n.getLength();o+=1)e[o]=n.getAt(o);for(o=0;o<t.getLength();o+=1)e[o]^=C.gexp(C.glog(t.getAt(o))+r);return k(e,0).mod(t)}};return n}var A=function(){var t=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12,7,37,13],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],r=function(t,r){var e={};return e.totalCount=t,e.dataCount=r,e},e={};return e.getRSBlocks=function(e,n){var o=function(r,e){switch(e){case g.L:return t[4*(r-1)+0];case g.M:return t[4*(r-1)+1];case g.Q:return t[4*(r-1)+2];case g.H:return t[4*(r-1)+3];default:return}}(e,n);if(void 0===o)throw"bad rs block @ typeNumber:"+e+"/errorCorrectionLevel:"+n;for(var i=o.length/3,a=[],u=0;u<i;u+=1)for(var f=o[3*u+0],c=o[3*u+1],l=o[3*u+2],h=0;h<f;h+=1)a.push(r(c,l));return a},e}(),b=function(){var t=[],r=0,e={getBuffer:function(){return t},getAt:function(r){var e=Math.floor(r/8);return 1==(t[e]>>>7-r%8&1)},put:function(t,r){for(var n=0;n<r;n+=1)e.putBit(1==(t>>>r-n-1&1))},getLengthInBits:function(){return r},putBit:function(e){var n=Math.floor(r/8);t.length<=n&&t.push(0),e&&(t[n]|=128>>>r%8),r+=1}};return e},M=function(t){var r=a,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+2<r.length;)t.put(o(r.substring(n,n+3)),10),n+=3;n<r.length&&(r.length-n==1?t.put(o(r.substring(n,n+1)),4):r.length-n==2&&t.put(o(r.substring(n,n+2)),7))}},o=function(t){for(var r=0,e=0;e<t.length;e+=1)r=10*r+i(t.charAt(e));return r},i=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);throw"illegal char :"+t};return n},x=function(t){var r=u,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+1<r.length;)t.put(45*o(r.charAt(n))+o(r.charAt(n+1)),11),n+=2;n<r.length&&t.put(o(r.charAt(n)),6)}},o=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);if("A"<=t&&t<="Z")return t.charCodeAt(0)-"A".charCodeAt(0)+10;switch(t){case" ":return 36;case"$":return 37;case"%":return 38;case"*":return 39;case"+":return 40;case"-":return 41;case".":return 42;case"/":return 43;case":":return 44;default:throw"illegal char :"+t}};return n},m=function(r){var e=f,n=t.stringToBytes(r),o={getMode:function(){return e},getLength:function(t){return n.length},write:function(t){for(var r=0;r<n.length;r+=1)t.put(n[r],8)}};return o},L=function(r){var e=c,n=t.stringToBytesFuncs.SJIS;if(!n)throw"sjis not supported.";!function(){var t=n("友");if(2!=t.length||38726!=(t[0]<<8|t[1]))throw"sjis not supported."}();var o=n(r),i={getMode:function(){return e},getLength:function(t){return~~(o.length/2)},write:function(t){for(var r=o,e=0;e+1<r.length;){var n=(255&r[e])<<8|255&r[e+1];if(33088<=n&&n<=40956)n-=33088;else{if(!(57408<=n&&n<=60351))throw"illegal char at "+(e+1)+"/"+n;n-=49472}n=192*(n>>>8&255)+(255&n),t.put(n,13),e+=2}if(e<r.length)throw"illegal char at "+(e+1)}};return i},D=function(){var t=[],r={writeByte:function(r){t.push(255&r)},writeShort:function(t){r.writeByte(t),r.writeByte(t>>>8)},writeBytes:function(t,e,n){e=e||0,n=n||t.length;for(var o=0;o<n;o+=1)r.writeByte(t[o+e])},writeString:function(t){for(var e=0;e<t.length;e+=1)r.writeByte(t.charCodeAt(e))},toByteArray:function(){return t},toString:function(){var r="";r+="[";for(var e=0;e<t.length;e+=1)e>0&&(r+=","),r+=t[e];return r+="]"}};return r},S=function(t){var r=t,e=0,n=0,o=0,i={read:function(){for(;o<8;){if(e>=r.length){if(0==o)return-1;throw"unexpected end of file./"+o}var t=r.charAt(e);if(e+=1,"="==t)return o=0,-1;t.match(/^\s$/)||(n=n<<6|a(t.charCodeAt(0)),o+=6)}var i=n>>>o-8&255;return o-=8,i}},a=function(t){if(65<=t&&t<=90)return t-65;if(97<=t&&t<=122)return t-97+26;if(48<=t&&t<=57)return t-48+52;if(43==t)return 62;if(47==t)return 63;throw"c:"+t};return i},I=function(t,r,e){for(var n=function(t,r){var e=t,n=r,o=new Array(t*r),i={setPixel:function(t,r,n){o[r*e+t]=n},write:function(t){t.writeString("GIF87a"),t.writeShort(e),t.writeShort(n),t.writeByte(128),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(255),t.writeByte(255),t.writeByte(255),t.writeString(","),t.writeShort(0),t.writeShort(0),t.writeShort(e),t.writeShort(n),t.writeByte(0);var r=a(2);t.writeByte(2);for(var o=0;r.length-o>255;)t.writeByte(255),t.writeBytes(r,o,255),o+=255;t.writeByte(r.length-o),t.writeBytes(r,o,r.length-o),t.writeByte(0),t.writeString(";")}},a=function(t){for(var r=1<<t,e=1+(1<<t),n=t+1,i=u(),a=0;a<r;a+=1)i.add(String.fromCharCode(a));i.add(String.fromCharCode(r)),i.add(String.fromCharCode(e));var f,c,g,l=D(),h=(f=l,c=0,g=0,{write:function(t,r){if(t>>>r!=0)throw"length over";for(;c+r>=8;)f.writeByte(255&(t<<c|g)),r-=8-c,t>>>=8-c,g=0,c=0;g|=t<<c,c+=r},flush:function(){c>0&&f.writeByte(g)}});h.write(r,n);var s=0,v=String.fromCharCode(o[s]);for(s+=1;s<o.length;){var d=String.fromCharCode(o[s]);s+=1,i.contains(v+d)?v+=d:(h.write(i.indexOf(v),n),i.size()<4095&&(i.size()==1<<n&&(n+=1),i.add(v+d)),v=d)}return h.write(i.indexOf(v),n),h.write(e,n),h.flush(),l.toByteArray()},u=function(){var t={},r=0,e={add:function(n){if(e.contains(n))throw"dup key:"+n;t[n]=r,r+=1},size:function(){return r},indexOf:function(r){return t[r]},contains:function(r){return void 0!==t[r]}};return e};return i}(t,r),o=0;o<r;o+=1)for(var i=0;i<t;i+=1)n.setPixel(i,o,e(i,o));var a=D();n.write(a);for(var u=function(){var t=0,r=0,e=0,n="",o={},i=function(t){n+=String.fromCharCode(a(63&t))},a=function(t){if(t<0);else{if(t<26)return 65+t;if(t<52)return t-26+97;if(t<62)return t-52+48;if(62==t)return 43;if(63==t)return 47}throw"n:"+t};return o.writeByte=function(n){for(t=t<<8|255&n,r+=8,e+=1;r>=6;)i(t>>>r-6),r-=6},o.flush=function(){if(r>0&&(i(t<<6-r),t=0,r=0),e%3!=0)for(var o=3-e%3,a=0;a<o;a+=1)n+="="},o.toString=function(){return n},o}(),f=a.toByteArray(),c=0;c<f.length;c+=1)u.writeByte(f[c]);return u.flush(),"data:image/gif;base64,"+u};return t}();qrcode.stringToBytesFuncs["UTF-8"]=function(t){return function(t){for(var r=[],e=0;e<t.length;e++){var n=t.charCodeAt(e);n<128?r.push(n):n<2048?r.push(192|n>>6,128|63&n):n<55296||n>=57344?r.push(224|n>>12,128|n>>6&63,128|63&n):(e++,n=65536+((1023&n)<<10|1023&t.charCodeAt(e)),r.push(240|n>>18,128|n>>12&63,128|n>>6&63,128|63&n))}return r}(t)},function(t){"function"==typeof define&&define.amd?define([],t):"object"==typeof exports&&(module.exports=t())}(function(){return qrcode});
+    </script>
+    <style>
+        :root{
+            --asphalt:#1E252E; --wet:#2B3440; --line:#3A4552;
+            --amber:#F2A93B; --rust:#C4511F; --paper:#EEF1EE; --muted:#6B7682; --tg:#2AABEE;
+            --surface:#F7F8F6; --card:#FFFFFF; --border:#DCE1DD; --ink:#1E252E;
+            --ok:#2F8F5B; --off:#8A949E; --bad:#C4511F;
+            --display:"Unbounded",system-ui,sans-serif; --body:"Manrope",system-ui,sans-serif;
+        }
+        *{box-sizing:border-box;margin:0;padding:0}
+        html,body{height:100%}
+        body{font:14px/1.5 var(--body);color:var(--ink);background:var(--surface);-webkit-font-smoothing:antialiased}
+        button,input,select,textarea{font:inherit;color:inherit}
+        a{color:inherit}
+        :focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+        [hidden]{display:none!important}
 
-/* ---------- login ---------- */
-.login{min-height:100%;display:grid;place-items:center;padding:24px;background:var(--asphalt);
-  background-image:repeating-linear-gradient(90deg,rgba(242,169,59,.5) 0 40px,transparent 40px 76px);
-  background-size:100% 6px;background-repeat:no-repeat;background-position:0 calc(100% - 40px)}
-.login form{width:100%;max-width:380px;background:var(--paper);border-radius:24px;padding:30px 28px;display:grid;gap:14px;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
-.login h1{font:700 22px/1.15 var(--display);letter-spacing:-.01em}
-.login p{color:var(--muted);margin-top:-6px}
-.logo{display:flex;align-items:center;gap:10px}
-.logo svg{width:34px;height:34px}
-.logo b{font:700 15px var(--display)}
-.logo span{display:block;font-size:12px;color:var(--muted);margin-top:-2px}
+        /* ---------- login ---------- */
+        .login{min-height:100%;display:grid;place-items:center;padding:24px;background:var(--asphalt);
+            background-image:repeating-linear-gradient(90deg,rgba(242,169,59,.5) 0 40px,transparent 40px 76px);
+            background-size:100% 6px;background-repeat:no-repeat;background-position:0 calc(100% - 40px)}
+        .login form{width:100%;max-width:380px;background:var(--paper);border-radius:24px;padding:30px 28px;display:grid;gap:14px;box-shadow:0 30px 60px -30px rgba(0,0,0,.8)}
+        .login h1{font:700 22px/1.15 var(--display);letter-spacing:-.01em}
+        .login p{color:var(--muted);margin-top:-6px}
+        .logo{display:flex;align-items:center;gap:10px}
+        .logo svg{width:34px;height:34px}
+        .logo b{font:700 15px var(--display)}
+        .logo span{display:block;font-size:12px;color:var(--muted);margin-top:-2px}
 
-label.f{display:grid;gap:5px;font-weight:600;font-size:13px}
-label.f small{font-weight:500;color:var(--muted)}
-.in{width:100%;height:42px;border:1px solid var(--border);border-radius:11px;background:#fff;padding:0 12px}
-textarea.in{height:auto;min-height:84px;padding:10px 12px;resize:vertical}
-.in:focus{border-color:var(--ink);outline:none;box-shadow:0 0 0 3px rgba(242,169,59,.35)}
-.err{color:var(--bad);font-weight:600;min-height:20px}
+        label.f{display:grid;gap:5px;font-weight:600;font-size:13px}
+        label.f small{font-weight:500;color:var(--muted)}
+        .in{width:100%;height:42px;border:1px solid var(--border);border-radius:11px;background:#fff;padding:0 12px}
+        textarea.in{height:auto;min-height:84px;padding:10px 12px;resize:vertical}
+        .in:focus{border-color:var(--ink);outline:none;box-shadow:0 0 0 3px rgba(242,169,59,.35)}
+        .err{color:var(--bad);font-weight:600;min-height:20px}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:11px;border:1px solid var(--border);background:#fff;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none}
-.btn:hover{border-color:#b9c1bb}
-.btn svg{width:17px;height:17px}
-.btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
-.btn.primary:hover{background:var(--wet)}
-.btn.amber{background:var(--amber);border-color:var(--amber);color:var(--ink)}
-.btn.danger{color:var(--bad)}
-.btn.sm{height:32px;padding:0 11px;font-size:13px;border-radius:9px}
-.btn:disabled{opacity:.5;cursor:default}
+        .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 16px;border-radius:11px;border:1px solid var(--border);background:#fff;font-weight:700;cursor:pointer;white-space:nowrap;text-decoration:none}
+        .btn:hover{border-color:#b9c1bb}
+        .btn svg{width:17px;height:17px}
+        .btn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+        .btn.primary:hover{background:var(--wet)}
+        .btn.amber{background:var(--amber);border-color:var(--amber);color:var(--ink)}
+        .btn.danger{color:var(--bad)}
+        .btn.sm{height:32px;padding:0 11px;font-size:13px;border-radius:9px}
+        .btn:disabled{opacity:.5;cursor:default}
 
-/* ---------- app shell ---------- */
-.app{display:grid;grid-template-columns:232px 1fr;min-height:100%}
-.side{background:var(--asphalt);color:var(--paper);padding:22px 14px;display:flex;flex-direction:column;gap:26px;position:sticky;top:0;height:100vh}
-.side .logo span{color:#9AA6B2}
-.nav{display:grid;gap:4px}
-.nav button{display:flex;align-items:center;gap:11px;height:42px;padding:0 12px;border:0;border-radius:11px;background:none;color:#B7C0C9;font-weight:600;cursor:pointer;text-align:left}
-.nav button svg{width:19px;height:19px;flex:none}
-.nav button:hover{background:var(--wet);color:#fff}
-.nav button[aria-current="page"]{background:var(--wet);color:#fff;box-shadow:inset 3px 0 0 var(--amber)}
-.side .me{margin-top:auto;padding:12px;border:1px dashed var(--line);border-radius:12px;font-size:12.5px;color:#9AA6B2}
-.side .me b{color:#fff;display:block;font-size:13.5px}
-.side .me button{margin-top:8px;background:none;border:0;color:var(--amber);font-weight:700;cursor:pointer;padding:0}
+        /* ---------- app shell ---------- */
+        .app{display:grid;grid-template-columns:232px 1fr;min-height:100%}
+        .side{background:var(--asphalt);color:var(--paper);padding:22px 14px;display:flex;flex-direction:column;gap:26px;position:sticky;top:0;height:100vh}
+        .side .logo span{color:#9AA6B2}
+        .nav{display:grid;gap:4px}
+        .nav button{display:flex;align-items:center;gap:11px;height:42px;padding:0 12px;border:0;border-radius:11px;background:none;color:#B7C0C9;font-weight:600;cursor:pointer;text-align:left}
+        .nav button svg{width:19px;height:19px;flex:none}
+        .nav button:hover{background:var(--wet);color:#fff}
+        .nav button[aria-current="page"]{background:var(--wet);color:#fff;box-shadow:inset 3px 0 0 var(--amber)}
+        .side .me{margin-top:auto;padding:12px;border:1px dashed var(--line);border-radius:12px;font-size:12.5px;color:#9AA6B2}
+        .side .me b{color:#fff;display:block;font-size:13.5px}
+        .side .me button{margin-top:8px;background:none;border:0;color:var(--amber);font-weight:700;cursor:pointer;padding:0}
 
-main{padding:28px 32px 60px;min-width:0}
-.head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
-.head h2{font:700 24px/1.15 var(--display);letter-spacing:-.015em}
-.head p{color:var(--muted);margin-top:4px}
-.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-.search{position:relative}
-.search svg{position:absolute;left:11px;top:12px;width:17px;height:17px;color:var(--muted)}
-.search .in{padding-left:34px;width:260px}
-select.in{width:auto;padding-right:30px}
+        main{padding:28px 32px 60px;min-width:0}
+        .head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+        .head h2{font:700 24px/1.15 var(--display);letter-spacing:-.015em}
+        .head p{color:var(--muted);margin-top:4px}
+        .tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+        .search{position:relative}
+        .search svg{position:absolute;left:11px;top:12px;width:17px;height:17px;color:var(--muted)}
+        .search .in{padding-left:34px;width:260px}
+        select.in{width:auto;padding-right:30px}
 
-/* overview */
-.strip{display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden}
-.strip div{padding:18px 20px;border-right:1px solid var(--border)}
-.strip div:last-child{border-right:0}
-.strip b{display:block;font:700 30px/1.1 var(--display);letter-spacing:-.02em}
-.strip span{color:var(--muted);font-weight:600;font-size:13px}
-.strip i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
-.cols{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-top:18px}
-.panel{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px 20px;min-width:0}
-.panel h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
-.panel h3 button{font-size:12.5px;font-weight:700;color:var(--rust);background:none;border:0;cursor:pointer}
-.empty{color:var(--muted);padding:18px 0}
+        /* overview */
+        .strip{display:grid;grid-template-columns:repeat(4,1fr);background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden}
+        .strip div{padding:18px 20px;border-right:1px solid var(--border)}
+        .strip div:last-child{border-right:0}
+        .strip b{display:block;font:700 30px/1.1 var(--display);letter-spacing:-.02em}
+        .strip span{color:var(--muted);font-weight:600;font-size:13px}
+        .strip i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+        .cols{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-top:18px}
+        .panel{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px 20px;min-width:0}
+        .panel h3{font-size:15px;font-weight:700;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+        .panel h3 button{font-size:12.5px;font-weight:700;color:var(--rust);background:none;border:0;cursor:pointer}
+        .empty{color:var(--muted);padding:18px 0}
 
-/* table */
-.tablewrap{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:auto}
-table{width:100%;border-collapse:collapse;min-width:820px}
-th{font-size:12.5px;color:var(--muted);font-weight:600;text-align:left;padding:11px 14px;border-bottom:1px solid var(--border);background:#FAFBF9;position:sticky;top:0}
-td{padding:10px 14px;border-bottom:1px solid #ECEFEC;vertical-align:middle}
-tbody tr{cursor:pointer}
-tbody tr:hover td{background:#FAFBF7}
-tbody tr:last-child td{border-bottom:0}
-td.qr img,td.qr canvas{width:40px;height:40px;border-radius:6px;display:block;background:#fff;border:1px solid var(--border)}
-.uuid{font-variant-numeric:tabular-nums;font-weight:700}
-.uuid small{display:block;font-weight:500;color:var(--muted);font-size:12px}
-.pill{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12.5px;font-weight:700;background:#EEF1EE}
-.pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
-.pill.active{color:var(--ok);background:#E5F3EA}
-.pill.inactive{color:var(--off)}
-.pill.expired{color:var(--bad);background:#FBEAE2}
-input[type=checkbox]{width:17px;height:17px;accent-color:var(--ink);cursor:pointer}
-.pager{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;color:var(--muted);font-weight:600}
-.pager div{display:flex;gap:8px}
+        /* table */
+        .tablewrap{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:auto}
+        table{width:100%;border-collapse:collapse;min-width:820px}
+        th{font-size:12.5px;color:var(--muted);font-weight:600;text-align:left;padding:11px 14px;border-bottom:1px solid var(--border);background:#FAFBF9;position:sticky;top:0}
+        td{padding:10px 14px;border-bottom:1px solid #ECEFEC;vertical-align:middle}
+        tbody tr{cursor:pointer}
+        tbody tr:hover td{background:#FAFBF7}
+        tbody tr:last-child td{border-bottom:0}
+        td.qr img,td.qr canvas{width:40px;height:40px;border-radius:6px;display:block;background:#fff;border:1px solid var(--border)}
+        .uuid{font-variant-numeric:tabular-nums;font-weight:700}
+        .uuid small{display:block;font-weight:500;color:var(--muted);font-size:12px}
+        .pill{white-space:nowrap;display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:999px;font-size:12.5px;font-weight:700;background:#EEF1EE}
+        .pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+        .pill.active{color:var(--ok);background:#E5F3EA}
+        .pill.inactive{color:var(--off)}
+        .pill.expired{color:var(--bad);background:#FBEAE2}
+        input[type=checkbox]{width:17px;height:17px;accent-color:var(--ink);cursor:pointer}
+        .pager{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;color:var(--muted);font-weight:600}
+        .pager div{display:flex;gap:8px}
 
-/* messages */
-.msg{display:grid;grid-template-columns:auto 1fr auto;gap:12px;padding:12px 0;border-bottom:1px solid #ECEFEC;align-items:start}
-.msg:last-child{border-bottom:0}
-.who{font-size:12px;font-weight:700;padding:3px 8px;border-radius:7px;white-space:nowrap}
-.who.owner{background:#E6EEF6;color:#2C5E8A}
-.who.guest{background:#FFF3DF;color:#8A5A0B}
-.who.admin{background:var(--ink);color:#fff}
-.msg p{white-space:pre-wrap;word-break:break-word}
-.msg small{color:var(--muted);font-size:12px;display:block;margin-top:2px}
-.msg .act{display:flex;gap:6px}
-.msg a.link{font-weight:700;text-decoration:none;color:var(--rust);cursor:pointer}
+        /* messages */
+        .msg{display:grid;grid-template-columns:auto 1fr auto;gap:12px;padding:12px 0;border-bottom:1px solid #ECEFEC;align-items:start}
+        .msg:last-child{border-bottom:0}
+        .who{font-size:12px;font-weight:700;padding:3px 8px;border-radius:7px;white-space:nowrap}
+        .who.owner{background:#E6EEF6;color:#2C5E8A}
+        .who.guest{background:#FFF3DF;color:#8A5A0B}
+        .who.admin{background:var(--ink);color:#fff}
+        .msg p{white-space:pre-wrap;word-break:break-word}
+        .msg small{color:var(--muted);font-size:12px;display:block;margin-top:2px}
+        .msg .act{display:flex;gap:6px}
+        .msg a.link{font-weight:700;text-decoration:none;color:var(--rust);cursor:pointer}
 
-/* drawer */
-.scrim{position:fixed;inset:0;background:rgba(30,37,46,.45);z-index:20}
-.drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--surface);z-index:21;overflow:auto;box-shadow:-30px 0 60px -30px rgba(0,0,0,.5);animation:slide .22s ease-out}
-@keyframes slide{from{transform:translateX(40px);opacity:.4}}
-.drawer header{position:sticky;top:0;background:var(--surface);display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid var(--border);z-index:1}
-.drawer header h3{font:700 17px var(--display)}
-.drawer .body{padding:20px 22px;display:grid;gap:18px}
-.qrbox{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px}
-.qrbox img,.qrbox canvas{width:150px;height:150px;border-radius:10px;border:1px solid var(--border);background:#fff}
-.qrph{width:150px;height:150px;border-radius:10px;border:1px dashed var(--border);display:grid;place-items:center;text-align:center;color:var(--muted);font-size:12px;padding:10px}
-.qrbox code{display:block;font-weight:700;word-break:break-all;font-family:var(--body)}
-.qrbox .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.check{display:flex;align-items:center;gap:9px;font-weight:600}
-.thread{max-height:340px;overflow:auto}
-.danger-zone{display:flex;gap:8px;flex-wrap:wrap;padding-top:14px;border-top:1px dashed var(--border)}
+        /* drawer */
+        .scrim{position:fixed;inset:0;background:rgba(30,37,46,.45);z-index:20}
+        .drawer{position:fixed;top:0;right:0;bottom:0;width:min(560px,100%);background:var(--surface);z-index:21;overflow:auto;box-shadow:-30px 0 60px -30px rgba(0,0,0,.5);animation:slide .22s ease-out}
+        @keyframes slide{from{transform:translateX(40px);opacity:.4}}
+        .drawer header{position:sticky;top:0;background:var(--surface);display:flex;justify-content:space-between;align-items:center;padding:18px 22px;border-bottom:1px solid var(--border);z-index:1}
+        .drawer header h3{font:700 17px var(--display)}
+        .drawer .body{padding:20px 22px;display:grid;gap:18px}
+        .qrbox{display:grid;grid-template-columns:150px 1fr;gap:18px;align-items:center;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px}
+        .qrbox img,.qrbox canvas{width:150px;height:150px;border-radius:10px;border:1px solid var(--border);background:#fff}
+        .qrph{width:150px;height:150px;border-radius:10px;border:1px dashed var(--border);display:grid;place-items:center;text-align:center;color:var(--muted);font-size:12px;padding:10px}
+        .qrbox code{display:block;font-weight:700;word-break:break-all;font-family:var(--body)}
+        .qrbox .links{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+        .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+        .check{display:flex;align-items:center;gap:9px;font-weight:600}
+        .thread{max-height:340px;overflow:auto}
+        .danger-zone{display:flex;gap:8px;flex-wrap:wrap;padding-top:14px;border-top:1px dashed var(--border)}
 
-/* dialog */
-dialog{border:0;border-radius:20px;padding:0;width:min(460px,calc(100% - 32px));box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
-dialog::backdrop{background:rgba(30,37,46,.5)}
-dialog form{padding:24px;display:grid;gap:14px}
-dialog h3{font:700 18px var(--display)}
-dialog .row{display:flex;justify-content:flex-end;gap:10px;margin-top:4px}
+        /* dialog */
+        dialog{max-height:calc(100vh - 32px);overflow:auto;border:0;border-radius:20px;padding:0;width:min(460px,calc(100% - 32px));box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+        dialog::backdrop{background:rgba(30,37,46,.5)}
+        dialog form{padding:24px;display:grid;gap:14px}
+        dialog h3{font:700 18px var(--display)}
+        dialog .row{display:flex;justify-content:flex-end;gap:10px;margin-top:4px}
 
-/* toast */
-.toasts{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:grid;gap:8px;z-index:50}
-.toast{background:var(--ink);color:#fff;padding:11px 16px;border-radius:12px;font-weight:600;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
-.toast.bad{background:var(--bad)}
+        /* toast */
+        .toasts{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:grid;gap:8px;z-index:50}
+        .toast{background:var(--ink);color:#fff;padding:11px 16px;border-radius:12px;font-weight:600;box-shadow:0 12px 30px -10px rgba(0,0,0,.5)}
+        .toast.bad{background:var(--bad)}
 
-@media (max-width:960px){
-  .app{grid-template-columns:1fr}
-  .side{position:static;height:auto;flex-direction:row;align-items:center;padding:12px;gap:12px;overflow:auto}
-  .side .logo div,.side .me{display:none}
-  .nav{display:flex}
-  .nav button span{display:none}
-  main{padding:20px 16px 60px}
-  .strip{grid-template-columns:repeat(2,1fr)}
-  .strip div:nth-child(2){border-right:0}
-  .strip div:nth-child(-n+2){border-bottom:1px solid var(--border)}
-  .cols{grid-template-columns:1fr}
-  .search .in{width:100%}
-  .grid2,.qrbox{grid-template-columns:1fr}
-  .msg{grid-template-columns:1fr auto}
-  .msg .who{grid-column:1/-1;justify-self:start}
-}
-@media (prefers-reduced-motion:reduce){.drawer{animation:none}}
-</style>
+        /* sticker styles */
+        .stylegrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
+        .stylecard{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:14px;display:grid;gap:10px;align-content:start}
+        .checker{background:conic-gradient(#E6EAE6 25%,#fff 0 50%,#E6EAE6 0 75%,#fff 0) 0 0/18px 18px}
+        .stylecard .thumb{aspect-ratio:1;border-radius:12px;display:grid;place-items:center;padding:12px;overflow:hidden;background:conic-gradient(#E6EAE6 25%,#fff 0 50%,#E6EAE6 0 75%,#fff 0) 0 0/18px 18px}
+        .stylecard .thumb img{max-width:100%;max-height:100%;display:block;filter:drop-shadow(0 6px 10px rgba(30,37,46,.18))}
+        .stylecard b{display:block}
+        .stylecard small{color:var(--muted)}
+        .stylecard .row{display:flex;gap:6px;flex-wrap:wrap}
+        .stylecard.add{place-items:center;text-align:center;border-style:dashed;cursor:pointer;min-height:300px;color:var(--muted);font-weight:700}
+        .stylecard.add:hover{border-color:var(--ink);color:var(--ink)}
+        dialog.wide{width:min(1000px,calc(100% - 32px))}
+        .editor{display:grid;grid-template-columns:1fr 330px;gap:22px;align-items:start}
+        .prevwrap{border-radius:16px;display:grid;place-items:center;padding:18px;min-height:380px;background:conic-gradient(#E6EAE6 25%,#fff 0 50%,#E6EAE6 0 75%,#fff 0) 0 0/18px 18px}
+        .prevwrap canvas{max-width:100%;max-height:62vh;cursor:grab;touch-action:none;display:block}
+        .ctrl{display:grid;gap:13px;max-height:68vh;overflow:auto;padding-right:4px}
+        .ctrl fieldset{border:0;display:grid;gap:10px;padding-top:12px;border-top:1px solid var(--border)}
+        .ctrl legend{font-weight:700;font-size:13px;padding-bottom:4px}
+        input[type=range]{width:100%;accent-color:var(--ink)}
+        input[type=color]{width:42px;height:34px;border:1px solid var(--border);border-radius:8px;background:#fff;padding:2px;cursor:pointer}
+        .inline{display:flex;align-items:center;gap:10px}
+        .hint{font-size:12.5px;color:var(--muted);font-weight:500}
+        .warn{font-size:12.5px;color:var(--bad);font-weight:600}
+        .printgrid{display:grid;grid-template-columns:1fr 260px;gap:20px;align-items:start}
+        .printgrid .prevwrap{min-height:300px}
+
+        @media (max-width:960px){
+            .app{grid-template-columns:1fr}
+            .side{position:static;height:auto;flex-direction:row;align-items:center;padding:12px;gap:12px;overflow:auto}
+            .side .logo div,.side .me{display:none}
+            .nav{display:flex}
+            .nav button span{display:none}
+            main{padding:20px 16px 60px}
+            .strip{grid-template-columns:repeat(2,1fr)}
+            .strip div:nth-child(2){border-right:0}
+            .strip div:nth-child(-n+2){border-bottom:1px solid var(--border)}
+            .cols{grid-template-columns:1fr}
+            .search .in{width:100%}
+            .grid2,.qrbox,.editor,.printgrid{grid-template-columns:1fr}
+            .msg{grid-template-columns:1fr auto}
+            .msg .who{grid-column:1/-1;justify-self:start}
+        }
+        @media (prefers-reduced-motion:reduce){.drawer{animation:none}}
+    </style>
 </head>
 <body>
 
 <!-- ================= LOGIN ================= -->
 <section class="login" id="loginView" hidden>
-  <form id="loginForm" autocomplete="on">
-    <div class="logo">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#C4511F"/><path d="M8 23V9l8 8 8-8v14" fill="none" stroke="#EEF1EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="9" r="2.2" fill="#F2A93B"/><circle cx="24" cy="9" r="2.2" fill="#F2A93B"/></svg>
-      <div><b>Mesh</b><span>by DYLNX</span></div>
-    </div>
-    <h1>Вход в админ-панель</h1>
-    <p>Нужен аккаунт с правами staff.</p>
-    <label class="f">Адрес API <small>BACKEND_HERE, без слэша в конце</small>
-      <input class="in" id="lApi" type="url" required placeholder="https://api.example.uz"></label>
-    <label class="f">Логин <input class="in" id="lUser" required autocomplete="username"></label>
-    <label class="f">Пароль <input class="in" id="lPass" type="password" required autocomplete="current-password"></label>
-    <div class="err" id="lErr" role="alert"></div>
-    <button class="btn primary" type="submit" id="lBtn">Войти</button>
-  </form>
+    <form id="loginForm" autocomplete="on">
+        <div class="logo">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#C4511F"/><path d="M8 23V9l8 8 8-8v14" fill="none" stroke="#EEF1EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="9" r="2.2" fill="#F2A93B"/><circle cx="24" cy="9" r="2.2" fill="#F2A93B"/></svg>
+            <div><b>Mesh</b><span>by DYLNX</span></div>
+        </div>
+        <h1>Вход в админ-панель</h1>
+        <p>Нужен аккаунт с правами staff.</p>
+        <label class="f">Адрес API <small>BACKEND_HERE, без слэша в конце</small>
+            <input class="in" id="lApi" type="url" required placeholder="https://api.example.uz"></label>
+        <label class="f">Логин <input class="in" id="lUser" required autocomplete="username"></label>
+        <label class="f">Пароль <input class="in" id="lPass" type="password" required autocomplete="current-password"></label>
+        <div class="err" id="lErr" role="alert"></div>
+        <button class="btn primary" type="submit" id="lBtn">Войти</button>
+    </form>
 </section>
 
 <!-- ================= APP ================= -->
 <div class="app" id="appView" hidden>
-  <aside class="side">
-    <div class="logo">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#C4511F"/><path d="M8 23V9l8 8 8-8v14" fill="none" stroke="#EEF1EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="9" r="2.2" fill="#F2A93B"/><circle cx="24" cy="9" r="2.2" fill="#F2A93B"/></svg>
-      <div><b>Mesh</b><span>админ-панель DYLNX</span></div>
-    </div>
-    <nav class="nav" aria-label="Разделы">
-      <button data-page="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 13h8V3H3v10Zm0 8h8v-6H3v6Zm10 0h8V11h-8v10Zm0-18v6h8V3h-8Z"/></svg><span>Обзор</span></button>
-      <button data-page="meshes"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 3h8v8H3V3Zm2 2v4h4V5H5Zm8-2h8v8h-8V3Zm2 2v4h4V5h-4ZM3 13h8v8H3v-8Zm2 2v4h4v-4H5Zm13-2h3v3h-3v-3Zm-5 0h3v3h-3v-3Zm3 3h2v2h-2v-2Zm-3 2h3v3h-3v-3Zm5 1h3v2h-3v-2Z"/></svg><span>Стикеры</span></button>
-      <button data-page="messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/></svg><span>Сообщения</span></button>
-      <button data-page="users"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5Z"/></svg><span>Пользователи</span></button>
-    </nav>
-    <div class="me"><b id="meName">—</b><span id="meApi"></span><br><button id="logout">Выйти</button></div>
-  </aside>
+    <aside class="side">
+        <div class="logo">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#C4511F"/><path d="M8 23V9l8 8 8-8v14" fill="none" stroke="#EEF1EE" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="8" cy="9" r="2.2" fill="#F2A93B"/><circle cx="24" cy="9" r="2.2" fill="#F2A93B"/></svg>
+            <div><b>Mesh</b><span>админ-панель DYLNX</span></div>
+        </div>
+        <nav class="nav" aria-label="Разделы">
+            <button data-page="overview"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 13h8V3H3v10Zm0 8h8v-6H3v6Zm10 0h8V11h-8v10Zm0-18v6h8V3h-8Z"/></svg><span>Обзор</span></button>
+            <button data-page="meshes"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 3h8v8H3V3Zm2 2v4h4V5H5Zm8-2h8v8h-8V3Zm2 2v4h4V5h-4ZM3 13h8v8H3v-8Zm2 2v4h4v-4H5Zm13-2h3v3h-3v-3Zm-5 0h3v3h-3v-3Zm3 3h2v2h-2v-2Zm-3 2h3v3h-3v-3Zm5 1h3v2h-3v-2Z"/></svg><span>Стикеры</span></button>
+            <button data-page="styles"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M5 3h14a2 2 0 0 1 2 2v9l-7 7H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Zm8 16.2L19.2 13H15a2 2 0 0 0-2 2v4.2ZM8 7v2h8V7H8Z"/></svg><span>Стили стикеров</span></button>
+            <button data-page="messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/></svg><span>Сообщения</span></button>
+            <button data-page="users"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0 2c-4.4 0-8 2.2-8 5v2h16v-2c0-2.8-3.6-5-8-5Z"/></svg><span>Пользователи</span></button>
+        </nav>
+        <div class="me"><b id="meName">—</b><span id="meApi"></span><br><button id="logout">Выйти</button></div>
+    </aside>
 
-  <main id="main">
-    <!-- overview -->
-    <section data-view="overview">
-      <div class="head"><div><h2>Обзор</h2><p>Состояние стикеров и переписки прямо сейчас.</p></div>
-        <div class="tools"><button class="btn amber" data-open-create>Создать стикеры</button></div></div>
-      <div class="strip" id="stats"></div>
-      <div class="cols">
-        <div class="panel"><h3>Последние сообщения <button data-goto="messages">Все сообщения</button></h3><div id="ovMsgs"></div></div>
-        <div class="panel"><h3>Истекают в ближайшие 7 дней <button data-goto="meshes" data-status="active">Все активные</button></h3><div id="ovExp"></div></div>
-      </div>
-    </section>
+    <main id="main">
+        <!-- overview -->
+        <section data-view="overview">
+            <div class="head"><div><h2>Обзор</h2><p>Состояние стикеров и переписки прямо сейчас.</p></div>
+                <div class="tools"><button class="btn amber" data-open-create>Создать стикеры</button></div></div>
+            <div class="strip" id="stats"></div>
+            <div class="cols">
+                <div class="panel"><h3>Последние сообщения <button data-goto="messages">Все сообщения</button></h3><div id="ovMsgs"></div></div>
+                <div class="panel"><h3>Истекают в ближайшие 7 дней <button data-goto="meshes" data-status="active">Все активные</button></h3><div id="ovExp"></div></div>
+            </div>
+        </section>
 
-    <!-- meshes -->
-    <section data-view="meshes" hidden>
-      <div class="head"><div><h2>Стикеры</h2><p id="meshCount">&nbsp;</p></div>
-        <div class="tools">
-          <div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/></svg>
-            <input class="in" id="mSearch" type="search" placeholder="UUID, телефон или Telegram ID" aria-label="Поиск стикеров"></div>
-          <select class="in" id="mStatus" aria-label="Статус">
-            <option value="">Все статусы</option><option value="active">Активные</option>
-            <option value="inactive">Не активированы</option><option value="expired">Истёкшие</option>
-          </select>
-          <button class="btn" id="printSel" disabled>Печать карточек</button>
-          <button class="btn amber" data-open-create>Создать стикеры</button>
-        </div></div>
-      <div class="tablewrap">
-        <table>
-          <thead><tr><th><input type="checkbox" id="selAll" aria-label="Выбрать все"></th><th>QR</th><th>Стикер</th><th>Статус</th><th>Действует до</th><th>Владелец (Telegram)</th><th>Телефон</th><th>Сообщ.</th><th>Код</th></tr></thead>
-          <tbody id="meshRows"></tbody>
-        </table>
-        <div class="pager" id="meshPager"></div>
-      </div>
-    </section>
+        <!-- meshes -->
+        <section data-view="meshes" hidden>
+            <div class="head"><div><h2>Стикеры</h2><p id="meshCount">&nbsp;</p></div>
+                <div class="tools">
+                    <div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/></svg>
+                        <input class="in" id="mSearch" type="search" placeholder="UUID, телефон или Telegram ID" aria-label="Поиск стикеров"></div>
+                    <select class="in" id="mStatus" aria-label="Статус">
+                        <option value="">Все статусы</option><option value="active">Активные</option>
+                        <option value="inactive">Не активированы</option><option value="expired">Истёкшие</option>
+                    </select>
+                    <button class="btn" id="printSel" disabled>Печать</button>
+                    <button class="btn amber" data-open-create>Создать стикеры</button>
+                </div></div>
+            <div class="tablewrap">
+                <table>
+                    <thead><tr><th><input type="checkbox" id="selAll" aria-label="Выбрать все"></th><th>QR</th><th>Стикер</th><th>Статус</th><th>Действует до</th><th>Владелец (Telegram)</th><th>Телефон</th><th>Сообщ.</th><th>Код</th></tr></thead>
+                    <tbody id="meshRows"></tbody>
+                </table>
+                <div class="pager" id="meshPager"></div>
+            </div>
+        </section>
 
-    <!-- messages -->
-    <section data-view="messages" hidden>
-      <div class="head"><div><h2>Сообщения</h2><p>Вся анонимная переписка, которая прошла через бота.</p></div>
-        <div class="tools"><div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/></svg>
-          <input class="in" id="msgSearch" type="search" placeholder="Поиск по тексту" aria-label="Поиск сообщений"></div></div></div>
-      <div class="panel"><div id="msgRows"></div><div class="pager" id="msgPager"></div></div>
-    </section>
+        <!-- messages -->
+        <section data-view="messages" hidden>
+            <div class="head"><div><h2>Сообщения</h2><p>Вся анонимная переписка, которая прошла через бота.</p></div>
+                <div class="tools"><div class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M10 2a8 8 0 0 1 6.3 12.9l5.4 5.4-1.4 1.4-5.4-5.4A8 8 0 1 1 10 2Zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12Z"/></svg>
+                    <input class="in" id="msgSearch" type="search" placeholder="Поиск по тексту" aria-label="Поиск сообщений"></div></div></div>
+            <div class="panel"><div id="msgRows"></div><div class="pager" id="msgPager"></div></div>
+        </section>
 
-    <!-- users -->
-    <section data-view="users" hidden>
-      <div class="head"><div><h2>Пользователи</h2><p>Админы панели и сервисный аккаунт бота. Боту нужен staff.</p></div>
-        <div class="tools"><button class="btn amber" id="openUser">Добавить пользователя</button></div></div>
-      <div class="tablewrap"><table>
-        <thead><tr><th>Логин</th><th>Роль</th><th>Staff</th><th>Суперпользователь</th><th>Последний вход</th><th>Создан</th><th></th></tr></thead>
-        <tbody id="userRows"></tbody></table></div>
-    </section>
-  </main>
+        <!-- sticker styles -->
+        <section data-view="styles" hidden>
+            <div class="head"><div><h2>Стили стикеров</h2><p>Фон и расположение QR для печати. Хранятся только в этом браузере и в базу не попадают.</p></div>
+                <div class="tools"><button class="btn amber" id="newStyle">Новый стиль</button></div></div>
+            <div class="stylegrid" id="styleGrid"></div>
+        </section>
+
+        <!-- users -->
+        <section data-view="users" hidden>
+            <div class="head"><div><h2>Пользователи</h2><p>Админы панели и сервисный аккаунт бота. Боту нужен staff. Права и удаление — через Django admin.</p></div>
+                <div class="tools"><button class="btn amber" id="openUser">Добавить пользователя</button></div></div>
+            <div class="tablewrap"><table>
+                <thead><tr><th>Логин</th><th>Роль</th><th>Staff</th><th>Суперпользователь</th><th>Последний вход</th><th>Создан</th></tr></thead>
+                <tbody id="userRows"></tbody></table></div>
+        </section>
+    </main>
 </div>
 
 <!-- drawer -->
 <div class="scrim" id="scrim" hidden></div>
 <aside class="drawer" id="drawer" hidden aria-labelledby="dTitle" role="dialog" aria-modal="true">
-  <header><h3 id="dTitle">Стикер</h3><button class="btn sm" id="dClose">Закрыть</button></header>
-  <div class="body" id="dBody"></div>
+    <header><h3 id="dTitle">Стикер</h3><button class="btn sm" id="dClose">Закрыть</button></header>
+    <div class="body" id="dBody"></div>
 </aside>
+
+<!-- style editor -->
+<dialog id="styleDlg" class="wide">
+    <form method="dialog" id="styleForm">
+        <h3 id="seTitle">Новый стиль</h3>
+        <div class="editor">
+            <div>
+                <div class="prevwrap"><canvas id="sePrev" tabindex="0" aria-label="Превью стикера. Перетащите QR мышкой или двигайте стрелками"></canvas></div>
+                <p class="hint" style="margin-top:8px">Перетащите QR мышкой или пальцем. Стрелки двигают точнее, с Shift — быстрее.</p>
+            </div>
+            <div class="ctrl">
+                <label class="f">Название <input class="in" name="sname" maxlength="60" required></label>
+                <label class="f">Основа
+                    <select class="in" name="base"><option value="image">Своя картинка</option><option value="classic">Mesh классика</option><option value="sign">Дорожный знак</option><option value="lynx">Рысь DYLNX</option></select></label>
+                <label class="f" id="seFileRow">Картинка-фон <small>PNG с прозрачным фоном даст фигурную вырубку</small>
+                    <input class="in" type="file" name="file" accept="image/png,image/jpeg,image/webp" style="padding-top:8px"></label>
+                <fieldset><legend>QR-код</legend>
+                    <label class="f">Размер <span class="hint" id="seQrSizeVal"></span><input type="range" name="qrs" min="10" max="90"></label>
+                    <label class="check"><input type="checkbox" name="frame"> Белая подложка под QR</label>
+                    <p class="warn" id="seWarn">Без подложки QR на картинке может не считаться. Проверьте камерой перед печатью.</p>
+                    <div id="sePadRow" style="display:grid;gap:10px">
+                        <label class="f">Отступ подложки <input type="range" name="pad" min="2" max="25"></label>
+                        <label class="f">Скругление углов <input type="range" name="radius" min="0" max="30"></label>
+                    </div>
+                    <label class="check"><input type="checkbox" name="logo"> Логотип Mesh в центре QR</label>
+                    <div class="inline"><input type="color" name="qrColor" aria-label="Цвет QR"><span class="hint">Цвет QR — только тёмный, иначе камера не прочитает</span></div>
+                </fieldset>
+                <fieldset><legend>Подпись под QR</legend>
+                    <textarea class="in" name="cap" rows="2" placeholder="Например: Мешаю? Сканируй"></textarea>
+                    <div class="inline"><input type="color" name="capColor" aria-label="Цвет подписи"><label class="f" style="flex:1">Размер текста <input type="range" name="capSize" min="2" max="10" step=".5"></label></div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="row"><button type="button" class="btn danger" id="seDelete" style="margin-right:auto">Удалить стиль</button>
+            <button class="btn" value="cancel" formnovalidate>Отмена</button><button class="btn primary" value="ok">Сохранить стиль</button></div>
+    </form>
+</dialog>
+
+<!-- print dialog -->
+<dialog id="printDlg" class="wide">
+    <form method="dialog">
+        <h3>Печать стикеров: <span id="pCount"></span> шт.</h3>
+        <div class="printgrid">
+            <div class="prevwrap"><canvas id="pPrev" aria-label="Превью первого стикера"></canvas></div>
+            <div class="ctrl">
+                <label class="f">Стиль <select class="in" id="pStyle"></select></label>
+                <label class="f">Ширина стикера, мм <input class="in" id="pWidth" type="number" min="20" max="300" step="1"></label>
+                <p class="hint">Итоговый размер: <b id="pSize"></b>. Печать в 300 dpi.</p>
+                <label class="check"><input type="checkbox" id="pCut" checked> Линии реза</label>
+                <label class="check"><input type="checkbox" id="pCards" checked> Карточки с секретным кодом</label>
+                <p class="hint">Код печатается только на карточках, которые кладут в коробку. На стикере его нет: стикер видят все.</p>
+                <p class="hint">Новые стили — в разделе «Стили стикеров».</p>
+            </div>
+        </div>
+        <div class="row"><button class="btn" value="cancel" formnovalidate style="margin-right:auto">Закрыть</button>
+            <button type="button" class="btn" id="pZip">Скачать PNG (ZIP)</button>
+            <button type="button" class="btn primary" id="pPrint">Печать</button></div>
+    </form>
+</dialog>
 
 <!-- create dialog -->
 <dialog id="createDlg">
-  <form method="dialog" id="createForm">
-    <h3>Новые стикеры</h3>
-    <div class="grid2">
-      <label class="f">Сколько штук <input class="in" id="cCount" type="number" min="1" max="200" value="1" required></label>
-      <label class="f">Действует до <input class="in" id="cUntil" type="date" required></label>
-    </div>
-    <label class="f">Секретный код <small>Пусто — у каждого стикера будет свой случайный 6-значный код</small>
-      <input class="in" id="cPass" maxlength="100" placeholder="Сгенерировать автоматически"></label>
-    <div class="err" id="cErr"></div>
-    <div class="row"><button class="btn" value="cancel" formnovalidate>Отмена</button><button class="btn primary" id="cBtn" value="ok">Создать</button></div>
-  </form>
+    <form method="dialog" id="createForm">
+        <h3>Новые стикеры</h3>
+        <div class="grid2">
+            <label class="f">Сколько штук <input class="in" id="cCount" type="number" min="1" max="200" value="1" required></label>
+            <label class="f">Действует до <input class="in" id="cUntil" type="date" required></label>
+        </div>
+        <label class="f">Секретный код <small>Пусто — у каждого стикера будет свой случайный 6-значный код</small>
+            <input class="in" id="cPass" maxlength="100" placeholder="Сгенерировать автоматически"></label>
+        <div class="err" id="cErr"></div>
+        <div class="row"><button class="btn" value="cancel" formnovalidate>Отмена</button><button class="btn primary" id="cBtn" value="ok">Создать</button></div>
+    </form>
 </dialog>
 
 <!-- user dialog -->
 <dialog id="userDlg">
-  <form method="dialog" id="userForm">
-    <h3>Новый пользователь</h3>
-    <label class="f">Логин <input class="in" id="uName" required></label>
-    <label class="f">Пароль <input class="in" id="uPass" type="password" minlength="8" required></label>
-    <label class="check"><input type="checkbox" id="uStaff" checked> Staff — доступ к панели и API (нужно боту)</label>
-    <label class="check"><input type="checkbox" id="uSuper"> Суперпользователь</label>
-    <div class="err" id="uErr"></div>
-    <div class="row"><button class="btn" value="cancel" formnovalidate>Отмена</button><button class="btn primary" value="ok">Создать</button></div>
-  </form>
+    <form method="dialog" id="userForm">
+        <h3>Новый пользователь</h3>
+        <label class="f">Логин <input class="in" id="uName" required></label>
+        <label class="f">Пароль <input class="in" id="uPass" type="password" minlength="8" required></label>
+        <label class="check"><input type="checkbox" id="uStaff" checked> Staff — доступ к панели и API (нужно боту)</label>
+        <label class="check"><input type="checkbox" id="uSuper"> Суперпользователь</label>
+        <div class="err" id="uErr"></div>
+        <div class="row"><button class="btn" value="cancel" formnovalidate>Отмена</button><button class="btn primary" value="ok">Создать</button></div>
+    </form>
 </dialog>
 
 <div class="toasts" id="toasts" aria-live="polite"></div>
 
 <script>
-/* ============================== state & api ============================== */
-const S = {
-  api: localStorage.getItem("mesh_api") || (location.protocol.startsWith("http") ? location.origin : ""),
-  access: localStorage.getItem("mesh_access"), refresh: localStorage.getItem("mesh_refresh"),
-  page: "overview", meshPage: 1, msgPage: 1, selected: new Map(), drawerId: null,
-};
-const $ = s => document.querySelector(s);
-const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const fmtDate = d => d ? new Date(d).toLocaleDateString("ru-RU") : "—";
-const fmtDT = d => d ? new Date(d).toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}) : "—";
-const today = () => new Date().toISOString().slice(0,10);
-const shortU = u => String(u).slice(-6);
+    /* ============================== state & api ============================== */
+    const S = {
+        api: localStorage.getItem("mesh_api") || (location.protocol.startsWith("http") ? location.origin : ""),
+        access: localStorage.getItem("mesh_access"), refresh: localStorage.getItem("mesh_refresh"),
+        page: "overview", meshPage: 1, msgPage: 1, selected: new Map(), drawerId: null,
+    };
+    const $ = s => document.querySelector(s);
+    const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const fmtDate = d => d ? new Date(d).toLocaleDateString("ru-RU") : "—";
+    const fmtDT = d => d ? new Date(d).toLocaleString("ru-RU",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit"}) : "—";
+    const today = () => new Date().toISOString().slice(0,10);
+    const shortU = u => String(u).slice(-6);
 
-function toast(text, bad=false){
-  const t = document.createElement("div"); t.className = "toast" + (bad ? " bad" : ""); t.textContent = text;
-  $("#toasts").appendChild(t); setTimeout(() => t.remove(), 3200);
-}
-
-async function refreshToken(){
-  if (!S.refresh) return false;
-  const r = await fetch(`${S.api}/api/refresh/`, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({refresh:S.refresh})});
-  if (!r.ok) return false;
-  S.access = (await r.json()).access; localStorage.setItem("mesh_access", S.access); return true;
-}
-
-async function api(path, {method="GET", body, params} = {}){
-  const url = new URL(S.api + path);
-  if (params) Object.entries(params).forEach(([k,v]) => v !== "" && v != null && url.searchParams.set(k, v));
-  for (let attempt = 0; attempt < 2; attempt++){
-    const r = await fetch(url, {method, headers:{"Content-Type":"application/json", Authorization:`Bearer ${S.access}`},
-                                body: body ? JSON.stringify(body) : undefined});
-    if (r.status === 401 && attempt === 0 && await refreshToken()) continue;
-    if (r.status === 401){ logout(); throw new Error("Сессия истекла, войдите снова"); }
-    const data = r.status === 204 ? null : await r.json().catch(() => null);
-    if (!r.ok){
-      const msg = data?.detail || (data ? Object.entries(data).map(([k,v]) => `${k}: ${[].concat(v).join(" ")}`).join("; ") : r.statusText);
-      throw new Error(msg);
+    function toast(text, bad=false){
+        const t = document.createElement("div"); t.className = "toast" + (bad ? " bad" : ""); t.textContent = text;
+        $("#toasts").appendChild(t); setTimeout(() => t.remove(), 3200);
     }
-    return data;
-  }
-}
 
-/* ============================== auth ============================== */
-function showLogin(){ $("#appView").hidden = true; $("#loginView").hidden = false; $("#lApi").value = S.api; }
-function logout(){
-  ["mesh_access","mesh_refresh"].forEach(k => localStorage.removeItem(k));
-  S.access = S.refresh = null; showLogin();
-}
-$("#logout").onclick = logout;
+    async function refreshToken(){
+        if (!S.refresh) return false;
+        const r = await fetch(`${S.api}/api/refresh/`, {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({refresh:S.refresh})});
+        if (!r.ok) return false;
+        S.access = (await r.json()).access; localStorage.setItem("mesh_access", S.access); return true;
+    }
 
-$("#loginForm").addEventListener("submit", async e => {
-  e.preventDefault(); $("#lErr").textContent = ""; $("#lBtn").disabled = true;
-  S.api = $("#lApi").value.replace(/\/+$/, "");
-  try{
-    const r = await fetch(`${S.api}/api/token/`, {method:"POST",headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({username:$("#lUser").value, password:$("#lPass").value})});
-    const d = await r.json().catch(() => ({}));
-    if (!r.ok) throw new Error(d.detail || "Неверный логин или пароль");
-    S.access = d.access; S.refresh = d.refresh;
-    localStorage.setItem("mesh_api", S.api); localStorage.setItem("mesh_access", S.access); localStorage.setItem("mesh_refresh", S.refresh);
-    await boot();
-  }catch(err){
-    $("#lErr").textContent = err.message === "Failed to fetch" ? "API недоступен. Проверьте адрес и CORS_ALLOWED_ORIGINS на бэкенде." : err.message;
-  }finally{ $("#lBtn").disabled = false; }
-});
+    async function api(path, {method="GET", body, params} = {}){
+        const url = new URL(S.api + path);
+        if (params) Object.entries(params).forEach(([k,v]) => v !== "" && v != null && url.searchParams.set(k, v));
+        for (let attempt = 0; attempt < 2; attempt++){
+            const r = await fetch(url, {method, headers:{"Content-Type":"application/json", Authorization:`Bearer ${S.access}`},
+                body: body ? JSON.stringify(body) : undefined});
+            if (r.status === 401 && attempt === 0 && await refreshToken()) continue;
+            if (r.status === 401){ logout(); throw new Error("Сессия истекла, войдите снова"); }
+            const data = r.status === 204 ? null : await r.json().catch(() => null);
+            if (!r.ok){
+                const msg = data?.detail || (data ? Object.entries(data).map(([k,v]) => `${k}: ${[].concat(v).join(" ")}`).join("; ") : r.statusText);
+                throw new Error(msg);
+            }
+            return data;
+        }
+    }
 
-async function boot(){
-  if (!S.access || !S.api) return showLogin();
-  try{
-    const me = await api("/api/user/me/");
-    if (!me.is_staff){ toast("У этого аккаунта нет прав staff", true); return logout(); }
-    $("#meName").textContent = me.username; $("#meApi").textContent = S.api.replace(/^https?:\/\//, "");
-    $("#loginView").hidden = true; $("#appView").hidden = false;
-    go(location.hash.slice(1) || "overview");
-  }catch(err){ showLogin(); }
-}
+    /* ============================== auth ============================== */
+    function showLogin(){ $("#appView").hidden = true; $("#loginView").hidden = false; $("#lApi").value = S.api; }
+    function logout(){
+        ["mesh_access","mesh_refresh"].forEach(k => localStorage.removeItem(k));
+        S.access = S.refresh = null; showLogin();
+    }
+    $("#logout").onclick = logout;
 
-/* ============================== navigation ============================== */
-function go(page, opts = {}){
-  if (!["overview","meshes","messages","users"].includes(page)) page = "overview";
-  S.page = page; history.replaceState(null, "", "#" + page);
-  document.querySelectorAll("[data-view]").forEach(v => v.hidden = v.dataset.view !== page);
-  document.querySelectorAll(".nav button").forEach(b => b.dataset.page === page ? b.setAttribute("aria-current", "page") : b.removeAttribute("aria-current"));
-  if (opts.status !== undefined) $("#mStatus").value = opts.status;
-  ({overview:loadOverview, meshes:loadMeshes, messages:loadMessages, users:loadUsers})[page]();
-}
-document.querySelectorAll(".nav button").forEach(b => b.onclick = () => go(b.dataset.page));
-document.querySelectorAll("[data-goto]").forEach(b => b.onclick = () => go(b.dataset.goto, {status: b.dataset.status}));
+    $("#loginForm").addEventListener("submit", async e => {
+        e.preventDefault(); $("#lErr").textContent = ""; $("#lBtn").disabled = true;
+        S.api = $("#lApi").value.replace(/\/+$/, "");
+        try{
+            const r = await fetch(`${S.api}/api/token/`, {method:"POST",headers:{"Content-Type":"application/json"},
+                body:JSON.stringify({username:$("#lUser").value, password:$("#lPass").value})});
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok) throw new Error(d.detail || "Неверный логин или пароль");
+            S.access = d.access; S.refresh = d.refresh;
+            localStorage.setItem("mesh_api", S.api); localStorage.setItem("mesh_access", S.access); localStorage.setItem("mesh_refresh", S.refresh);
+            await boot();
+        }catch(err){
+            $("#lErr").textContent = err.message === "Failed to fetch" ? "API недоступен. Проверьте адрес и CORS_ALLOWED_ORIGINS на бэкенде." : err.message;
+        }finally{ $("#lBtn").disabled = false; }
+    });
 
-/* ============================== helpers ============================== */
-function status(m){
-  if (m.until && m.until < today()) return ["expired","Истёк"];
-  return m.is_active ? ["active","Активен"] : ["inactive","Не активирован"];
-}
-function meshLink(m){ return m.url || `${S.api}/mesh/${m.uuid}/`; }
-function qrDataUrl(text, cell=6){
-  if (typeof qrcode === "undefined") return "";
-  const q = qrcode(0, "H"); q.addData(text); q.make(); return q.createDataURL(cell, 2);
-}
-function qrImg(m, cell=4){ return m.qrcode || qrDataUrl(meshLink(m), cell); }
-function who(msg){
-  if (Number(msg.telegram_id) === 0) return ["admin","Администрация"];
-  return msg.is_author ? ["owner","Владелец"] : ["guest","Гость"];
-}
-function pager(el, data, page, onPage){
-  const pages = Math.max(1, Math.ceil(data.count / 20));
-  el.innerHTML = `<span>Страница ${page} из ${pages} · всего ${data.count}</span>
+    async function boot(){
+        if (!S.access || !S.api) return showLogin();
+        try{
+            const me = await api("/api/user/me/");
+            if (!me.is_staff){ toast("У этого аккаунта нет прав staff", true); return logout(); }
+            $("#meName").textContent = me.username; $("#meApi").textContent = S.api.replace(/^https?:\/\//, "");
+            $("#loginView").hidden = true; $("#appView").hidden = false;
+            go(location.hash.slice(1) || "overview");
+        }catch(err){ showLogin(); }
+    }
+
+    /* ============================== navigation ============================== */
+    function go(page, opts = {}){
+        if (!["overview","meshes","styles","messages","users"].includes(page)) page = "overview";
+        S.page = page; history.replaceState(null, "", "#" + page);
+        document.querySelectorAll("[data-view]").forEach(v => v.hidden = v.dataset.view !== page);
+        document.querySelectorAll(".nav button").forEach(b => b.dataset.page === page ? b.setAttribute("aria-current", "page") : b.removeAttribute("aria-current"));
+        if (opts.status !== undefined) $("#mStatus").value = opts.status;
+        ({overview:loadOverview, meshes:loadMeshes, styles:loadStyles, messages:loadMessages, users:loadUsers})[page]();
+    }
+    document.querySelectorAll(".nav button").forEach(b => b.onclick = () => go(b.dataset.page));
+    document.querySelectorAll("[data-goto]").forEach(b => b.onclick = () => go(b.dataset.goto, {status: b.dataset.status}));
+
+    /* ============================== helpers ============================== */
+    function status(m){
+        if (m.until && m.until < today()) return ["expired","Истёк"];
+        return m.is_active ? ["active","Активен"] : ["inactive","Не активирован"];
+    }
+    function meshLink(m){ return m.url || `${S.api}/mesh/${m.uuid}/`; }
+    function qrDataUrl(text, cell=6){
+        if (typeof qrcode === "undefined") return "";
+        const q = qrcode(0, "H"); q.addData(text); q.make(); return q.createDataURL(cell, 2);
+    }
+    function qrImg(m, cell=4){ return m.qrcode || qrDataUrl(meshLink(m), cell); }
+    function who(msg){
+        if (Number(msg.telegram_id) === 0) return ["admin","Администрация"];
+        return msg.is_author ? ["owner","Владелец"] : ["guest","Гость"];
+    }
+    function pager(el, data, page, onPage){
+        const pages = Math.max(1, Math.ceil(data.count / 20));
+        el.innerHTML = `<span>Страница ${page} из ${pages} · всего ${data.count}</span>
     <div><button class="btn sm" ${data.previous ? "" : "disabled"} data-p="${page-1}">Назад</button>
     <button class="btn sm" ${data.next ? "" : "disabled"} data-p="${page+1}">Дальше</button></div>`;
-  el.querySelectorAll("button").forEach(b => b.onclick = () => onPage(+b.dataset.p));
-}
-function msgRow(m, withMesh=true){
-  const [cls, label] = who(m);
-  return `<div class="msg"><span class="who ${cls}">${label}</span>
+        el.querySelectorAll("button").forEach(b => b.onclick = () => onPage(+b.dataset.p));
+    }
+    function msgRow(m, withMesh=true){
+        const [cls, label] = who(m);
+        return `<div class="msg"><span class="who ${cls}">${label}</span>
     <div><p>${esc(m.message)}</p><small>${fmtDT(m.created_at)}${withMesh ? ` · стикер <a class="link" data-mesh="${m.mesh}">…${esc(shortU(m.mesh_uuid))}</a>` : ""}${cls === "admin" ? "" : ` · TG ${esc(m.telegram_id)}`}</small></div>
     <div class="act"><button class="btn sm danger" data-del-msg="${m.id}" aria-label="Удалить сообщение">Удалить</button></div></div>`;
-}
-function bindMsgActions(root, reload){
-  root.querySelectorAll("[data-mesh]").forEach(a => a.onclick = () => openMesh(+a.dataset.mesh));
-  root.querySelectorAll("[data-del-msg]").forEach(b => b.onclick = async () => {
-    if (!confirm("Удалить сообщение?")) return;
-    try{ await api(`/api/message/${b.dataset.delMsg}/`, {method:"DELETE"}); toast("Сообщение удалено"); reload(); }
-    catch(e){ toast(e.message, true); }
-  });
-}
+    }
+    function bindMsgActions(root, reload){
+        root.querySelectorAll("[data-mesh]").forEach(a => a.onclick = () => openMesh(+a.dataset.mesh));
+        root.querySelectorAll("[data-del-msg]").forEach(b => b.onclick = async () => {
+            if (!confirm("Удалить сообщение?")) return;
+            try{ await api(`/api/message/${b.dataset.delMsg}/`, {method:"DELETE"}); toast("Сообщение удалено"); reload(); }
+            catch(e){ toast(e.message, true); }
+        });
+    }
 
-/* ============================== overview ============================== */
-async function loadOverview(){
-  try{
-    const [s, msgs, exp] = await Promise.all([
-      api("/api/mesh/stats/"),
-      api("/api/message/", {params:{page_size:6}}),
-      api("/api/mesh/", {params:{status:"active", until_lte:new Date(Date.now()+7*864e5).toISOString().slice(0,10), page_size:8}}),
-    ]);
-    $("#stats").innerHTML = [
-      [s.total, "Всего стикеров", "#1E252E"], [s.active, "Активны", "var(--ok)"],
-      [s.inactive, "Ждут активации", "var(--off)"], [s.messages_today, `Сообщений сегодня · всего ${s.messages}`, "var(--amber)"],
-    ].map(([n,l,c]) => `<div><b>${n}</b><span><i style="background:${c}"></i>${l}</span></div>`).join("");
-    $("#ovMsgs").innerHTML = msgs.results.length ? msgs.results.map(m => msgRow(m)).join("") : `<p class="empty">Сообщений пока нет. Они появятся, когда кто-нибудь отсканирует активный стикер.</p>`;
-    bindMsgActions($("#ovMsgs"), loadOverview);
-    $("#ovExp").innerHTML = exp.results.length ? exp.results.map(m => `<div class="msg" style="grid-template-columns:1fr auto">
+    /* ============================== overview ============================== */
+    async function loadOverview(){
+        try{
+            const [s, msgs, exp] = await Promise.all([
+                api("/api/mesh/stats/"),
+                api("/api/message/", {params:{page_size:6}}),
+                api("/api/mesh/", {params:{status:"active", until_lte:new Date(Date.now()+7*864e5).toISOString().slice(0,10), page_size:8}}),
+            ]);
+            $("#stats").innerHTML = [
+                [s.total, "Всего стикеров", "#1E252E"], [s.active, "Активны", "var(--ok)"],
+                [s.inactive, "Ждут активации", "var(--off)"], [s.messages_today, `Сообщений сегодня · всего ${s.messages}`, "var(--amber)"],
+            ].map(([n,l,c]) => `<div><b>${n}</b><span><i style="background:${c}"></i>${l}</span></div>`).join("");
+            $("#ovMsgs").innerHTML = msgs.results.length ? msgs.results.map(m => msgRow(m)).join("") : `<p class="empty">Сообщений пока нет. Они появятся, когда кто-нибудь отсканирует активный стикер.</p>`;
+            bindMsgActions($("#ovMsgs"), loadOverview);
+            $("#ovExp").innerHTML = exp.results.length ? exp.results.map(m => `<div class="msg" style="grid-template-columns:1fr auto">
         <div><b class="uuid">…${shortU(m.uuid)}</b><small>до ${fmtDate(m.until)} · TG ${esc(m.telegram_id || "—")}</small></div>
         <button class="btn sm" data-open="${m.id}">Открыть</button></div>`).join("")
-      : `<p class="empty">Ни один активный стикер не истекает на этой неделе.</p>`;
-    $("#ovExp").querySelectorAll("[data-open]").forEach(b => b.onclick = () => openMesh(+b.dataset.open));
-  }catch(e){ toast(e.message, true); }
-}
+                : `<p class="empty">Ни один активный стикер не истекает на этой неделе.</p>`;
+            $("#ovExp").querySelectorAll("[data-open]").forEach(b => b.onclick = () => openMesh(+b.dataset.open));
+        }catch(e){ toast(e.message, true); }
+    }
 
-/* ============================== meshes ============================== */
-let searchTimer;
-$("#mSearch").addEventListener("input", () => { clearTimeout(searchTimer); searchTimer = setTimeout(() => { S.meshPage = 1; loadMeshes(); }, 300); });
-$("#mStatus").addEventListener("change", () => { S.meshPage = 1; loadMeshes(); });
+    /* ============================== meshes ============================== */
+    let searchTimer;
+    $("#mSearch").addEventListener("input", () => { clearTimeout(searchTimer); searchTimer = setTimeout(() => { S.meshPage = 1; loadMeshes(); }, 300); });
+    $("#mStatus").addEventListener("change", () => { S.meshPage = 1; loadMeshes(); });
 
-async function loadMeshes(){
-  try{
-    const data = await api("/api/mesh/", {params:{page:S.meshPage, search:$("#mSearch").value.trim(), status:$("#mStatus").value}});
-    $("#meshCount").textContent = `Найдено: ${data.count}. Нажмите на строку, чтобы открыть стикер.`;
-    $("#meshRows").innerHTML = data.results.length ? data.results.map(m => {
-      const [cls, label] = status(m);
-      return `<tr data-id="${m.id}">
+    async function loadMeshes(){
+        try{
+            const data = await api("/api/mesh/", {params:{page:S.meshPage, search:$("#mSearch").value.trim(), status:$("#mStatus").value}});
+            $("#meshCount").textContent = `Найдено: ${data.count}. Нажмите на строку, чтобы открыть стикер.`;
+            $("#meshRows").innerHTML = data.results.length ? data.results.map(m => {
+                const [cls, label] = status(m);
+                return `<tr data-id="${m.id}">
         <td><input type="checkbox" data-sel="${m.id}" ${S.selected.has(m.id) ? "checked" : ""} aria-label="Выбрать стикер"></td>
         <td class="qr">${qrImg(m) ? `<img src="${esc(qrImg(m))}" alt="" loading="lazy">` : ""}</td>
         <td class="uuid">…${shortU(m.uuid)}<small>${esc(m.uuid)}</small></td>
         <td><span class="pill ${cls}">${label}</span></td>
         <td>${fmtDate(m.until)}</td><td>${esc(m.telegram_id || "—")}</td><td>${esc(m.phone || "—")}</td>
         <td>${m.messages_count ?? 0}</td><td><b>${esc(m.password)}</b></td></tr>`;
-    }).join("") : `<tr><td colspan="9" class="empty" style="text-align:center">Ничего не найдено. Измените фильтр или создайте новые стикеры.</td></tr>`;
-    S.meshRows = data.results;
-    pager($("#meshPager"), data, S.meshPage, p => { S.meshPage = p; loadMeshes(); });
-    $("#meshRows").querySelectorAll("tr[data-id]").forEach(tr => tr.onclick = e => {
-      if (e.target.matches("input")) return; openMesh(+tr.dataset.id);
-    });
-    $("#meshRows").querySelectorAll("[data-sel]").forEach(cb => cb.onchange = () => {
-      const m = data.results.find(x => x.id === +cb.dataset.sel);
-      cb.checked ? S.selected.set(m.id, m) : S.selected.delete(m.id); updateSel();
-    });
-    $("#selAll").checked = data.results.length && data.results.every(m => S.selected.has(m.id));
-    updateSel();
-  }catch(e){ toast(e.message, true); }
-}
-$("#selAll").onchange = e => {
-  (S.meshRows || []).forEach(m => e.target.checked ? S.selected.set(m.id, m) : S.selected.delete(m.id)); loadMeshes();
-};
-function updateSel(){
-  const n = S.selected.size; $("#printSel").disabled = !n;
-  $("#printSel").textContent = n ? `Печать карточек (${n})` : "Печать карточек";
-}
-
-/* ---- print cards: QR + secret code, to put in the box with the sticker ---- */
-$("#printSel").onclick = () => {
-  const cards = [...S.selected.values()].map(m => `<div class="card">
-      <img src="${esc(m.qrcode || qrDataUrl(meshLink(m), 8))}" alt="">
-      <div><b>Mesh</b><span>by DYLNX</span>
-      <p>Секретный код для активации</p><strong>${esc(m.password)}</strong>
-      <small>Стикер …${shortU(m.uuid)} · до ${fmtDate(m.until)}</small>
-      <em>Активируйте в Telegram: отсканируйте QR и нажмите «Это мой стикер».</em></div></div>`).join("");
-  const w = window.open("", "_blank");
-  w.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Mesh - DYLNX · карточки</title><style>
-    body{font-family:Manrope,system-ui,sans-serif;margin:12mm;color:#1E252E}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
-    .card{display:grid;grid-template-columns:38mm 1fr;gap:5mm;align-items:center;border:1.5px dashed #9AA6B2;border-radius:4mm;padding:5mm;break-inside:avoid}
-    img{width:38mm;height:38mm}
-    b{font-size:15pt;display:block}span{font-size:8pt;color:#6B7682}
-    p{margin:3mm 0 1mm;font-size:8pt;color:#6B7682}strong{font-size:20pt;letter-spacing:2px;display:block}
-    small{display:block;font-size:7.5pt;color:#6B7682;margin-top:1mm}em{display:block;font-size:7.5pt;margin-top:2mm;font-style:normal}
-    </style></head><body><div class="grid">${cards}</div><script>onload=()=>setTimeout(print,300)<\/script></body></html>`);
-  w.document.close();
-};
-
-/* ---- create ---- */
-document.querySelectorAll("[data-open-create]").forEach(b => b.onclick = () => {
-  const d = new Date(); d.setFullYear(d.getFullYear() + 1);
-  $("#cUntil").value = d.toISOString().slice(0,10); $("#cErr").textContent = ""; $("#createDlg").showModal();
-});
-$("#createForm").addEventListener("submit", async e => {
-  if (e.submitter?.value !== "ok") return;
-  e.preventDefault();
-  const n = Math.min(200, Math.max(1, +$("#cCount").value || 1));
-  const btn = $("#cBtn"); btn.disabled = true; $("#cErr").textContent = "";
-  const made = [];
-  try{
-    for (let i = 0; i < n; i++){
-      btn.textContent = `Создаю ${i+1} из ${n}`;
-      const pass = $("#cPass").value.trim() || String(Math.floor(100000 + Math.random()*900000));
-      made.push(await api("/api/mesh/", {method:"POST", body:{until:$("#cUntil").value, password:pass}}));
+            }).join("") : `<tr><td colspan="9" class="empty" style="text-align:center">Ничего не найдено. Измените фильтр или создайте новые стикеры.</td></tr>`;
+            S.meshRows = data.results;
+            pager($("#meshPager"), data, S.meshPage, p => { S.meshPage = p; loadMeshes(); });
+            $("#meshRows").querySelectorAll("tr[data-id]").forEach(tr => tr.onclick = e => {
+                if (e.target.matches("input")) return; openMesh(+tr.dataset.id);
+            });
+            $("#meshRows").querySelectorAll("[data-sel]").forEach(cb => cb.onchange = () => {
+                const m = data.results.find(x => x.id === +cb.dataset.sel);
+                cb.checked ? S.selected.set(m.id, m) : S.selected.delete(m.id); updateSel();
+            });
+            $("#selAll").checked = data.results.length && data.results.every(m => S.selected.has(m.id));
+            updateSel();
+        }catch(e){ toast(e.message, true); }
     }
-    $("#createDlg").close();
-    made.forEach(m => S.selected.set(m.id, m));
-    toast(`Создано стикеров: ${made.length}. Они выбраны — можно сразу печатать карточки.`);
-    go("meshes", {status:""});
-  }catch(err){ $("#cErr").textContent = `Создано ${made.length}, дальше ошибка: ${err.message}`; }
-  finally{ btn.disabled = false; btn.textContent = "Создать"; }
-});
+    $("#selAll").onchange = e => {
+        (S.meshRows || []).forEach(m => e.target.checked ? S.selected.set(m.id, m) : S.selected.delete(m.id)); loadMeshes();
+    };
+    function updateSel(){
+        const n = S.selected.size; $("#printSel").disabled = !n;
+        $("#printSel").textContent = n ? `Печать (${n})` : "Печать";
+    }
 
-/* ---- drawer ---- */
-function closeDrawer(){ $("#drawer").hidden = true; $("#scrim").hidden = true; S.drawerId = null; }
-$("#dClose").onclick = closeDrawer; $("#scrim").onclick = closeDrawer;
-document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#drawer").hidden) closeDrawer(); });
+    $("#printSel").onclick = () => openPrint();
 
-async function openMesh(id){
-  S.drawerId = id; $("#drawer").hidden = false; $("#scrim").hidden = false;
-  $("#dBody").innerHTML = `<p class="empty">Загружаю…</p>`;
-  try{
-    const [m, msgs] = await Promise.all([api(`/api/mesh/${id}/`), api("/api/message/", {params:{mesh:id, page_size:100}})]);
-    const [cls, label] = status(m);
-    $("#dTitle").textContent = `Стикер …${shortU(m.uuid)}`;
-    $("#dBody").innerHTML = `
+    /* ---- create ---- */
+    document.querySelectorAll("[data-open-create]").forEach(b => b.onclick = () => {
+        const d = new Date(); d.setFullYear(d.getFullYear() + 1);
+        $("#cUntil").value = d.toISOString().slice(0,10); $("#cErr").textContent = ""; $("#createDlg").showModal();
+    });
+    $("#createForm").addEventListener("submit", async e => {
+        if (e.submitter?.value !== "ok") return;
+        e.preventDefault();
+        const n = Math.min(200, Math.max(1, +$("#cCount").value || 1));
+        const btn = $("#cBtn"); btn.disabled = true; $("#cErr").textContent = "";
+        const made = [];
+        try{
+            for (let i = 0; i < n; i++){
+                btn.textContent = `Создаю ${i+1} из ${n}`;
+                const pass = $("#cPass").value.trim() || String(Math.floor(100000 + Math.random()*900000));
+                made.push(await api("/api/mesh/", {method:"POST", body:{until:$("#cUntil").value, password:pass}}));
+            }
+            $("#createDlg").close();
+            made.forEach(m => S.selected.set(m.id, m));
+            toast(`Создано стикеров: ${made.length}. Они выбраны — можно сразу печатать карточки.`);
+            go("meshes", {status:""});
+        }catch(err){ $("#cErr").textContent = `Создано ${made.length}, дальше ошибка: ${err.message}`; }
+        finally{ btn.disabled = false; btn.textContent = "Создать"; }
+    });
+
+    /* ---- drawer ---- */
+    function closeDrawer(){ $("#drawer").hidden = true; $("#scrim").hidden = true; S.drawerId = null; }
+    $("#dClose").onclick = closeDrawer; $("#scrim").onclick = closeDrawer;
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#drawer").hidden) closeDrawer(); });
+
+    async function openMesh(id){
+        S.drawerId = id; $("#drawer").hidden = false; $("#scrim").hidden = false;
+        $("#dBody").innerHTML = `<p class="empty">Загружаю…</p>`;
+        try{
+            const [m, msgs] = await Promise.all([api(`/api/mesh/${id}/`), api("/api/message/", {params:{mesh:id, page_size:100}})]);
+            const [cls, label] = status(m);
+            $("#dTitle").textContent = `Стикер …${shortU(m.uuid)}`;
+            $("#dBody").innerHTML = `
       <div class="qrbox">${qrImg(m, 6) ? `<img src="${esc(qrImg(m, 6))}" alt="QR-код стикера">` : `<div class="qrph">QR недоступен:<br>нет связи с CDN</div>`}
         <div><span class="pill ${cls}">${label}</span><code style="margin-top:10px">${esc(m.uuid)}</code>
           <small style="color:var(--muted)">Создал ${esc(m.user?.username || "—")} · ${fmtDT(m.created_at)}</small>
@@ -579,89 +655,477 @@ async function openMesh(id){
         <button class="btn danger" id="dDelete">Удалить стикер</button>
       </div>`;
 
-    const thread = $("#dThread"); thread.scrollTop = thread.scrollHeight;
-    bindMsgActions(thread, () => openMesh(id));
-    $("#dCopy").onclick = () => navigator.clipboard.writeText(meshLink(m)).then(() => toast("Ссылка скопирована"));
+            const thread = $("#dThread"); thread.scrollTop = thread.scrollHeight;
+            bindMsgActions(thread, () => openMesh(id));
+            $("#dCopy").onclick = () => navigator.clipboard.writeText(meshLink(m)).then(() => toast("Ссылка скопирована"));
 
-    $("#dForm").onsubmit = async e => {
-      e.preventDefault(); const f = e.target;
-      try{
-        await api(`/api/mesh/${id}/`, {method:"PATCH", body:{
-          until:f.until.value, password:f.password.value, is_active:f.is_active.checked,
-          telegram_id:f.telegram_id.value.trim() || null, phone:f.phone.value.trim() || null}});
-        toast("Изменения сохранены"); openMesh(id); refreshCurrent();
-      }catch(err){ toast(err.message, true); }
-    };
-    $("#dSend").onsubmit = async e => {
-      e.preventDefault(); const text = e.target.text.value.trim(); if (!text) return;
-      try{ await api("/api/message/", {method:"POST", body:{mesh:id, telegram_id:0, message:text}});
-        toast("Отправлено. Бот доставит его владельцу."); openMesh(id); }
-      catch(err){ toast(err.message, true); }
-    };
-    $("#dUnbind").onclick = async () => {
-      if (!confirm("Отвязать владельца? Сообщения перестанут приходить, пока стикер снова не активируют кодом.")) return;
-      try{ await api(`/api/mesh/${id}/`, {method:"PATCH", body:{is_active:false, telegram_id:null, phone:null}});
-        toast("Владелец отвязан"); openMesh(id); refreshCurrent(); }catch(err){ toast(err.message, true); }
-    };
-    $("#dQR").onclick = async () => {
-      try{ await api(`/api/mesh/${id}/regenerate-qr/`, {method:"POST"}); toast("QR перегенерирован"); openMesh(id); refreshCurrent(); }
-      catch(err){ toast(err.message, true); }
-    };
-    $("#dDelete").onclick = async () => {
-      if (!confirm("Удалить стикер вместе со всей перепиской? Это нельзя отменить.")) return;
-      try{ await api(`/api/mesh/${id}/`, {method:"DELETE"}); S.selected.delete(id); toast("Стикер удалён"); closeDrawer(); refreshCurrent(); }
-      catch(err){ toast(err.message, true); }
-    };
-  }catch(e){ $("#dBody").innerHTML = `<p class="err">${esc(e.message)}</p>`; }
-}
-function refreshCurrent(){ ({overview:loadOverview, meshes:loadMeshes, messages:loadMessages, users:loadUsers})[S.page](); }
+            $("#dForm").onsubmit = async e => {
+                e.preventDefault(); const f = e.target;
+                try{
+                    await api(`/api/mesh/${id}/`, {method:"PATCH", body:{
+                            until:f.until.value, password:f.password.value, is_active:f.is_active.checked,
+                            telegram_id:f.telegram_id.value.trim() || null, phone:f.phone.value.trim() || null}});
+                    toast("Изменения сохранены"); openMesh(id); refreshCurrent();
+                }catch(err){ toast(err.message, true); }
+            };
+            $("#dSend").onsubmit = async e => {
+                e.preventDefault(); const text = e.target.text.value.trim(); if (!text) return;
+                try{ await api("/api/message/", {method:"POST", body:{mesh:id, telegram_id:0, message:text}});
+                    toast("Отправлено. Бот доставит его владельцу."); openMesh(id); }
+                catch(err){ toast(err.message, true); }
+            };
+            $("#dUnbind").onclick = async () => {
+                if (!confirm("Отвязать владельца? Сообщения перестанут приходить, пока стикер снова не активируют кодом.")) return;
+                try{ await api(`/api/mesh/${id}/`, {method:"PATCH", body:{is_active:false, telegram_id:null, phone:null}});
+                    toast("Владелец отвязан"); openMesh(id); refreshCurrent(); }catch(err){ toast(err.message, true); }
+            };
+            $("#dQR").onclick = async () => {
+                try{ await api(`/api/mesh/${id}/regenerate-qr/`, {method:"POST"}); toast("QR перегенерирован"); openMesh(id); refreshCurrent(); }
+                catch(err){ toast(err.message, true); }
+            };
+            $("#dDelete").onclick = async () => {
+                if (!confirm("Удалить стикер вместе со всей перепиской? Это нельзя отменить.")) return;
+                try{ await api(`/api/mesh/${id}/`, {method:"DELETE"}); S.selected.delete(id); toast("Стикер удалён"); closeDrawer(); refreshCurrent(); }
+                catch(err){ toast(err.message, true); }
+            };
+        }catch(e){ $("#dBody").innerHTML = `<p class="err">${esc(e.message)}</p>`; }
+    }
+    function refreshCurrent(){ ({overview:loadOverview, meshes:loadMeshes, styles:loadStyles, messages:loadMessages, users:loadUsers})[S.page](); }
 
-/* ============================== messages ============================== */
-let msgTimer;
-$("#msgSearch").addEventListener("input", () => { clearTimeout(msgTimer); msgTimer = setTimeout(() => { S.msgPage = 1; loadMessages(); }, 300); });
-async function loadMessages(){
-  try{
-    const data = await api("/api/message/", {params:{page:S.msgPage, search:$("#msgSearch").value.trim()}});
-    $("#msgRows").innerHTML = data.results.length ? data.results.map(m => msgRow(m)).join("") : `<p class="empty">Сообщений не найдено.</p>`;
-    bindMsgActions($("#msgRows"), loadMessages);
-    pager($("#msgPager"), data, S.msgPage, p => { S.msgPage = p; loadMessages(); });
-  }catch(e){ toast(e.message, true); }
-}
+    /* ============================== messages ============================== */
+    let msgTimer;
+    $("#msgSearch").addEventListener("input", () => { clearTimeout(msgTimer); msgTimer = setTimeout(() => { S.msgPage = 1; loadMessages(); }, 300); });
+    async function loadMessages(){
+        try{
+            const data = await api("/api/message/", {params:{page:S.msgPage, search:$("#msgSearch").value.trim()}});
+            $("#msgRows").innerHTML = data.results.length ? data.results.map(m => msgRow(m)).join("") : `<p class="empty">Сообщений не найдено.</p>`;
+            bindMsgActions($("#msgRows"), loadMessages);
+            pager($("#msgPager"), data, S.msgPage, p => { S.msgPage = p; loadMessages(); });
+        }catch(e){ toast(e.message, true); }
+    }
 
-/* ============================== users ============================== */
-async function loadUsers(){
-  try{
-    const data = await api("/api/user/", {params:{page_size:200}});
-    const list = data.results || data;
-    $("#userRows").innerHTML = list.map(u => `<tr style="cursor:default">
+    /* ============================== users ============================== */
+    async function loadUsers(){
+        try{
+            const data = await api("/api/user/", {params:{page_size:200}});
+            const list = data.results || data;
+            $("#userRows").innerHTML = list.map(u => `<tr style="cursor:default">
       <td><b>${esc(u.username)}</b></td><td>${esc(u.role)}</td>
       <td>${u.is_staff ? '<span class="pill active">да</span>' : '<span class="pill inactive">нет</span>'}</td>
       <td>${u.is_superuser ? "да" : "нет"}</td><td>${fmtDT(u.last_login)}</td><td>${fmtDate(u.date_joined)}</td>
-      <td style="text-align:right"><button class="btn sm" data-staff="${u.id}" data-v="${u.is_staff ? 0 : 1}">${u.is_staff ? "Снять staff" : "Дать staff"}</button>
-        <button class="btn sm danger" data-del-user="${u.id}">Удалить</button></td></tr>`).join("");
-    $("#userRows").querySelectorAll("[data-staff]").forEach(b => b.onclick = async () => {
-      try{ await api(`/api/user/${b.dataset.staff}/`, {method:"PATCH", body:{is_staff: b.dataset.v === "1"}}); loadUsers(); }
-      catch(e){ toast(e.message, true); }
+</tr>`).join("");
+        }catch(e){ toast(e.message, true); }
+    }
+    $("#openUser").onclick = () => { $("#userForm").reset(); $("#uStaff").checked = true; $("#uErr").textContent = ""; $("#userDlg").showModal(); };
+    $("#userForm").addEventListener("submit", async e => {
+        if (e.submitter?.value !== "ok") return;
+        e.preventDefault();
+        try{
+            await api("/api/user/", {method:"POST", body:{username:$("#uName").value.trim(), password:$("#uPass").value,
+                    is_staff:$("#uStaff").checked, is_superuser:$("#uSuper").checked}});
+            $("#userDlg").close(); toast("Пользователь создан"); loadUsers();
+        }catch(err){ $("#uErr").textContent = err.message; }
     });
-    $("#userRows").querySelectorAll("[data-del-user]").forEach(b => b.onclick = async () => {
-      if (!confirm("Удалить пользователя? Стикеры, которые он создал, удалятся вместе с ним.")) return;
-      try{ await api(`/api/user/${b.dataset.delUser}/`, {method:"DELETE"}); toast("Пользователь удалён"); loadUsers(); }
-      catch(e){ toast(e.message, true); }
-    });
-  }catch(e){ toast(e.message, true); }
-}
-$("#openUser").onclick = () => { $("#userForm").reset(); $("#uStaff").checked = true; $("#uErr").textContent = ""; $("#userDlg").showModal(); };
-$("#userForm").addEventListener("submit", async e => {
-  if (e.submitter?.value !== "ok") return;
-  e.preventDefault();
-  try{
-    await api("/api/user/", {method:"POST", body:{username:$("#uName").value.trim(), password:$("#uPass").value,
-      is_staff:$("#uStaff").checked, is_superuser:$("#uSuper").checked}});
-    $("#userDlg").close(); toast("Пользователь создан"); loadUsers();
-  }catch(err){ $("#uErr").textContent = err.message; }
-});
 
-boot();
+    /* ============================== стили стикеров: только в этом браузере, в базу не идут ============================== */
+    const DEMO_URL = "https://mesh.dylnx/mesh/5f3c2a10-8b7e-4c1d-9a2f-6e4b3d2c1a00/";
+    const DPI = 300;
+
+    /* ---- хранилище: IndexedDB (картинки бывают тяжёлые, localStorage не потянет) ---- */
+    function idb(){
+        return new Promise((res, rej) => {
+            const r = indexedDB.open("mesh_sticker_styles", 1);
+            r.onupgradeneeded = () => r.result.createObjectStore("styles", {keyPath: "id"});
+            r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error);
+        });
+    }
+    async function idbDo(mode, fn){
+        const db = await idb();
+        return new Promise((res, rej) => {
+            const tx = db.transaction("styles", mode), q = fn(tx.objectStore("styles"));
+            tx.oncomplete = () => res(q?.result); tx.onerror = () => rej(tx.error);
+        });
+    }
+    const stylesSaved = () => idbDo("readonly", s => s.getAll()).then(l => (l || []).sort((a, b) => a.created - b.created));
+    const stylePut = st => idbDo("readwrite", s => s.put(st));
+    const styleDel = id => idbDo("readwrite", s => s.delete(id));
+
+    /* ---- встроенные стили (нарисованы кодом) ---- */
+    const BUILTIN = [
+        {id:"b-classic", name:"Mesh классика", builtin:true, base:"classic", ratio:.78,
+            qr:{x:.5, y:.47, s:.58}, frame:{on:false, pad:.06, radius:.06, color:"#ffffff"}, logo:true, qrColor:"#000000",
+            caption:{text:"Мешаю проехать?\nСканируй — владелец сразу получит сообщение", color:"#1E252E", size:.04}},
+        {id:"b-sign", name:"Дорожный знак", builtin:true, base:"sign", ratio:1,
+            qr:{x:.5, y:.47, s:.32}, frame:{on:true, pad:.07, radius:.05, color:"#ffffff"}, logo:false, qrColor:"#000000",
+            caption:{text:"Мешаю?\nСканируй", color:"#1E252E", size:.045, maxW:.4}},
+        {id:"b-lynx", name:"Рысь DYLNX", builtin:true, base:"lynx", ratio:.82,
+            qr:{x:.5, y:.555, s:.5}, frame:{on:true, pad:.07, radius:.1, color:"#ffffff"}, logo:true, qrColor:"#000000",
+            caption:{text:"Mesh by DYLNX", color:"#EEF1EE", size:.05}},
+    ];
+    const BASE_NAMES = {image:"Своя картинка", classic:"Mesh классика", sign:"Дорожный знак", lynx:"Рысь DYLNX"};
+
+    function rr(ctx, x, y, w, h, r){
+        r = Math.max(0, Math.min(r, w / 2, h / 2));
+        ctx.beginPath();
+        if (ctx.roundRect) ctx.roundRect(x, y, w, h, r); else ctx.rect(x, y, w, h);
+    }
+    const BASES = {
+        classic(ctx, w, h){
+            const b = w * .025;
+            ctx.fillStyle = "#1E252E"; rr(ctx, 0, 0, w, h, w * .07); ctx.fill();
+            ctx.fillStyle = "#F7F8F5"; rr(ctx, b, h * .17, w - 2 * b, h * .83 - b, w * .05); ctx.fill();
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = "#EEF1EE"; ctx.textAlign = "left"; ctx.font = `800 ${w * .085}px Unbounded, Manrope, system-ui, sans-serif`;
+            ctx.fillText("Mesh", w * .08, h * .087);
+            ctx.fillStyle = "#F2A93B"; ctx.textAlign = "right"; ctx.font = `700 ${w * .042}px Manrope, system-ui, sans-serif`;
+            ctx.fillText("by DYLNX", w * .92, h * .09);
+            const y = h * .935, dh = w * .018, dw = w * .07, gap = w * .05;
+            for (let x = b + w * .05; x + dw < w - b - w * .04; x += dw + gap){ rr(ctx, x, y, dw, dh, dh / 2); ctx.fill(); }
+        },
+        sign(ctx, w, h){
+            const s = w * .66;
+            ctx.save(); ctx.translate(w / 2, h / 2); ctx.rotate(Math.PI / 4);
+            ctx.fillStyle = "#1E252E"; rr(ctx, -s / 2, -s / 2, s, s, s * .08); ctx.fill();
+            const i = s * .92; ctx.fillStyle = "#F2A93B"; rr(ctx, -i / 2, -i / 2, i, i, i * .07); ctx.fill();
+            const j = s * .84; ctx.strokeStyle = "#1E252E"; ctx.lineWidth = s * .012; rr(ctx, -j / 2, -j / 2, j, j, j * .06); ctx.stroke();
+            ctx.restore();
+            ctx.fillStyle = "#1E252E"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+            ctx.font = `800 ${w * .045}px Unbounded, Manrope, system-ui, sans-serif`; ctx.fillText("Mesh", w / 2, h * .23);
+        },
+        lynx(ctx, w, h){
+            const ink = "#1E252E", rust = "#C4511F", top = h * .2;
+            const ear = (tipX, baseL, baseR) => {
+                ctx.fillStyle = ink; ctx.beginPath();
+                ctx.moveTo(baseL, top + w * .1); ctx.lineTo(tipX, h * .07); ctx.lineTo(baseR, top + w * .02); ctx.closePath(); ctx.fill();
+                ctx.fillStyle = rust; ctx.beginPath();
+                const cx = (baseL + baseR) / 2;
+                ctx.moveTo(cx - (cx - baseL) * .45, top + w * .06); ctx.lineTo(tipX + (cx - tipX) * .25, h * .12); ctx.lineTo(cx + (baseR - cx) * .45, top + w * .04);
+                ctx.closePath(); ctx.fill();
+                ctx.strokeStyle = ink; ctx.lineCap = "round"; ctx.lineWidth = w * .014;
+                ctx.beginPath(); ctx.moveTo(tipX, h * .075); ctx.lineTo(tipX + (tipX < w / 2 ? -1 : 1) * w * .012, h * .012); ctx.stroke();
+            };
+            ear(w * .2, w * .07, w * .44);
+            ear(w * .8, w * .93, w * .56);
+            ctx.fillStyle = ink; rr(ctx, w * .04, top, w * .92, h - top - w * .03, w * .16); ctx.fill();
+            ctx.fillStyle = rust;
+            [[.11, .46], [.09, .58], [.12, .7], [.89, .46], [.91, .58], [.88, .7]].forEach(([x, y]) => {
+                ctx.beginPath(); ctx.ellipse(w * x, h * y, w * .022, w * .015, .4, 0, Math.PI * 2); ctx.fill();
+            });
+        },
+    };
+
+    /* ---- рендер стикера: фон + QR (+ подложка, логотип, подпись) ---- */
+    const imgCache = new WeakMap();
+    function loadImg(blob){
+        if (!imgCache.has(blob)) imgCache.set(blob, new Promise((res, rej) => {
+            const i = new Image(); i.onload = () => res(i); i.onerror = () => rej(new Error("Не удалось открыть картинку")); i.src = URL.createObjectURL(blob);
+        }));
+        return imgCache.get(blob);
+    }
+    async function fontsReady(){
+        try{ await Promise.all(["800 40px Unbounded", "700 40px Manrope"].map(f => document.fonts.load(f))); }catch(e){}
+    }
+    function wrapLines(ctx, text, maxW){
+        const out = [];
+        for (const para of String(text).split("\n")){
+            let line = "";
+            for (const word of para.split(/\s+/).filter(Boolean)){
+                const t = line ? line + " " + word : word;
+                if (ctx.measureText(t).width > maxW && line){ out.push(line); line = word; } else line = t;
+            }
+            out.push(line);
+        }
+        return out;
+    }
+    function drawMeshLogo(ctx, x, y, L){
+        ctx.fillStyle = "#ffffff"; rr(ctx, x - L * .12, y - L * .12, L * 1.24, L * 1.24, L * .3); ctx.fill();
+        ctx.fillStyle = "#C4511F"; rr(ctx, x, y, L, L, L * .28); ctx.fill();
+        const k = L / 32;
+        ctx.strokeStyle = "#EEF1EE"; ctx.lineWidth = 2.6 * k; ctx.lineCap = "round"; ctx.lineJoin = "round";
+        ctx.beginPath(); ctx.moveTo(x + 8 * k, y + 23 * k); ctx.lineTo(x + 8 * k, y + 9 * k); ctx.lineTo(x + 16 * k, y + 17 * k);
+        ctx.lineTo(x + 24 * k, y + 9 * k); ctx.lineTo(x + 24 * k, y + 23 * k); ctx.stroke();
+        ctx.fillStyle = "#F2A93B";
+        [[8, 9], [24, 9]].forEach(([a, b]) => { ctx.beginPath(); ctx.arc(x + a * k, y + b * k, 2.2 * k, 0, Math.PI * 2); ctx.fill(); });
+    }
+    function drawQR(ctx, st, url, w, h){
+        const q = qrcode(0, "H"); q.addData(url); q.make();
+        const n = q.getModuleCount(), size = st.qr.s * w, cx = st.qr.x * w, cy = st.qr.y * h;
+        const x0 = cx - size / 2, y0 = cy - size / 2, f = st.frame || {};
+        let box = {x: x0, y: y0, w: size, h: size};
+        if (f.on){
+            const p = (f.pad ?? .06) * size;
+            box = {x: x0 - p, y: y0 - p, w: size + 2 * p, h: size + 2 * p};
+            ctx.fillStyle = f.color || "#ffffff"; rr(ctx, box.x, box.y, box.w, box.h, (f.radius ?? .06) * box.w); ctx.fill();
+        }
+        const cell = size / n; ctx.fillStyle = st.qrColor || "#000000";
+        for (let r = 0; r < n; r++) for (let c = 0; c < n; c++)
+            if (q.isDark(r, c)) ctx.fillRect(x0 + c * cell, y0 + r * cell, cell + .6, cell + .6);
+        if (st.logo){ const L = size * .2; drawMeshLogo(ctx, cx - L / 2, cy - L / 2, L); }
+        const cap = st.caption || {};
+        if (cap.text && cap.text.trim()){
+            const fs = (cap.size || .05) * w;
+            ctx.font = `700 ${fs}px Manrope, system-ui, sans-serif`; ctx.fillStyle = cap.color || "#000000";
+            ctx.textAlign = "center"; ctx.textBaseline = "top";
+            let y = box.y + box.h + fs * .55;
+            const maxW = cap.maxW ? cap.maxW * w : Math.max(box.w * 1.3, w * .84), m = w * .03;
+            for (const line of wrapLines(ctx, cap.text, maxW)){
+                const half = ctx.measureText(line).width / 2;
+                const x = Math.min(w - m - half, Math.max(m + half, cx)); // не даём подписи уйти за край стикера
+                ctx.fillText(line, x, y); y += fs * 1.22;
+            }
+        }
+        return {x: box.x / w, y: box.y / h, w: box.w / w, h: box.h / h};
+    }
+    async function renderSticker(st, url, W){
+        let img = null, ratio = st.ratio || 1;
+        if (st.base === "image" && st.bg){ img = await loadImg(st.bg); ratio = img.naturalWidth / img.naturalHeight; }
+        const w = Math.round(W), h = Math.round(W / ratio);
+        const c = document.createElement("canvas"); c.width = w; c.height = h;
+        const ctx = c.getContext("2d");
+        if (img) ctx.drawImage(img, 0, 0, w, h);
+        else if (BASES[st.base]) BASES[st.base](ctx, w, h);
+        else {
+            ctx.fillStyle = "#F7F8F6"; ctx.fillRect(0, 0, w, h);
+            ctx.fillStyle = "#6B7682"; ctx.font = `600 ${w * .045}px Manrope, system-ui, sans-serif`; ctx.textAlign = "center";
+            ctx.fillText("Загрузите картинку-фон", w / 2, h * .12);
+        }
+        c.qrBox = drawQR(ctx, st, url, w, h);
+        return c;
+    }
+    const allStyles = async () => [...BUILTIN, ...(await stylesSaved().catch(() => []))];
+    const styleById = async id => (await allStyles()).find(s => s.id === id) || BUILTIN[0];
+
+    /* ---- страница «Стили стикеров» ---- */
+    async function loadStyles(){
+        const grid = $("#styleGrid"), list = await allStyles();
+        grid.innerHTML = list.map(s => `<article class="stylecard" data-id="${esc(s.id)}">
+      <div class="thumb"><img alt="Превью стиля ${esc(s.name)}" data-thumb></div>
+      <div><b>${esc(s.name)}</b><small>${s.builtin ? "Встроенный" : "Свой · " + esc(BASE_NAMES[s.base] || "")}</small></div>
+      <div class="row">${s.builtin
+            ? `<button class="btn sm" data-copy>Сделать копию и изменить</button>`
+            : `<button class="btn sm" data-edit>Изменить</button><button class="btn sm" data-copy>Копия</button><button class="btn sm danger" data-del>Удалить</button>`}</div>
+    </article>`).join("");
+        grid.querySelectorAll(".stylecard").forEach(card => {
+            const st = list.find(s => s.id === card.dataset.id);
+            card.querySelector("[data-edit]")?.addEventListener("click", () => openStyleEditor(st, false));
+            card.querySelector("[data-copy]")?.addEventListener("click", () => openStyleEditor(st, true));
+            card.querySelector("[data-del]")?.addEventListener("click", async () => {
+                if (!confirm(`Удалить стиль «${st.name}»?`)) return;
+                await styleDel(st.id); toast("Стиль удалён"); loadStyles();
+            });
+        });
+        await fontsReady();
+        for (const card of grid.querySelectorAll(".stylecard")){
+            const st = list.find(s => s.id === card.dataset.id);
+            try{ card.querySelector("[data-thumb]").src = (await renderSticker(st, DEMO_URL, 360)).toDataURL(); }catch(e){}
+        }
+    }
+
+    /* ---- редактор стиля ---- */
+    let SE = null, seBox = null, seDrag = false, seRaf = 0;
+    function newStyle(){
+        return {id: "s-" + Date.now(), name: "Новый стиль", base: "image", bg: null, ratio: 1, created: Date.now(),
+            qr: {x: .5, y: .5, s: .4}, frame: {on: true, pad: .08, radius: .08, color: "#ffffff"},
+            logo: false, qrColor: "#000000", caption: {text: "", color: "#000000", size: .05}};
+    }
+    function openStyleEditor(st, asCopy){
+        SE = st ? structuredClone(st) : newStyle();
+        if (!st || asCopy || st.builtin){
+            SE.id = "s-" + Date.now(); SE.created = Date.now(); SE.builtin = false;
+            if (st) SE.name = st.name + " (копия)";
+        }
+        const f = $("#styleForm");
+        f.sname.value = SE.name; f.base.value = SE.base;
+        f.qrs.value = Math.round(SE.qr.s * 100);
+        f.frame.checked = !!SE.frame.on; f.pad.value = Math.round((SE.frame.pad ?? .08) * 100); f.radius.value = Math.round((SE.frame.radius ?? .08) * 100);
+        f.logo.checked = !!SE.logo; f.qrColor.value = SE.qrColor || "#000000";
+        f.cap.value = SE.caption.text || ""; f.capColor.value = SE.caption.color || "#000000"; f.capSize.value = Math.round((SE.caption.size || .05) * 1000) / 10;
+        f.file.value = "";
+        $("#seDelete").hidden = !(st && !st.builtin && !asCopy);
+        $("#seTitle").textContent = st && !st.builtin && !asCopy ? "Изменить стиль" : "Новый стиль";
+        syncEditorUI(); $("#styleDlg").showModal(); seRender();
+    }
+    function readEditor(){
+        const f = $("#styleForm");
+        SE.name = f.sname.value.trim() || "Без названия"; SE.base = f.base.value;
+        SE.qr.s = +f.qrs.value / 100;
+        SE.frame = {on: f.frame.checked, pad: +f.pad.value / 100, radius: +f.radius.value / 100, color: "#ffffff"};
+        SE.logo = f.logo.checked; SE.qrColor = f.qrColor.value;
+        SE.caption = {...SE.caption, text: f.cap.value, color: f.capColor.value, size: +f.capSize.value / 100};
+    }
+    function syncEditorUI(){
+        const f = $("#styleForm");
+        $("#seFileRow").hidden = f.base.value !== "image";
+        $("#sePadRow").hidden = !f.frame.checked;
+        $("#seWarn").hidden = f.frame.checked || f.base.value !== "image";
+        $("#seQrSizeVal").textContent = f.qrs.value + "%";
+    }
+    function seRender(){
+        cancelAnimationFrame(seRaf);
+        seRaf = requestAnimationFrame(async () => {
+            readEditor();
+            try{
+                const c = await renderSticker(SE, DEMO_URL, 520), p = $("#sePrev");
+                p.width = c.width; p.height = c.height; p.getContext("2d").drawImage(c, 0, 0); seBox = c.qrBox;
+            }catch(e){ toast(e.message, true); }
+        });
+    }
+    $("#styleForm").addEventListener("input", e => {
+        if (e.target.name === "file") return;
+        syncEditorUI(); seRender();
+    });
+    $("#styleForm").file.addEventListener("change", e => {
+        const file = e.target.files[0]; if (!file) return;
+        if (!file.type.startsWith("image/")) return toast("Нужна картинка: PNG, JPG или WebP", true);
+        SE.bg = file; seRender();
+    });
+    const sePrev = $("#sePrev");
+    function seMove(e){
+        const r = sePrev.getBoundingClientRect();
+        SE.qr.x = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+        SE.qr.y = Math.min(1, Math.max(0, (e.clientY - r.top) / r.height));
+        seRender();
+    }
+    sePrev.addEventListener("pointerdown", e => { seDrag = true; sePrev.setPointerCapture(e.pointerId); sePrev.style.cursor = "grabbing"; seMove(e); });
+    sePrev.addEventListener("pointermove", e => { if (seDrag) seMove(e); });
+    sePrev.addEventListener("pointerup", () => { seDrag = false; sePrev.style.cursor = ""; });
+    sePrev.addEventListener("keydown", e => {
+        const d = e.shiftKey ? .05 : .01, k = {ArrowLeft:[-d,0], ArrowRight:[d,0], ArrowUp:[0,-d], ArrowDown:[0,d]}[e.key];
+        if (!k) return; e.preventDefault();
+        SE.qr.x = Math.min(1, Math.max(0, SE.qr.x + k[0])); SE.qr.y = Math.min(1, Math.max(0, SE.qr.y + k[1])); seRender();
+    });
+    $("#styleForm").addEventListener("submit", async e => {
+        if (e.submitter?.value !== "ok") return;
+        e.preventDefault(); readEditor();
+        if (SE.base === "image" && !SE.bg) return toast("Загрузите картинку-фон", true);
+        if (SE.base === "image") SE.ratio = (await loadImg(SE.bg)).naturalWidth / (await loadImg(SE.bg)).naturalHeight;
+        else SE.ratio = BUILTIN.find(b => b.base === SE.base)?.ratio || 1;
+        try{ await stylePut(SE); $("#styleDlg").close(); toast(`Стиль «${SE.name}» сохранён`); if (S.page === "styles") loadStyles(); }
+        catch(err){ toast("Не удалось сохранить: " + err.message, true); }
+    });
+    $("#seDelete").onclick = async () => {
+        if (!confirm(`Удалить стиль «${SE.name}»?`)) return;
+        await styleDel(SE.id); $("#styleDlg").close(); toast("Стиль удалён"); loadStyles();
+    };
+    $("#newStyle").onclick = () => openStyleEditor(null, false);
+
+    /* ---- печать: стикеры в выбранном стиле + карточки с кодом ---- */
+    function cardsMarkup(list){
+        return list.map(m => `<div class="card">
+      <img src="${qrDataUrl(meshLink(m), 8)}" alt="">
+      <div><b>Mesh</b><span>by DYLNX</span>
+      <p>Секретный код для активации</p><strong>${esc(m.password)}</strong>
+      <small>Стикер …${shortU(m.uuid)} · до ${fmtDate(m.until)}</small>
+      <em>Активируйте в Telegram: отсканируйте QR и нажмите «Это мой стикер».</em></div></div>`).join("");
+    }
+    const CARD_CSS = `.cards{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+  .card{display:grid;grid-template-columns:38mm 1fr;gap:5mm;align-items:center;border:1.5px dashed #9AA6B2;border-radius:4mm;padding:5mm;break-inside:avoid}
+  .card img{width:38mm;height:38mm}
+  .card b{font-size:15pt;display:block}.card span{font-size:8pt;color:#6B7682}
+  .card p{margin:3mm 0 1mm;font-size:8pt;color:#6B7682}.card strong{font-size:20pt;letter-spacing:2px;display:block}
+  .card small{display:block;font-size:7.5pt;color:#6B7682;margin-top:1mm}.card em{display:block;font-size:7.5pt;margin-top:2mm;font-style:normal}`;
+
+    async function openPrint(){
+        const list = await allStyles(), sel = $("#pStyle"), saved = localStorage.getItem("mesh_print_style");
+        sel.innerHTML = list.map(s => `<option value="${esc(s.id)}">${esc(s.name)}</option>`).join("");
+        sel.value = list.some(s => s.id === saved) ? saved : list[0].id;
+        $("#pWidth").value = localStorage.getItem("mesh_print_mm") || 70;
+        $("#pCount").textContent = S.selected.size;
+        $("#printDlg").showModal(); printPreview();
+    }
+    async function printPreview(){
+        const st = await styleById($("#pStyle").value), m = [...S.selected.values()][0];
+        if (!m) return;
+        await fontsReady();
+        const c = await renderSticker(st, meshLink(m), 420), p = $("#pPrev");
+        p.width = c.width; p.height = c.height; p.getContext("2d").drawImage(c, 0, 0);
+        const mm = +$("#pWidth").value || 70;
+        $("#pSize").textContent = `${mm} × ${Math.round(mm * c.height / c.width)} мм`;
+    }
+    $("#pStyle").onchange = () => { localStorage.setItem("mesh_print_style", $("#pStyle").value); printPreview(); };
+    $("#pWidth").oninput = () => { localStorage.setItem("mesh_print_mm", $("#pWidth").value); printPreview(); };
+
+    async function renderSelected(btn){
+        const st = await styleById($("#pStyle").value), mm = Math.min(300, Math.max(20, +$("#pWidth").value || 70));
+        const px = Math.round(mm / 25.4 * DPI), list = [...S.selected.values()], out = [], label = btn.textContent;
+        await fontsReady();
+        btn.disabled = true;
+        try{
+            for (let i = 0; i < list.length; i++){
+                btn.textContent = `Готовлю ${i + 1} из ${list.length}`;
+                out.push({m: list[i], c: await renderSticker(st, meshLink(list[i]), px)});
+                await new Promise(r => setTimeout(r));
+            }
+        }finally{ btn.disabled = false; btn.textContent = label; }
+        return {out, mm, st};
+    }
+    $("#pPrint").onclick = async () => {
+        const w = window.open("", "_blank"); // открываем сразу, иначе браузер заблокирует всплывающее окно
+        if (!w) return toast("Разрешите всплывающие окна для печати", true);
+        w.document.write("<p style='font-family:system-ui;padding:20px'>Готовлю стикеры…</p>");
+        try{
+            const {out, mm, st} = await renderSelected($("#pPrint"));
+            const cut = $("#pCut").checked, cards = $("#pCards").checked;
+            w.document.open();
+            w.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Mesh - DYLNX · ${esc(st.name)}</title><style>
+      @page{margin:8mm} body{margin:0;font-family:Manrope,system-ui,sans-serif;color:#1E252E}
+      .stickers{display:flex;flex-wrap:wrap;gap:5mm;align-items:flex-start}
+      .stickers img{width:${mm}mm;height:auto;display:block;break-inside:avoid}
+      ${cut ? ".stickers img{outline:.3mm dashed #9AA6B2;outline-offset:1.2mm}" : ""}
+      .cards{break-before:page} ${CARD_CSS}
+      </style></head><body>
+      <div class="stickers">${out.map(({c}) => `<img src="${c.toDataURL("image/png")}" alt="">`).join("")}</div>
+      ${cards ? `<div class="cards">${cardsMarkup(out.map(o => o.m))}</div>` : ""}
+      <script>onload=()=>setTimeout(print,400)<\/script></body></html>`);
+            w.document.close();
+            $("#printDlg").close();
+        }catch(err){ w.close(); toast(err.message, true); }
+    };
+
+    /* минимальный ZIP без сжатия: PNG и так сжат, а библиотека не нужна */
+    const CRC_T = (() => { const t = new Uint32Array(256);
+        for (let n = 0; n < 256; n++){ let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; }
+        return t; })();
+    function crc32(u8){ let c = 0xFFFFFFFF; for (let i = 0; i < u8.length; i++) c = CRC_T[(c ^ u8[i]) & 0xFF] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; }
+    function zipStore(files){
+        const enc = new TextEncoder(), parts = [], central = []; let offset = 0;
+        const d = new Date(), time = (d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1);
+        const date = ((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate();
+        for (const f of files){
+            const name = enc.encode(f.name), crc = crc32(f.data), size = f.data.length;
+            const lh = new DataView(new ArrayBuffer(30));
+            [[0, 0x04034b50, 4], [4, 20, 2], [6, 0x0800, 2], [8, 0, 2], [10, time, 2], [12, date, 2], [14, crc, 4],
+                [18, size, 4], [22, size, 4], [26, name.length, 2], [28, 0, 2]].forEach(([o, v, n]) => n === 4 ? lh.setUint32(o, v, true) : lh.setUint16(o, v, true));
+            parts.push(lh.buffer, name, f.data);
+            const ch = new DataView(new ArrayBuffer(46));
+            [[0, 0x02014b50, 4], [4, 20, 2], [6, 20, 2], [8, 0x0800, 2], [10, 0, 2], [12, time, 2], [14, date, 2], [16, crc, 4],
+                [20, size, 4], [24, size, 4], [28, name.length, 2], [30, 0, 2], [32, 0, 2], [34, 0, 2], [36, 0, 2], [38, 0, 4], [42, offset, 4]]
+                .forEach(([o, v, n]) => n === 4 ? ch.setUint32(o, v, true) : ch.setUint16(o, v, true));
+            central.push(ch.buffer, name);
+            offset += 30 + name.length + size;
+        }
+        const cdSize = central.reduce((a, p) => a + p.byteLength, 0), end = new DataView(new ArrayBuffer(22));
+        end.setUint32(0, 0x06054b50, true); end.setUint16(8, files.length, true); end.setUint16(10, files.length, true);
+        end.setUint32(12, cdSize, true); end.setUint32(16, offset, true);
+        return new Blob([...parts, ...central, end.buffer], {type: "application/zip"});
+    }
+    $("#pZip").onclick = async () => {
+        try{
+            const {out, st} = await renderSelected($("#pZip"));
+            const files = await Promise.all(out.map(async ({m, c}) => {
+                const blob = await new Promise(r => c.toBlob(r, "image/png"));
+                return {name: `mesh_${shortU(m.uuid)}.png`, data: new Uint8Array(await blob.arrayBuffer())};
+            }));
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(zipStore(files));
+            a.download = `mesh_stickers_${st.name.replace(/[^\wа-яё-]+/gi, "_")}.zip`;
+            document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+            toast(`Скачано стикеров: ${files.length}`);
+        }catch(err){ toast(err.message, true); }
+    };
+
+    boot();
 </script>
 </body>
 </html>
