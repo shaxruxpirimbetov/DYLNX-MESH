@@ -8,6 +8,10 @@ class Message(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def is_author(self):
+        return True if self.telegram_id == self.mesh.telegram_id else False
+
     def __str__(self):
         return f"Message for Mesh({self.mesh.uuid}): {self.message[10:]} {'...' if len(self.message) > 10 else ''}"
 
