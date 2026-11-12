@@ -7,11 +7,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from apps.mesh.views import OpenMeshAPIView
+from apps.user.views import IndexView
 
 # handler404 = 'apps.user.views.custom_404'
 
 urlpatterns = [
-    # path("")
+    path("", IndexView.as_view()),
     path("admin/", admin.site.urls),
     path("api/user/", include("apps.user.urls")),
     path("api/mesh/", include("apps.mesh.urls")),
