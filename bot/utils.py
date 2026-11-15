@@ -33,7 +33,7 @@ def is_expired(mesh: dict) -> bool:
 
 
 def ago(ts: int, lang: str) -> str:
-    from texts_old import t
+    from texts import t
     mins = max(1, int((time.time() - ts) // 60))
     return t(lang, "ago_min", n=mins) if mins < 60 else t(lang, "ago_h", n=mins // 60)
 
