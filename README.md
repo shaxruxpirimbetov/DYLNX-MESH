@@ -4,7 +4,7 @@
 
 **Smart QR stickers for your belongings. Anyone can reach the owner — nobody sees who the owner is.**
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.12%2B-3776AB?logo=python&logoColor=white)
 ![Django REST Framework](https://img.shields.io/badge/Django-REST%20Framework-092E20?logo=django&logoColor=white)
 ![aiogram](https://img.shields.io/badge/aiogram-3.x-2CA5E0?logo=telegram&logoColor=white)
 ![Cloudflare R2](https://img.shields.io/badge/Cloudflare-R2-F38020?logo=cloudflare&logoColor=white)
@@ -99,7 +99,7 @@ No app to install. No phone number printed on the windshield.
 
 ### Prerequisites
 
-- Python 3.10+
+- Python 3.12+ (required by current Django)
 - A PostgreSQL database (or any database URL supported by `dj-database-url`)
 - A Cloudflare R2 bucket with a public URL
 - A Telegram bot token from [@BotFather](https://t.me/BotFather)
@@ -115,7 +115,7 @@ source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-Create a `.env` file in the project root:
+Copy `.env.example` to `.env` and fill it in (or create the file from the template below):
 
 ```env
 # Django
@@ -195,6 +195,21 @@ On start the bot verifies the backend connection and prints a clear error if `AP
 | `/lang` | Switch language (RU / UZ) |
 | `/help` | Help |
 | `/stats` | Service statistics (only for IDs listed in `ADMIN_IDS`) |
+
+## Tests
+
+The suite covers sticker CRUD and filters, statistics, the activation flow (wrong code, takeover protection, no secret leakage), the public landing pages and the staff-only message API. Cloudflare R2 is mocked, so no external services are needed.
+
+```bash
+export SECRET_KEY=test DEBUG=True ALLOWED_HOSTS=testserver,localhost \
+  DATABASE_URL="sqlite:///:memory:" BACKEND_HERE=http://testserver \
+  TELEGRAM_BOT_USERNAME=TestBot CLOUDFLARE_ACCOUNT_ID=x CLOUDFLARE_ACCESS_KEY_ID=x \
+  CLOUDFLARE_SECRET_ACCESS_KEY=x CLOUDFLARE_R2_BUCKET=x CLOUDFLARE_R2_PUBLIC_URL=https://cdn.example.com
+
+python manage.py test
+```
+
+The same suite runs on every push through GitHub Actions (`.github/workflows/tests.yml`).
 
 ## API reference
 

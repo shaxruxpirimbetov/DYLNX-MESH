@@ -1,0 +1,29 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ci-secret-key
+      DEBUG: "True"
+      ALLOWED_HOSTS: testserver,localhost
+      DATABASE_URL: "sqlite:///:memory:"
+      BACKEND_HERE: http://testserver
+      TELEGRAM_BOT_USERNAME: TestBot
+      CLOUDFLARE_ACCOUNT_ID: ci
+      CLOUDFLARE_ACCESS_KEY_ID: ci
+      CLOUDFLARE_SECRET_ACCESS_KEY: ci
+      CLOUDFLARE_R2_BUCKET: ci
+      CLOUDFLARE_R2_PUBLIC_URL: https://cdn.example.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - run: pip install -r requirements.txt
+      - run: python manage.py test

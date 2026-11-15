@@ -23,7 +23,9 @@ class MeshListCreateAPIView(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAdminUser]
 
     def get_queryset(self):
-        qs = Mesh.objects.select_related("user").annotate(messages_count=Count("message_mesh"))
+        qs = (Mesh.objects.select_related("user")
+              .annotate(messages_count=Count("message_mesh"))
+              .order_by("-created_at", "-id"))
         p = self.request.query_params
         today = timezone.localdate()
         if p.get("telegram_id"):
