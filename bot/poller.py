@@ -19,7 +19,7 @@ from api import api
 from config import config
 from db import db
 from relay import deliver, relay_lock
-from texts import t
+from texts_old import t
 from utils import fmt_date, short
 
 log = logging.getLogger(__name__)

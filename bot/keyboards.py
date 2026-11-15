@@ -2,7 +2,7 @@ from aiogram.types import (InlineKeyboardButton as IB, InlineKeyboardMarkup, Key
                            ReplyKeyboardMarkup)
 
 from config import config
-from texts import QUICK_KEYS, t
+from texts_old import QUICK_KEYS, t
 
 
 def main_menu(lang: str) -> ReplyKeyboardMarkup:

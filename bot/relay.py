@@ -10,7 +10,7 @@ from aiogram.types import Message
 from api import api
 from db import db
 from keyboards import guest_msg_kb, owner_msg_kb
-from texts import t
+from texts_old import t
 from utils import short
 
 log = logging.getLogger(__name__)

@@ -55,3 +55,6 @@ staticfiles/
 ._.Trashes
 Thumbs.db
 ehthumbs.db
+
+bot/mesh_bot.sqlite3
+bot/.env

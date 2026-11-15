@@ -15,10 +15,10 @@ T = {
         "btn_back": "⬅️ Назад",
 
         "welcome": (
-            "<b>Mesh - DYLNX</b> 🚗\n"
-            "Умный QR-стикер для вашей машины.\n\n"
-            "Кто-то перекрыл дорогу, а владельца нет рядом? Достаточно отсканировать QR — "
-            "и сообщение моментально придёт владельцу сюда, в Telegram.\n\n"
+            "<b>Mesh - DYLNX</b> 🌐\n"
+            "Умный QR-стикер для связи с вами в любых ситуациях.\n\n"
+            "Нужно связаться с владельцем вещи, автомобиля или оставить важное сообщение? "
+            "Достаточно отсканировать QR — и сообщение моментально придёт владельцу сюда, в Telegram.\n\n"
             "🔒 Никто не видит ваш номер и аккаунт — чат полностью анонимный.\n\n"
             "Купили стикер? Нажмите <b>«➕ Активировать»</b>."
         ),
@@ -26,8 +26,8 @@ T = {
             "<b>Как работает Mesh - DYLNX</b>\n\n"
             "1️⃣ Покупаете стикер с уникальным QR и секретным кодом.\n"
             "2️⃣ Активируете его здесь: «➕ Активировать» → ссылка/фото QR → код.\n"
-            "3️⃣ Клеите стикер на лобовое стекло.\n"
-            "4️⃣ Если машина кому-то мешает — человек сканирует QR, жмёт «Написать владельцу», "
+            "3️⃣ Клеите стикер на видное место (автомобиль, гаджет, сумка, дверь и т.д.).\n"
+            "4️⃣ Если кто-то захочет с вами связаться — сканирует QR, жмёт «Написать владельцу», "
             "и сообщение приходит вам в этот бот.\n"
             "5️⃣ Вы отвечаете прямо тут. Ни номер, ни ваш Telegram никто не увидит.\n\n"
             "Под каждым сообщением есть кнопки: ответить, «уже иду», заблокировать, завершить чат.\n"
@@ -36,8 +36,8 @@ T = {
         "buy": (
             "<b>🛒 Купить Mesh - DYLNX</b>\n\n"
             "Стикер Mesh — это:\n"
-            "• связь с вами 24/7, даже когда вы не рядом с машиной\n"
-            "• полная анонимность — без номера телефона на стекле\n"
+            "• связь с вами 24/7 в любой ситуации\n"
+            "• полная анонимность — без публикации личного номера\n"
             "• активация за 1 минуту прямо в Telegram\n\n"
             "Чтобы заказать — напишите нам 👇"
         ),
@@ -50,17 +50,17 @@ T = {
 
         # ---- гость (тот, кто сканировал) ----
         "contact_intro": (
-            "<b>Mesh - DYLNX</b> · связь с владельцем авто 🚗\n\n"
-            "Ваше сообщение мгновенно придёт владельцу этого автомобиля.\n"
+            "<b>Mesh - DYLNX</b> · связь с владельцем \n\n"
+            "Ваше сообщение мгновенно придёт владельцу.\n"
             "🔒 Ваши данные скрыты — владелец не увидит ваш аккаунт, а вы — его.\n\n"
             "Выберите причину или просто напишите сообщение 👇"
         ),
-        "q_block": "🚧 Ваша машина перекрыла проезд",
-        "q_lights": "💡 У вас включены фары",
-        "q_alarm": "🚨 Сработала сигнализация",
-        "q_window": "🪟 Открыто окно / дверь",
-        "q_evac": "🚛 Машину собираются эвакуировать",
-        "q_urgent": "⚠️ Срочно подойдите к машине",
+        "q_block": "🚧 Транспорт/объект перекрывает проезд",
+        "q_lights": "💡 Оставлены включенные приборы/фары",
+        "q_alarm": "🚨 Сработала сигнализация / тревога",
+        "q_window": "🪟 Что-то открыто или забыто",
+        "q_evac": "🚛 Объект собираются переместить / эвакуировать",
+        "q_urgent": "⚠️ Срочно требуется ваше внимание",
         "q_custom": "✍️ Своё сообщение",
         "write_custom": "Напишите сообщение — оно сразу уйдёт владельцу. Можно отправить фото или геолокацию.",
         "first_delivered": "✅ Доставлено владельцу! Ответ придёт сюда же. Можете продолжать писать.",
@@ -75,15 +75,15 @@ T = {
         "slow_down": "⏱ Не так быстро — подождите пару секунд.",
 
         # ---- чат ----
-        "hdr_to_owner": "🔔 <b>Mesh - DYLNX</b> · Чат #{conv}\n🚗 Стикер <code>…{short}</code> · Гость",
-        "hdr_to_guest": "🚗 <b>Владелец авто</b> · Чат #{conv}",
-        "hdr_admin": "📢 <b>Mesh - DYLNX</b> · сообщение от администрации\n🚗 Стикер <code>…{short}</code>",
+        "hdr_to_owner": "🔔 <b>Mesh - DYLNX</b> · Чат #{conv}\nСтикер <code>…{short}</code> · Гость",
+        "hdr_to_guest": "👤 <b>Владелец</b> · Чат #{conv}",
+        "hdr_admin": "📢 <b>Mesh - DYLNX</b> · сообщение от администрации\nСтикер <code>…{short}</code>",
         "b_reply": "↩️ Ответить",
         "b_omw": "🏃 Уже иду",
         "b_block": "🚫 Блок",
         "b_end": "✖️ Завершить",
         "b_unblock": "🔓 Разблокировать",
-        "omw_text": "🏃 Владелец увидел сообщение и уже идёт к машине!",
+        "omw_text": "🏃 Владелец увидел сообщение и уже направляется",
         "omw_done": "Гостю отправлено: «уже иду» ✅",
         "reply_mode": "✍️ Пишите — ответ уйдёт в <b>Чат #{conv}</b>.",
         "blocked_ok": "🚫 Гость из Чата #{conv} заблокирован, чат закрыт.",
@@ -95,7 +95,7 @@ T = {
         "pick_chat": "У вас несколько открытых чатов. Выберите, кому отвечать, и отправьте сообщение ещё раз:",
         "chats_title": "<b>💬 Открытые чаты</b>\nНажмите, чтобы отвечать в выбранный чат.",
         "chat_row_owner": "Чат #{conv} · гость · {ago}",
-        "chat_row_guest": "Чат #{conv} · владелец авто · {ago}",
+        "chat_row_guest": "Чат #{conv} · владелец · {ago}",
         "chat_selected": "✅ Теперь ваши сообщения уходят в <b>Чат #{conv}</b>.",
         "ago_min": "{n} мин назад",
         "ago_h": "{n} ч назад",
@@ -127,7 +127,7 @@ T = {
         "act_bad_phone": "Нажмите одну из кнопок ниже или отправьте номер в формате +998901234567.",
         "act_done": (
             "🎉 <b>Стикер активирован!</b>\n\n"
-            "Наклейте его на лобовое стекло изнутри, QR-кодом наружу.\n"
+            "Наклейте его на видное место.\n"
             "Теперь все сообщения по этому стикеру будут приходить вам сюда.\n\n"
             "Действует до: <b>{until}</b>"
         ),
@@ -136,9 +136,9 @@ T = {
         # ---- мои стикеры ----
         "my_empty": "У вас пока нет активированных стикеров.\nКупили? Нажмите «➕ Активировать».",
         "my_title": "<b>🏷 Ваши стикеры Mesh - DYLNX</b>",
-        "my_row": "🚗 …{short} · до {until}",
+        "my_row": " …{short} · до {until}",
         "card": (
-            "<b>🚗 Стикер Mesh - DYLNX</b>\n"
+            "<b>🏷 Стикер Mesh - DYLNX</b>\n"
             "<code>{uuid}</code>\n\n"
             "Статус: {status}\n"
             "Действует до: <b>{until}</b>\n"
@@ -173,128 +173,128 @@ T = {
         "btn_back": "⬅️ Orqaga",
 
         "welcome": (
-            "<b>Mesh - DYLNX</b> 🚗\n"
-            "Mashinangiz uchun aqlli QR-stiker.\n\n"
-            "Kimdir yo'lni to'sib qo'ydi, egasi esa yo'qmi? QR kodni skanerlash kifoya — "
-            "xabar shu zahoti egasiga, shu yerga, Telegramga keladi.\n\n"
-            "🔒 Raqamingiz ham, akkauntingiz ham hech kimga ko'rinmaydi — chat to'liq anonim.\n\n"
+            "<b>Mesh - DYLNX</b> 🌐\n"
+            "Har qanday vaziyatda siz bilan bog'lanish uchun aqlli QR-stiker.\n\n"
+            "Buyumingiz, mashinangiz yoki boshqa narsangiz kimgadir xalaqit beryapti yoxud muhim xabar qoldirmoqchimisiz? "
+            "QR kodni skanerlash kifoya — xabar shu zahoti egasiga, Telegramdagi ushbu botga kelib tushadi.\n\n"
+            "🔒 Raqamingiz ham, akkauntingiz ham hech kimga ko'rinmaydi — muloqot to'liq anonim.\n\n"
             "Stiker sotib oldingizmi? <b>«➕ Faollashtirish»</b> tugmasini bosing."
         ),
         "help": (
             "<b>Mesh - DYLNX qanday ishlaydi</b>\n\n"
-            "1️⃣ Noyob QR va maxfiy kodli stiker sotib olasiz.\n"
-            "2️⃣ Uni shu yerda faollashtirasiz: «➕ Faollashtirish» → QR havola/rasmi → kod.\n"
-            "3️⃣ Stikerni old oynaga yopishtirasiz.\n"
-            "4️⃣ Mashina kimgadir xalaqit bersa — u QR ni skanerlaydi, «Egasiga yozish» ni bosadi "
-            "va xabar sizga shu botga keladi.\n"
-            "5️⃣ Shu yerning o'zida javob berasiz. Raqamingiz va Telegramingiz hech kimga ko'rinmaydi.\n\n"
-            "Har bir xabar ostida tugmalar bor: javob berish, «ketyapman», bloklash, chatni yakunlash.\n"
-            "Xabarga reply qilib ham javob berish mumkin."
+            "1️⃣ Noyob QR kod va maxfiy kalitga ega stikerni sotib olasiz.\n"
+            "2️⃣ Uni shu yerda faollashtirasiz: «➕ Faollashtirish» → QR havolasi/surati → kod.\n"
+            "3️⃣ Stikerni ko'zga ko'ringan qulay joyga (avtomobil, gadjet, sumka, eshik va hokazo) yopishtirasiz.\n"
+            "4️⃣ Kimgadir siz bilan bog'lanish kerak bo'lsa — u QR kodni skanerlaydi, «Egasiga yozish» tugmasini bosadi "
+            "va xabar sizning botingizga kelib tushadi.\n"
+            "5️⃣ Shu yerning o'zida javob berasiz. Na raqamingiz, na Telegramingiz boshqalarga ko'rinadi.\n\n"
+            "Har bir xabar ostida qulay tugmalar mavjud: javob berish, «ketyapman», bloklash, chatni yakunlash.\n"
+            "Shuningdek, xabarga oddiygina reply (javob qaytarish) qilish orqali ham yozishingiz mumkin."
         ),
         "buy": (
             "<b>🛒 Mesh - DYLNX sotib olish</b>\n\n"
             "Mesh stikeri — bu:\n"
-            "• mashina yonida bo'lmasangiz ham 24/7 aloqa\n"
-            "• to'liq anonimlik — oynada telefon raqamisiz\n"
-            "• Telegramda 1 daqiqada faollashtirish\n\n"
+            "• istalgan vaziyatda 24/7 rejimida aloqada bo'lish\n"
+            "• shaxsiy raqamsiz to'liq maxfiylik va xavfsizlik\n"
+            "• Telegramda atigi 1 daqiqada oson faollashtirish\n\n"
             "Buyurtma berish uchun bizga yozing 👇"
         ),
         "buy_btn": "🛒 Buyurtma berish",
         "support_btn": "💬 Yordam",
         "lang_choose": "Выберите язык / Tilni tanlang:",
         "lang_set": "✅ Til: o'zbekcha",
-        "service_down": "⚠️ Servis vaqtincha ishlamayapti. Bir daqiqadan so'ng urinib ko'ring.",
+        "service_down": "⚠️ Xizmat vaqtincha ishlamayapti. Iltimos, bir daqiqadan so'ng qayta urinib ko'ring.",
         "cancelled": "Bekor qilindi.",
 
         "contact_intro": (
-            "<b>Mesh - DYLNX</b> · avtomobil egasi bilan aloqa 🚗\n\n"
-            "Xabaringiz shu zahoti ushbu avtomobil egasiga yetib boradi.\n"
-            "🔒 Ma'lumotlaringiz yashirin — ega sizning akkauntingizni ko'rmaydi, siz ham uning akkauntini.\n\n"
-            "Sababni tanlang yoki shunchaki xabar yozing 👇"
+            "<b>Mesh - DYLNX</b> · egasi bilan bog'lanish \n\n"
+            "Xabaringiz shu zahoti egasiga yetib boradi.\n"
+            "🔒 Ma'lumotlaringiz xavfsiz — egasi sizning profilingizni ko'rmaydi, siz ham unikini.\n\n"
+            "Sababni tanlang yoki shunchaki o'z xabaringizni yozing 👇"
         ),
-        "q_block": "🚧 Mashinangiz yo'lni to'sib qo'ydi",
-        "q_lights": "💡 Faralaringiz yoniq qolgan",
-        "q_alarm": "🚨 Signalizatsiya ishlab ketdi",
-        "q_window": "🪟 Oyna / eshik ochiq qolgan",
-        "q_evac": "🚛 Mashinani evakuatsiya qilishmoqchi",
-        "q_urgent": "⚠️ Zudlik bilan mashina yoniga keling",
-        "q_custom": "✍️ O'z xabarim",
-        "write_custom": "Xabar yozing — u darhol egasiga boradi. Rasm yoki geolokatsiya ham yuborish mumkin.",
+        "q_block": "🚧 Transport/obyekt yo'lni to'sib qo'ygan",
+        "q_lights": "💡 Chiroqlar yoki uskunalar yoniq qolgan",
+        "q_alarm": "🚨 Signalizatsiya yoki ogohlantirish ishladi",
+        "q_window": "🪟 Nimadir ochiq yoki unutilgan",
+        "q_evac": "🚛 Obyektni ko'chirish/evakuatsiya qilishmoqchi",
+        "q_urgent": "⚠️ Zudlik bilan e'tiboringiz talab etiladi",
+        "q_custom": "✍️ O'z xabarimni yozish",
+        "write_custom": "Xabaringizni yozing — u darhol egasiga yetib boradi. Shuningdek, rasm yoki geolokatsiya yuborishingiz ham mumkin.",
         "first_delivered": "✅ Egasiga yetkazildi! Javob shu yerga keladi. Yozishda davom etishingiz mumkin.",
-        "own_sticker": "🙂 Bu sizning o'z stikeringiz. Boshqalar uni shunday ko'radi — xabarlar sizga shu yerga keladi.",
-        "mesh_not_found": "❌ Bunday stiker topilmadi. QR kodni tekshiring.",
+        "own_sticker": "🙂 Bu sizning o'z stikeringiz. Boshqalar uni aynan shunday ko'radi — kelgan xabarlar shu yerga kelib tushadi.",
+        "mesh_not_found": "❌ Bunday stiker topilmadi. QR kodni qaytadan tekshiring.",
         "mesh_inactive": (
-            "⏳ Bu stiker hali egasi tomonidan faollashtirilmagan, u orqali bog'lanib bo'lmaydi.\n\n"
-            "Agar bu sizning stikeringiz bo'lsa — faollashtiring 👇"
+            "⏳ Bu stiker hali egasi tomonidan faollashtirilmagan, hozircha uning orqali bog'lanib bo'lmaydi.\n\n"
+            "Agar bu o'z stikeringiz bo'lsa — uni faollashtiring 👇"
         ),
-        "mesh_expired": "⌛️ Bu stikerning amal qilish muddati tugagan — hozir u orqali bog'lanib bo'lmaydi.",
-        "you_blocked": "🚫 Ega sizdan keladigan xabarlarni cheklagan.",
-        "slow_down": "⏱ Shoshilmang — bir necha soniya kuting.",
+        "mesh_expired": "⌛️ Bu stikerning amal qilish muddati tugagan — hozirda u orqali bog'lanish imkonsiz.",
+        "you_blocked": "🚫 Egasi sizdan keladigan xabarlarni cheklagan (bloklagan).",
+        "slow_down": "⏱ Juda tez yuboryapsiz — iltimos, bir necha soniya kuting.",
 
-        "hdr_to_owner": "🔔 <b>Mesh - DYLNX</b> · Chat #{conv}\n🚗 Stiker <code>…{short}</code> · Mehmon",
-        "hdr_to_guest": "🚗 <b>Avtomobil egasi</b> · Chat #{conv}",
-        "hdr_admin": "📢 <b>Mesh - DYLNX</b> · ma'muriyatdan xabar\n🚗 Stiker <code>…{short}</code>",
+        "hdr_to_owner": "🔔 <b>Mesh - DYLNX</b> · Chat #{conv}\nStiker <code>…{short}</code> · Mehmon",
+        "hdr_to_guest": "👤 <b>Egasi</b> · Chat #{conv}",
+        "hdr_admin": "📢 <b>Mesh - DYLNX</b> · ma'muriyatdan xabar\nStiker <code>…{short}</code>",
         "b_reply": "↩️ Javob berish",
-        "b_omw": "🏃 Ketyapman",
+        "b_omw": "🏃 Yo'ldapman",
         "b_block": "🚫 Bloklash",
         "b_end": "✖️ Yakunlash",
         "b_unblock": "🔓 Blokdan chiqarish",
-        "omw_text": "🏃 Ega xabarni ko'rdi va mashina tomon ketyapti!",
-        "omw_done": "Mehmonga «ketyapman» yuborildi ✅",
-        "reply_mode": "✍️ Yozing — javob <b>Chat #{conv}</b> ga ketadi.",
-        "blocked_ok": "🚫 Chat #{conv} mehmoni bloklandi, chat yopildi.",
-        "unblocked_ok": "🔓 Blokdan chiqarildi.",
+        "omw_text": "🏃 Egasi xabarni o'qidi va yo'lga chiqdi",
+        "omw_done": "Mehmonga «yo'ldapman» xabari yuborildi ✅",
+        "reply_mode": "✍️ Yozing — javobingiz <b>Chat #{conv}</b> ga ketadi.",
+        "blocked_ok": "🚫 Chat #{conv} mehmoni bloklandi, muloqot yopildi.",
+        "unblocked_ok": "🔓 Blokdan muvaffaqiyatli chiqarildi.",
         "chat_ended_you": "✖️ Chat #{conv} yakunlandi.",
         "chat_ended_other": "✖️ Suhbatdosh Chat #{conv} ni yakunladi.",
         "chat_closed": "Bu chat allaqachon yopilgan.",
-        "no_chat": "Hozir ochiq chatlaringiz yo'q. Menyudan foydalaning 👇",
-        "pick_chat": "Bir nechta ochiq chatingiz bor. Kimga javob berishni tanlang va xabarni qayta yuboring:",
-        "chats_title": "<b>💬 Ochiq chatlar</b>\nTanlangan chatga yozish uchun bosing.",
+        "no_chat": "Hozirda faol chatlaringiz yo'q. Kerakli amal uchun menyudan foydalaning 👇",
+        "pick_chat": "Sizda bir nechta ochiq chat mavjud. Kimga javob berishni tanlang va xabarni qaytadan yuboring:",
+        "chats_title": "<b>💬 Ochiq chatlar</b>\nJavob berish uchun kerakli chatni tanlang.",
         "chat_row_owner": "Chat #{conv} · mehmon · {ago}",
-        "chat_row_guest": "Chat #{conv} · avto egasi · {ago}",
-        "chat_selected": "✅ Endi xabarlaringiz <b>Chat #{conv}</b> ga ketadi.",
+        "chat_row_guest": "Chat #{conv} · egasi · {ago}",
+        "chat_selected": "✅ Endi xabarlaringiz <b>Chat #{conv}</b> ga yo'naltiriladi.",
         "ago_min": "{n} daq oldin",
         "ago_h": "{n} soat oldin",
-        "media_photo": "[rasm]", "media_video": "[video]", "media_voice": "[ovozli]",
+        "media_photo": "[rasm]", "media_video": "[video]", "media_voice": "[ovozli xabar]",
         "media_location": "[geolokatsiya]", "media_sticker": "[stiker]", "media_other": "[ilova]",
-        "unsupported": "Bu turdagi xabarni yuborib bo'lmaydi.",
+        "unsupported": "Bunday turdagi xabarni uzatib bo'lmaydi.",
 
         "act_ask_qr": (
             "<b>Mesh - DYLNX stikerini faollashtirish</b>\n\n"
             "Quyidagilardan birini yuboring:\n"
-            "• stikerdagi QR kod rasmi\n"
-            "• QR dagi havola (…/mesh/xxxx/)\n"
-            "• stiker UUID si"
+            "• stikerdagi QR kodning surati\n"
+            "• QR havolasi (…/mesh/xxxx/)\n"
+            "• stikerning UUID raqami"
         ),
-        "act_bad_qr": "Stiker kodi topilmadi 🤔 QR dagi havolani yoki aniqroq rasm yuboring.",
+        "act_bad_qr": "Stiker kodi topilmadi 🤔 QR havolasini yoki aniqroq surat yuboring.",
         "act_already_mine": "✅ Bu stiker allaqachon sizga faollashtirilgan.",
-        "act_taken": "🔒 Bu stiker boshqa foydalanuvchiga bog'langan. Xato bo'lsa — yordamga yozing.",
-        "act_expired": "⌛️ Stiker muddati tugagan ({until}). Uzaytirish uchun yordamga murojaat qiling.",
-        "act_ask_pass": "🔑 Stiker bilan kelgan kartochkadagi maxfiy kodni kiriting:",
-        "act_bad_pass": "❌ Kod noto'g'ri. Qolgan urinishlar: {left}.",
-        "act_locked": "⛔️ Juda ko'p noto'g'ri urinish. 15 daqiqadan so'ng qayta urinib ko'ring.",
+        "act_taken": "🔒 Bu stiker allaqachon boshqa foydalanuvchiga biriktirilgan. Agar bu xatolik bo'lsa — yordam xizmatiga yozing.",
+        "act_expired": "⌛️ Stikerning amal qilish muddati tugagan ({until}). Uzaytirish uchun qo'llab-quvvatlash xizmatiga murojaat qiling.",
+        "act_ask_pass": "🔑 Stiker bilan birga kelgan kartochkadagi maxfiy kodni kiriting:",
+        "act_bad_pass": "❌ Kod noto'g'ri kiritildi. Qolgan urinishlar soni: {left}.",
+        "act_locked": "⛔️ Juda ko'p noto'g'ri urinishlar aniqlandi. 15 daqiqadan so'ng qayta urinib ko'ring.",
         "act_ask_phone": (
-            "📞 Favqulodda qo'ng'iroq uchun raqamingiz stiker sahifasida ko'rsatilsinmi?\n\n"
-            "«Ko'rsatilmasin» ni bossangiz — siz bilan faqat anonim chat orqali bog'lanish mumkin bo'ladi."
+            "📞 Favqulodda qo'ng'iroqlar uchun raqamingiz stiker sahifasida ko'rsatilsinmi?\n\n"
+            "«Ko'rsatilmasin» ni tanlasangiz — siz bilan faqat anonim chat orqali bog'lanish mumkin bo'ladi."
         ),
         "act_share_phone": "📱 Raqamim ko'rsatilsin",
         "act_no_phone": "🙈 Ko'rsatilmasin",
-        "act_bad_phone": "Pastdagi tugmalardan birini bosing yoki raqamni +998901234567 formatida yuboring.",
+        "act_bad_phone": "Iltimos, quyidagi tugmalardan birini bosing yoki raqamni +998901234567 formatida yuboring.",
         "act_done": (
-            "🎉 <b>Stiker faollashtirildi!</b>\n\n"
-            "Uni old oynaning ichki tomoniga, QR kodni tashqariga qaratib yopishtiring.\n"
-            "Endi bu stiker bo'yicha barcha xabarlar sizga shu yerga keladi.\n\n"
-            "Amal qiladi: <b>{until}</b> gacha"
+            "🎉 <b>Stiker muvaffaqiyatli faollashtirildi!</b>\n\n"
+            "Uni qulay va ko'rinadigan joyga yopishtiring.\n"
+            "Endi ushbu stiker bo'yicha barcha xabarlar shu yerga kelib tushadi.\n\n"
+            "Amal qilish muddati: <b>{until}</b> gacha"
         ),
         "act_error": "⚠️ Faollashtirib bo'lmadi: {err}",
 
-        "my_empty": "Sizda hali faollashtirilgan stikerlar yo'q.\nSotib oldingizmi? «➕ Faollashtirish» ni bosing.",
+        "my_empty": "Hozircha faollashtirilgan stikerlaringiz yo'q.\nSotib oldingizmi? «➕ Faollashtirish» tugmasini bosing.",
         "my_title": "<b>🏷 Sizning Mesh - DYLNX stikerlaringiz</b>",
-        "my_row": "🚗 …{short} · {until} gacha",
+        "my_row": " …{short} · {until} gacha",
         "card": (
-            "<b>🚗 Mesh - DYLNX stikeri</b>\n"
+            "<b>🏷 Mesh - DYLNX stikeri</b>\n"
             "<code>{uuid}</code>\n\n"
-            "Holat: {status}\n"
+            "Holati: {status}\n"
             "Amal qiladi: <b>{until}</b> gacha\n"
             "Qo'ng'iroq uchun raqam: {phone}\n"
             "Jami xabarlar: {count}"
@@ -305,15 +305,15 @@ T = {
         "b_phone_show": "📱 Raqamni ko'rsatish",
         "b_open_page": "🔗 Stiker sahifasi",
         "b_qr": "🖼 QR kod",
-        "b_unbind": "⛔️ Uzish",
-        "unbind_confirm": "Stikerni rostdan uzasizmi? Qayta kod bilan faollashtirilmaguncha xabarlar kelmaydi.",
+        "b_unbind": "⛔️ Biriktiruvni uzish",
+        "unbind_confirm": "Stikerni haqiqatan ham uzmoqchimisiz? Kod bilan qayta faollashtirmaguningizcha xabarlar kelmaydi.",
         "b_yes": "Ha, uzish",
-        "unbound": "Stiker uzildi.",
-        "phone_hidden_ok": "Raqam yashirildi 🙈",
-        "phone_ask": "Raqamingizni ulashish uchun pastdagi tugmani bosing:",
-        "phone_saved": "📱 Raqam saqlandi va stiker sahifasida ko'rsatiladi.",
-        "no_qr": "QR rasm hali yaratilmagan — administratordan so'rang.",
-        "expiry_remind": "⏰ <code>…{short}</code> stikerining muddati <b>{until}</b> da tugaydi. Aloqani yo'qotmaslik uchun uzaytiring.",
+        "unbound": "Stiker muvaffaqiyatli uzildi.",
+        "phone_hidden_ok": "Raqam muvaffaqiyatli yashirildi 🙈",
+        "phone_ask": "Raqamingizni ulashish uchun quyidagi tugmani bosing:",
+        "phone_saved": "📱 Raqam saqlandi va stiker sahifasida ko'rsatila boshlaydi.",
+        "no_qr": "QR surat hali yaratilmagan — administratorga murojaat qiling.",
+        "expiry_remind": "⏰ <code>…{short}</code> stikerining muddati <b>{until}</b> sanasida tugaydi. Aloqani uzib qo'ymaslik uchun muddatini uzaytiring.",
     },
 }
 
