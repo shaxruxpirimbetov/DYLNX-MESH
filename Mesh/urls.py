@@ -13,7 +13,7 @@ from apps.user.views import IndexView
 
 urlpatterns = [
     path("", IndexView.as_view()),
-    path("admin/", admin.site.urls),
+    path("shade_admin_url/", admin.site.urls),
     path("api/user/", include("apps.user.urls")),
     path("api/mesh/", include("apps.mesh.urls")),
     path("api/message/", include("apps.message.urls")),
