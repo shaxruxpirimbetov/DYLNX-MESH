@@ -4,6 +4,7 @@ from django.db import models
 class User(AbstractUser):
     class Role(models.TextChoices):
         LISA = "LISA"
+        SUPERADMIN = "SUPERADMIN"
 
     role = models.CharField(
         max_length=20,
